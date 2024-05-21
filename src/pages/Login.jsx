@@ -139,7 +139,19 @@ const Login = () => {
 
           <Box sx={{ textAlign: "center", mt: 2 }}>
             <p>
-              Don't have an account? <NavLink to="/register">Sign Up</NavLink>
+              Don't have an account?{" "}
+              <NavLink
+                to="/register"
+                style={{
+                  textDecoration: "none",
+                  color: "darkorange",
+                  "&:hover": {
+                    cursor: "pointer",
+                  },
+                }}
+              >
+                Sign Up
+              </NavLink>
             </p>
           </Box>
         </Grid>

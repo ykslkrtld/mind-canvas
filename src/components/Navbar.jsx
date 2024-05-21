@@ -16,7 +16,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
 const pages = [
-  { name: 'Dashboard', path: '/dashboard' },
+  { name: 'Dashboard', path: '/' },
   { name: 'New Blog', path: '/new-blog' },
   { name: 'About', path: '/about' }
 ];
@@ -24,7 +24,7 @@ const pages = [
 const settings = [
   { name: 'My Blogs', path: '/my-blogs' },
   { name: 'Profile', path: '/profile' },
-  { name: 'Logout', path:"/", action: 'logout' },
+  { name: 'Logout', action: 'logout' },
   { name: 'Login', path: '/login' }
 ];
 
@@ -158,7 +158,7 @@ const Navbar = () => {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                <Avatar alt="Remy Sharp" src="https://randomuser.me/api/portraits/women/32.jpg" />
               </IconButton>
             </Tooltip>
             <Menu

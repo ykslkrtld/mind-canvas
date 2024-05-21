@@ -41,8 +41,7 @@ const Register = () => {
       .matches(/[@$!%*?&]/, "Şifre @$!%*?& birini içermelidir")
       .min(8, "Şifre en az 8 karakterli olmalıdır")
       .max(15, "Şifre en fazla 15 karakterli olmalıdır"),
-    image: string()
-      .url("Geçerli bir url giriniz"),
+    image: string().url("Geçerli bir url giriniz"),
     bio: string(),
   });
 
@@ -61,11 +60,11 @@ const Register = () => {
         }}
       >
         <Grid item xs={12} sm={10} md={6}>
-        <Grid item xs={12}>
-          <Typography variant="h3" color="darkorange" align="center" my={5}>
-          BLOG APP
-          </Typography>
-        </Grid>
+          <Grid item xs={12}>
+            <Typography variant="h3" color="darkorange" align="center" my={5}>
+              BLOG APP
+            </Typography>
+          </Grid>
           <Avatar
             sx={{
               backgroundColor: "darkorange",
@@ -76,12 +75,7 @@ const Register = () => {
           >
             <LockIcon size="30" />
           </Avatar>
-          <Typography
-            variant="h4"
-            align="center"
-            mb={4}
-            color="darkorange"
-          >
+          <Typography variant="h4" align="center" mb={4} color="darkorange">
             Register
           </Typography>
           <Formik
@@ -96,7 +90,6 @@ const Register = () => {
             }}
             validationSchema={registerSchema}
             onSubmit={(values, actions) => {
-
               register(values);
               actions.resetForm();
               actions.setSubmitting(false); // isSubmitting
@@ -124,7 +117,7 @@ const Register = () => {
                     error={touched.username && Boolean(errors.username)}
                     helperText={touched.username && errors.username}
                   />
-                
+
                   <TextField
                     label="First Name *"
                     name="firstName"
@@ -185,7 +178,7 @@ const Register = () => {
                     error={touched.bio && Boolean(errors.bio)}
                     helperText={touched.bio && errors.bio}
                   />
-                    <TextField
+                  <TextField
                     label="Password"
                     name="password"
                     id="password"
@@ -196,12 +189,12 @@ const Register = () => {
                     onBlur={handleBlur}
                     error={touched.password && Boolean(errors.password)}
                     helperText={touched.password && errors.password}
-                    InputProps={{ 
+                    InputProps={{
                       endAdornment: (
                         <InputAdornment position="end">
                           <IconButton
                             aria-label="toggle password visibility"
-                            onClick={()=> setShowPassword((show) => !show)}
+                            onClick={() => setShowPassword((show) => !show)}
                             edge="end"
                           >
                             {showPassword ? <VisibilityOff /> : <Visibility />}
@@ -210,8 +203,7 @@ const Register = () => {
                       ),
                     }}
                   />
-                  
-                  
+
                   <Button
                     type="submit"
                     variant="contained"
@@ -232,7 +224,21 @@ const Register = () => {
           </Formik>
 
           <Box sx={{ textAlign: "center", mt: 2 }}>
-          <p>Already have an account? <NavLink to="/login">Sign In</NavLink></p>
+            <p>
+              Already have an account?{" "}
+              <NavLink
+                to="/login"
+                style={{
+                  textDecoration: "none",
+                  color: "darkorange",
+                  "&:hover": {
+                    cursor: "pointer",
+                  },
+                }}
+              >
+                Sign In
+              </NavLink>
+            </p>
           </Box>
         </Grid>
 

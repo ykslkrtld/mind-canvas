@@ -1,0 +1,257 @@
+import Container from "@mui/material/Container";
+import Typography from "@mui/material/Typography";
+import Avatar from "@mui/material/Avatar";
+import LockIcon from "@mui/icons-material/Lock";
+import Grid from "@mui/material/Grid";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import { NavLink } from "react-router-dom";
+import { Formik, Form } from "formik";
+import TextField from "@mui/material/TextField";
+import { object, string } from "yup";
+import { useState } from "react";
+import { IconButton, InputAdornment } from "@mui/material";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
+import useAuthCalls from "../services/useAuthCalls";
+
+const Register = () => {
+  // const navigate = useNavigate();
+  const { register } = useAuthCalls();
+  let registerSchema = object({
+    username: string()
+      .required("Kullanıcı adı zorunludur")
+      .matches(/^[a-zA-Z]+$/, "Kullanıcı adı sadece harf içermelidir")
+      .min(4, "Kullanıcı adı en az 4 karakterli olmalıdır")
+      .max(12, "Kullanıcı adı en fazla 12 karakterli olmalıdır"),
+    firstName: string()
+      .required("Ad zorunludur")
+      .matches(/^[a-zA-Z]+$/, "Ad sadece harf içermelidir"),
+    lastName: string()
+      .required("Soyad zorunludur")
+      .matches(/^[a-zA-Z]+$/, "Soyad sadece harf içermelidir"),
+    email: string()
+      .email("Geçerli bir mail giriniz")
+      .required("Email zorunludur"),
+    password: string()
+      .required("Şifre zorunludur")
+      .matches(/[a-z]/, "Şifre en az 1 küçük harf içermelidir")
+      .matches(/[A-Z]/, "Şifre en az 1 büyük harf içermelidir")
+      .matches(/\d+/, "Şifre en az 1 rakam içermelidir")
+      // .matches(/[0-9]/, "Şifre en az 1 rakam içermelidir")
+      .matches(/[@$!%*?&]/, "Şifre @$!%*?& birini içermelidir")
+      .min(8, "Şifre en az 8 karakterli olmalıdır")
+      .max(15, "Şifre en fazla 15 karakterli olmalıdır"),
+    image: string()
+      .url("Geçerli bir url giriniz"),
+    city: string(),
+    bio: string(),
+  });
+
+  const [showPassword, setShowPassword] = useState(false);
+
+  return (
+    <Container maxWidth="lg">
+      <Grid
+        container
+        justifyContent="center"
+        direction="row-reverse"
+        rowSpacing={{ sm: 3 }}
+        sx={{
+          height: "100vh",
+          p: 2,
+        }}
+      >
+        <Grid item xs={12} sm={10} md={6}>
+        <Grid item xs={12}>
+          <Typography variant="h3" color="darkorange" align="center" my={5}>
+          BLOG APP
+          </Typography>
+        </Grid>
+          <Avatar
+            sx={{
+              backgroundColor: "darkorange",
+              m: "auto",
+              width: 40,
+              height: 40,
+            }}
+          >
+            <LockIcon size="30" />
+          </Avatar>
+          <Typography
+            variant="h4"
+            align="center"
+            mb={4}
+            color="darkorange"
+          >
+            Register
+          </Typography>
+          <Formik
+            initialValues={{
+              username: "",
+              password: "",
+              email: "",
+              firstName: "",
+              lastName: "",
+              image: "",
+              city: "",
+              bio: "",
+            }}
+            validationSchema={registerSchema}
+            onSubmit={(values, actions) => {
+
+              register(values);
+              actions.resetForm();
+              actions.setSubmitting(false); // isSubmitting
+            }}
+          >
+            {({
+              values,
+              handleChange,
+              handleBlur,
+              touched,
+              errors,
+              isSubmitting,
+            }) => (
+              <Form>
+                <Box sx={{ display: "flex", flexDirection: "column", gap: 1 }}>
+                  <TextField
+                    label="User Name *"
+                    name="username"
+                    id="username"
+                    type="text"
+                    variant="outlined"
+                    value={values.username}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    error={touched.username && Boolean(errors.username)}
+                    helperText={touched.username && errors.username}
+                  />
+                
+                  <TextField
+                    label="First Name *"
+                    name="firstName"
+                    id="firstName"
+                    type="text"
+                    variant="outlined"
+                    value={values.firstName}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    error={touched.firstName && Boolean(errors.firstName)}
+                    helperText={touched.firstName && errors.firstName}
+                  />
+                  <TextField
+                    label="Last Name *"
+                    name="lastName"
+                    id="lastName"
+                    type="text"
+                    variant="outlined"
+                    value={values.lastName}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    error={touched.lastName && Boolean(errors.lastName)}
+                    helperText={touched.lastName && errors.lastName}
+                  />
+                  <TextField
+                    label="Email *"
+                    name="email"
+                    id="email"
+                    type="email"
+                    variant="outlined"
+                    value={values.email}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    error={touched.email && Boolean(errors.email)}
+                    helperText={touched.email && errors.email}
+                  />
+                  <TextField
+                    label="Image"
+                    name="image"
+                    id="image"
+                    type="url"
+                    variant="outlined"
+                    value={values.image}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    error={touched.image && Boolean(errors.image)}
+                    helperText={touched.image && errors.image}
+                  />
+                  <TextField
+                    label="City"
+                    name="city"
+                    id="city"
+                    type="text"
+                    variant="outlined"
+                    value={values.city}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    error={touched.city && Boolean(errors.city)}
+                    helperText={touched.city && errors.city}
+                  />
+                  <TextField
+                    label="Bio"
+                    name="bio"
+                    id="bio"
+                    type="text"
+                    variant="outlined"
+                    value={values.bio}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    error={touched.bio && Boolean(errors.bio)}
+                    helperText={touched.bio && errors.bio}
+                  />
+                    <TextField
+                    label="Password"
+                    name="password"
+                    id="password"
+                    type={showPassword ? "text" : "password"}
+                    variant="outlined"
+                    value={values.password}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    error={touched.password && Boolean(errors.password)}
+                    helperText={touched.password && errors.password}
+                    InputProps={{ 
+                      endAdornment: (
+                        <InputAdornment position="end">
+                          <IconButton
+                            aria-label="toggle password visibility"
+                            onClick={()=> setShowPassword((show) => !show)}
+                            edge="end"
+                          >
+                            {showPassword ? <VisibilityOff /> : <Visibility />}
+                          </IconButton>
+                        </InputAdornment>
+                      ),
+                    }}
+                  />
+                  
+                  
+                  <Button
+                    type="submit"
+                    variant="contained"
+                    disabled={isSubmitting}
+                    size="large"
+                  >
+                    Submit
+                  </Button>
+                </Box>
+              </Form>
+            )}
+          </Formik>
+
+          <Box sx={{ textAlign: "center", mt: 2 }}>
+          <p>Already have an account? <NavLink to="/login">Sign In</NavLink></p>
+          </Box>
+        </Grid>
+
+        {/* <Grid item xs={0} sm={7} md={6}>
+          <Container>
+            <img src={image} alt="" />
+          </Container>
+        </Grid> */}
+      </Grid>
+    </Container>
+  );
+};
+
+export default Register;

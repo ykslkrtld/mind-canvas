@@ -17,8 +17,8 @@ const AppRouter = () => {
       <Navbar />
       <Routes>
         <Route path="/login" element={<Login />} />
-        <Route path="register" element={<Register />} />
-        <Route path="about" element={<About />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/about" element={<About />} />
         <Route path="/" element={<Dashboard />} />
         <Route path="/" element={<PrivateRouter />}>
           <Route path="detail" element={<Detail />} />

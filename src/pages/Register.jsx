@@ -43,7 +43,6 @@ const Register = () => {
       .max(15, "Şifre en fazla 15 karakterli olmalıdır"),
     image: string()
       .url("Geçerli bir url giriniz"),
-    city: string(),
     bio: string(),
   });
 
@@ -93,7 +92,6 @@ const Register = () => {
               firstName: "",
               lastName: "",
               image: "",
-              city: "",
               bio: "",
             }}
             validationSchema={registerSchema}
@@ -176,18 +174,6 @@ const Register = () => {
                     helperText={touched.image && errors.image}
                   />
                   <TextField
-                    label="City"
-                    name="city"
-                    id="city"
-                    type="text"
-                    variant="outlined"
-                    value={values.city}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    error={touched.city && Boolean(errors.city)}
-                    helperText={touched.city && errors.city}
-                  />
-                  <TextField
                     label="Bio"
                     name="bio"
                     id="bio"
@@ -231,6 +217,12 @@ const Register = () => {
                     variant="contained"
                     disabled={isSubmitting}
                     size="large"
+                    sx={{
+                      backgroundColor: "darkorange",
+                      "&:hover": {
+                        backgroundColor: "orange",
+                      },
+                    }}
                   >
                     Submit
                   </Button>

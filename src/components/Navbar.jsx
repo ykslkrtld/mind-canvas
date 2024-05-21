@@ -13,9 +13,20 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import useAuthCalls from '../services/useAuthCalls';
 import { useDispatch, useSelector } from 'react-redux';
+import { NavLink } from 'react-router-dom';
 
-const pages = ['Dashboard', 'New Blog', 'About'];
-const settings = ['My Blogs', 'Profile', 'Logout', "Login"];
+const pages = [
+  { name: 'Dashboard', path: '/dashboard' },
+  { name: 'New Blog', path: '/new-blog' },
+  { name: 'About', path: '/about' }
+];
+
+const settings = [
+  { name: 'My Blogs', path: '/my-blogs' },
+  { name: 'Profile', path: '/profile' },
+  { name: 'Logout', path:"/", action: 'logout' },
+  { name: 'Login', path: '/login' }
+];
 
 
 const Navbar = () => {
@@ -39,6 +50,14 @@ const Navbar = () => {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+
+  const handleUserMenuClick = (setting) => {
+    if (setting.action === 'logout') {
+      logout();
+    }
+    handleCloseUserMenu();
+  };
+
 
   return (
     <AppBar position="static">
@@ -93,8 +112,12 @@ const Navbar = () => {
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+                <MenuItem key={page.name} onClick={handleCloseNavMenu}>
+                  <Typography textAlign="center">
+                    <NavLink to={page.path} style={{ textDecoration: 'none', color: 'inherit' }}>
+                      {page.name}
+                    </NavLink>
+                  </Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -119,13 +142,15 @@ const Navbar = () => {
             LOGO
           </Typography> */}
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {pages.map((page) => (
+          {pages.map((page) => (
               <Button
-                key={page}
+                key={page.name}
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
-                {page}
+                <NavLink to={page.path} style={{ textDecoration: 'none', color: 'inherit' }}>
+                  {page.name}
+                </NavLink>
               </Button>
             ))}
           </Box>
@@ -152,11 +177,22 @@ const Navbar = () => {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
-              ))}
+              {settings
+                .filter(setting => user ? setting.name !== 'Login' : setting.name === 'Login')
+                .map((setting) => (
+                  <MenuItem
+                    key={setting.name}
+                    onClick={() => handleUserMenuClick(setting)}
+                  >
+                    {setting.action ? (
+                      <Typography textAlign="center">{setting.name}</Typography>
+                    ) : (
+                      <NavLink to={setting.path} style={{ textDecoration: 'none', color: 'inherit' }}>
+                        <Typography textAlign="center">{setting.name}</Typography>
+                      </NavLink>
+                    )}
+                  </MenuItem>
+                ))}
             </Menu>
           </Box>
         </Toolbar>

@@ -35,11 +35,8 @@ const BlogCard = ({blog, users}) => {
   return (
     <Card sx={{ maxWidth: 360 }}>
       <CardHeader
-        avatar={
-          <Avatar aria-label="recipe" src={users.find((user) => user._id === blog.userId)?.image || avatar}/>
-        }
         title={blog.title}
-        subheader= {new Date(blog.createdAt).toLocaleString()}
+        subheader= {`Published Date: ${new Date(blog.createdAt).toLocaleString()}`}
       />
       <CardMedia
         component="img"
@@ -49,7 +46,7 @@ const BlogCard = ({blog, users}) => {
       />
       <CardContent>
         <Typography variant="body2" color="text.secondary" >
-          {(blog.content).slice(0, 90) + "..."}
+          {(blog.content).slice(0, 100) + "..."}
         </Typography>
       </CardContent>
       <CardActions disableSpacing sx={{justifyContent:"space-between"}}>

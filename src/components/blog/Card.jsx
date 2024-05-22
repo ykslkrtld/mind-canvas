@@ -57,19 +57,19 @@ const BlogCard = ({blog, users}) => {
         <IconButton aria-label="add to favorites">
           <FavoriteIcon />
           <Typography>
-          3
+          {blog?.likes.length}
         </Typography>
         </IconButton>
         <IconButton aria-label="comment">
           <CommentIcon />
           <Typography>
-          3
+          {blog?.comments.length}
         </Typography>
         </IconButton>
         <IconButton aria-label="visibility">
           <VisibilityIcon />
           <Typography>
-          3
+          {blog?.countOfVisitors}
         </Typography>
         </IconButton>
         </CardActions>

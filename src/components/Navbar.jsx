@@ -13,8 +13,9 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import useAuthCalls from "../services/useAuthCalls";
 import useBlogCalls from "../services/useBlogCalls";
-
-import { useSelector } from "react-redux";
+import avatar from "../assets/avatar.png"
+import { useEffect } from 'react'
+import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 
 const pages = [
@@ -27,7 +28,6 @@ const settings = [
   { name: "My Blogs", path: "/my-blogs" },
   { name: "Profile", path: "/profile" },
   { name: "Logout", path: "/" },
-  // { name: 'Login', path: '/login' }
 ];
 
 const Navbar = () => {
@@ -35,6 +35,9 @@ const Navbar = () => {
   const { logout } = useAuthCalls();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const { getBlogs } = useBlogCalls()
+  const { users } = useSelector((state) => state.getBlog);
+  console.log(users)
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -57,6 +60,11 @@ const Navbar = () => {
     }
     handleCloseUserMenu();
   };
+
+    useEffect(() => {
+    getBlogs("users")
+  }, [])
+  
 
   return (
     <AppBar position="static">
@@ -123,14 +131,19 @@ const Navbar = () => {
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
+            <div style={{display:"flex", alignItems:"center", gap:10}}>
+            <Typography>
+              {user && users[0]?.firstName}
+            </Typography>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 <Avatar
                   alt="Remy Sharp"
-                  src="https://randomuser.me/api/portraits/women/32.jpg"
+                  src={user ? users[0]?.image : avatar }
                 />
               </IconButton>
             </Tooltip>
+            </div>
             <Menu
               sx={{ mt: "45px" }}
               id="menu-appbar"

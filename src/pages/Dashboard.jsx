@@ -13,7 +13,7 @@ const Dashboard = () => {
     getBlogs("blogs")
     getBlogs("users")
   }, [])
-
+console.log(blogs)
   return (
     <Grid container gap={2} mt={3} justifyContent={"center"}>
           {blogs.map((blog) => (

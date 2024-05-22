@@ -1,0 +1,67 @@
+import { useDispatch } from "react-redux";
+import useAxios from "./useAxios";
+import {
+  fetchFail,
+  fetchStart,
+  getBlogSuccess,
+} from "../features/blogSlice";
+import { toastErrorNotify, toastSuccessNotify } from "../helper/ToastNotify";
+
+const useBlogCalls = () => {
+  const { axiosToken } = useAxios();
+  const dispatch = useDispatch();
+
+  const getBlogs = async (endpoint) => {
+    dispatch(fetchStart());
+    try {
+      const {data: { data }} = await axiosToken(`/${endpoint}`);
+      dispatch(getBlogSuccess({ data, endpoint }));
+    } catch (error) {
+      dispatch(fetchFail());
+      console.log(error);
+    }
+  };
+
+  const delBlogs = async (endpoint, id) => {
+    dispatch(fetchStart());
+    try {
+      await axiosToken.delete(`/${endpoint}/${id}`);
+      toastSuccessNotify("Silme işlemi başarılı");
+      getBlogs(endpoint)
+    } catch (error) {
+      dispatch(fetchFail());
+      toastErrorNotify("Silme işlemi başarısız oldu");
+      console.log(error);
+    }
+  };
+
+  const postBlogs = async (endpoint, datas) => {
+    dispatch(fetchStart());
+    try {
+      await axiosToken.post(`/${endpoint}`, datas);
+      toastSuccessNotify("Ekleme işlemi başarılı");
+      getBlogs(endpoint)
+    } catch (error) {
+      dispatch(fetchFail());
+      toastErrorNotify("Ekleme işlemi başarısız oldu");
+      console.log(error);
+    }
+  };
+
+  const patchBlogs = async (endpoint, datas, id) => {
+    dispatch(fetchStart());
+    try {
+      await axiosToken.patch(`/${endpoint}/${id}`, datas);
+      toastSuccessNotify("Düzenleme işlemi başarılı");
+      getBlogs(endpoint)
+    } catch (error) {
+      dispatch(fetchFail());
+      toastErrorNotify("Düzenleme işlemi başarısız oldu");
+      console.log(error);
+    }
+  };
+
+  return { getBlogs, delBlogs, postBlogs, patchBlogs };
+};
+
+export default useBlogCalls;

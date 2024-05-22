@@ -13,9 +13,11 @@ import { useState } from "react";
 import { IconButton, InputAdornment } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import useAuthCalls from "../services/useAuthCalls";
+import { useSelector } from "react-redux";
+import { Navigate } from "react-router-dom"
+
 
 const Register = () => {
-  // const navigate = useNavigate();
   const { register } = useAuthCalls();
   let registerSchema = object({
     username: string()
@@ -46,9 +48,9 @@ const Register = () => {
   });
 
   const [showPassword, setShowPassword] = useState(false);
+  const {user} = useSelector(state => state.auth)
 
-  return (
-    <Container maxWidth="lg">
+  return user ? <Navigate to="/"/> : <Container maxWidth="lg">
       <Grid
         container
         justifyContent="center"
@@ -249,7 +251,6 @@ const Register = () => {
         </Grid> */}
       </Grid>
     </Container>
-  );
-};
-
+    }
+  
 export default Register;

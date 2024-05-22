@@ -15,7 +15,7 @@ const useAuthCalls = () => {
       const { data } = await axiosPublic.post("/auth/login/", userData)
       dispatch(loginSuccess(data));
       toastSuccessNotify("Giriş başarılı");
-      navigate("/")
+      navigate(-1)
     } catch (error) {
       dispatch(fetchFail());
       toastErrorNotify("Giriş işlemi başarısız");

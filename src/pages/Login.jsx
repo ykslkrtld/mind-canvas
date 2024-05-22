@@ -12,6 +12,8 @@ import { object, string } from "yup";
 import useAuthCalls from "../services/useAuthCalls";
 import { useState } from "react";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
+import { useSelector } from "react-redux";
+import { Navigate } from "react-router-dom"
 
 const Login = () => {
   const { login } = useAuthCalls();
@@ -31,8 +33,9 @@ const Login = () => {
   });
 
   const [showPassword, setShowPassword] = useState(false);
+  const {user} = useSelector(state => state.auth)
 
-  return (
+  return user ? <Navigate to="/"/> : 
     <Container maxWidth="lg">
       <Grid
         container
@@ -163,7 +166,7 @@ const Login = () => {
         </Grid> */}
       </Grid>
     </Container>
-  );
+  
 };
 
 export default Login;

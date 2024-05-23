@@ -53,10 +53,21 @@ const useBlogCalls = () => {
     dispatch(fetchStart())
     try {
         await axiosToken.post(`/blogs/${id}/postLike`, {})
+        getLikes(id)
         getBlogs(currentPage)
     } catch (error) {
         console.log(error)
     }
+}
+
+const getLikes = async (id)=> {
+  dispatch(fetchStart())
+  try {
+      await axiosToken(`/blogs/${id}/getLike`, {})
+      getSingleBlog(id)
+  } catch (error) {
+      console.log(error)
+  }
 }
 
   const delBlogs = async (endpoint, id) => {
@@ -98,7 +109,7 @@ const useBlogCalls = () => {
     }
   };
 
-  return { getBlogs, delBlogs, postBlogs, patchBlogs, getUsers, postLikes, getSingleBlog };
+  return { getBlogs, delBlogs, postBlogs, patchBlogs, getUsers, postLikes, getSingleBlog, getLikes };
 };
 
 export default useBlogCalls;

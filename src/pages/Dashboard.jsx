@@ -1,17 +1,16 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import Card from '../components/blog/Card'
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import useBlogCalls from '../services/useBlogCalls';
 import { Grid } from '@mui/material';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
-import { setCurrentPage } from '../features/blogSlice';
 
 const Dashboard = () => {
 
-  const dispatch = useDispatch();
-  const { blogs, totalPages, currentPage } = useSelector((state) => state.getBlog);
+  const { blogs, totalPages } = useSelector((state) => state.getBlog);
   const { getBlogs, getUsers } = useBlogCalls();
+  const [currentPage, setCurrentPage] = useState(1)
 
   useEffect(() => {
     getBlogs(currentPage);
@@ -19,7 +18,7 @@ const Dashboard = () => {
   }, [currentPage]);
 
   const handlePageChange = (event, value) => {
-    dispatch(setCurrentPage(value));
+    setCurrentPage(value);
   };
 
   return (
@@ -27,7 +26,7 @@ const Dashboard = () => {
       <Grid container gap={2} mt={3} justifyContent={"center"}>
         {blogs.map((blog) => (
           <Grid item key={blog._id}>
-            <Card blog={blog} />
+            <Card blog={blog} currentPage={currentPage} />
           </Grid>
         ))}
       </Grid>

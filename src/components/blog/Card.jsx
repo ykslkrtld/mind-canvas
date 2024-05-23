@@ -15,7 +15,7 @@ import { useSelector } from "react-redux";
 import { Link } from 'react-router-dom';
 
 
-const BlogCard = ({blog}) => {
+const BlogCard = ({blog, currentPage}) => {
 
   const { postLikes } = useBlogCalls();
   const { users } = useSelector((state) => state.getBlog);
@@ -41,7 +41,7 @@ const BlogCard = ({blog}) => {
       </CardContent>
       <CardActions disableSpacing sx={{justifyContent:"space-between"}}>
         <CardActions>
-        <IconButton aria-label="add to favorites" onClick={() => postLikes(blog._id)}>
+        <IconButton aria-label="add to favorites" onClick={() => postLikes(blog._id, currentPage)}>
         <FavoriteIcon sx={{ color: user && blog.likes.includes(users[0]?._id) ? "red" : "inherit" }} />
         <Typography>
           {blog?.likes.length}

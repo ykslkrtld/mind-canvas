@@ -14,10 +14,10 @@ const useBlogCalls = () => {
   const { axiosToken } = useAxios();
   const dispatch = useDispatch();
 
-  const getBlogs = async (page = 1, limit = 6) => {
+  const getBlogs = async (page = 1) => {
     dispatch(fetchStart());
     try {
-      const res = await axiosToken(`/blogs?limit=${limit}&page=${page}`);
+      const res = await axiosToken(`/blogs?limit=3&page=${page}`);
       console.log(res)
       dispatch(getBlogSuccess(res.data));
     } catch (error) {
@@ -37,11 +37,11 @@ const useBlogCalls = () => {
     }
   };
 
-  const postLikes = async (id)=> {
+  const postLikes = async (id, currentPage)=> {
     dispatch(fetchStart())
     try {
         await axiosToken.post(`/blogs/${id}/postLike`, {})
-        getBlogs()
+        getBlogs(currentPage)
     } catch (error) {
         console.log(error)
     }

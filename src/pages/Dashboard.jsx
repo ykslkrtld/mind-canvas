@@ -9,11 +9,11 @@ import Stack from '@mui/material/Stack';
 const Dashboard = () => {
 
   const { blogs } = useSelector((state) => state.getBlog);
-  const { getBlogs } = useBlogCalls()
+  const { getBlogs, getUsers } = useBlogCalls()
 
   useEffect(() => {
-    getBlogs("blogs")
-    getBlogs("users")
+    getBlogs()
+    getUsers()
   }, [])
 
   return (

@@ -15,7 +15,7 @@ import useAuthCalls from "../services/useAuthCalls";
 import useBlogCalls from "../services/useBlogCalls";
 import avatar from "../assets/avatar.png"
 import { useEffect } from 'react'
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 
 const pages = [
@@ -35,7 +35,7 @@ const Navbar = () => {
   const { logout } = useAuthCalls();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-  const { getBlogs } = useBlogCalls()
+  const { getUsers } = useBlogCalls()
   const { users } = useSelector((state) => state.getBlog);
   console.log(users)
 
@@ -62,7 +62,7 @@ const Navbar = () => {
   };
 
     useEffect(() => {
-    getBlogs("users")
+    getUsers()
   }, [])
   
 

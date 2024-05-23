@@ -4,10 +4,10 @@ import useBlogCalls from '../services/useBlogCalls'
 import { useEffect } from 'react'
 
 const NewBlog = () => {
-  const {getBlogs} = useBlogCalls()
+  const {getUsers} = useBlogCalls()
 
   useEffect(() => {
-    getBlogs("users")
+    getUsers()
   }, [])
   
   return (

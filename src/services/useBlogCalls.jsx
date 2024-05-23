@@ -5,7 +5,7 @@ import {
   fetchStart,
   getBlogSuccess,
   getUserSuccess,
-  likeSuccess
+  getSingleBlogSuccess
   
 } from "../features/blogSlice";
 import { toastErrorNotify, toastSuccessNotify } from "../helper/ToastNotify";
@@ -17,9 +17,21 @@ const useBlogCalls = () => {
   const getBlogs = async (page = 1) => {
     dispatch(fetchStart());
     try {
-      const res = await axiosToken(`/blogs?limit=3&page=${page}`);
+      const res = await axiosToken(`/blogs?limit=6&page=${page}`);
       console.log(res)
       dispatch(getBlogSuccess(res.data));
+    } catch (error) {
+      dispatch(fetchFail());
+      console.log(error);
+    }
+  };
+
+  const getSingleBlog = async (id) => {
+    dispatch(fetchStart());
+    try {
+      const { data } = await axiosToken(`/blogs/${id}`);
+      console.log(data)
+      dispatch(getSingleBlogSuccess(data));
     } catch (error) {
       dispatch(fetchFail());
       console.log(error);
@@ -86,7 +98,7 @@ const useBlogCalls = () => {
     }
   };
 
-  return { getBlogs, delBlogs, postBlogs, patchBlogs, getUsers, postLikes };
+  return { getBlogs, delBlogs, postBlogs, patchBlogs, getUsers, postLikes, getSingleBlog };
 };
 
 export default useBlogCalls;

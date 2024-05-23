@@ -24,8 +24,6 @@ const Detail = () => {
 
   useEffect(() => {
     getSingleBlog(id);
-    getUsers()
-    getLikes(id)
   }, []);
 
   return (

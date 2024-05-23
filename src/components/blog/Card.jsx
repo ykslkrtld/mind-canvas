@@ -11,8 +11,8 @@ import CommentIcon from '@mui/icons-material/Comment';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import { Button } from '@mui/material';
 import useBlogCalls from '../../services/useBlogCalls';
-import { useEffect } from 'react'
 import { useSelector } from "react-redux";
+import { Link } from 'react-router-dom';
 
 
 const BlogCard = ({blog}) => {
@@ -20,6 +20,7 @@ const BlogCard = ({blog}) => {
   const { postLikes } = useBlogCalls();
   const { users } = useSelector((state) => state.getBlog);
   const { user } = useSelector((state) => state.auth);
+  console.log(user)
 
   return (
     <Card sx={{ width: 360, height: 450, display:"flex", flexDirection:"column", justifyContent:"space-between" }}>
@@ -40,8 +41,8 @@ const BlogCard = ({blog}) => {
       </CardContent>
       <CardActions disableSpacing sx={{justifyContent:"space-between"}}>
         <CardActions>
-        <IconButton aria-label="add to favorites">
-        <FavoriteIcon onClick={() => postLikes(blog._id)} sx={{ color: user && blog.likes.includes(users[0]?._id) ? "red" : "inherit" }} />
+        <IconButton aria-label="add to favorites" onClick={() => postLikes(blog._id)}>
+        <FavoriteIcon sx={{ color: user && blog.likes.includes(users[0]?._id) ? "red" : "inherit" }} />
         <Typography>
           {blog?.likes.length}
         </Typography>
@@ -59,9 +60,11 @@ const BlogCard = ({blog}) => {
         </Typography>
         </IconButton>
         </CardActions>
-        <Button variant="contained"  >
-              READ MORE
+        <Link to={`/detail/${blog._id}`} style={{ textDecoration: 'none' }}>
+          <Button variant="contained">
+            READ MORE
           </Button>
+        </Link>
       </CardActions>
     </Card>
   );

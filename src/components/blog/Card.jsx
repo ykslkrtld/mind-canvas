@@ -15,7 +15,7 @@ import { Button } from '@mui/material';
 const BlogCard = ({blog}) => {
 
   return (
-    <Card sx={{ maxWidth: 360 }}>
+    <Card sx={{ width: 360, height: 450, display:"flex", flexDirection:"column", justifyContent:"space-between" }}>
       <CardHeader
         title={blog.title}
         subheader= {`Published Date: ${new Date(blog.createdAt).toLocaleString()}`}
@@ -55,7 +55,6 @@ const BlogCard = ({blog}) => {
         <Button variant="contained"  >
               READ MORE
           </Button>
-        
       </CardActions>
     </Card>
   );

@@ -10,9 +10,16 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import CommentIcon from '@mui/icons-material/Comment';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import { Button } from '@mui/material';
+import useBlogCalls from '../../services/useBlogCalls';
+import { useEffect } from 'react'
+import { useSelector } from "react-redux";
 
 
 const BlogCard = ({blog}) => {
+
+  const { postLikes } = useBlogCalls();
+  const { users } = useSelector((state) => state.getBlog);
+  const { user } = useSelector((state) => state.auth);
 
   return (
     <Card sx={{ width: 360, height: 450, display:"flex", flexDirection:"column", justifyContent:"space-between" }}>
@@ -34,8 +41,8 @@ const BlogCard = ({blog}) => {
       <CardActions disableSpacing sx={{justifyContent:"space-between"}}>
         <CardActions>
         <IconButton aria-label="add to favorites">
-          <FavoriteIcon />
-          <Typography>
+        <FavoriteIcon onClick={() => postLikes(blog._id)} sx={{ color: user && blog.likes.includes(users[0]?._id) ? "red" : "inherit" }} />
+        <Typography>
           {blog?.likes.length}
         </Typography>
         </IconButton>

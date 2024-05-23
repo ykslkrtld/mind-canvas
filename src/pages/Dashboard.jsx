@@ -1,20 +1,26 @@
 import React, { useEffect } from 'react'
 import Card from '../components/blog/Card'
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import useBlogCalls from '../services/useBlogCalls';
 import { Grid } from '@mui/material';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
+import { setCurrentPage } from '../features/blogSlice';
 
 const Dashboard = () => {
 
-  const { blogs } = useSelector((state) => state.getBlog);
-  const { getBlogs, getUsers } = useBlogCalls()
+  const dispatch = useDispatch();
+  const { blogs, totalPages, currentPage } = useSelector((state) => state.getBlog);
+  const { getBlogs, getUsers } = useBlogCalls();
 
   useEffect(() => {
-    getBlogs()
-    getUsers()
-  }, [])
+    getBlogs(currentPage);
+    getUsers();
+  }, [currentPage]);
+
+  const handlePageChange = (event, value) => {
+    dispatch(setCurrentPage(value));
+  };
 
   return (
     <>
@@ -26,7 +32,12 @@ const Dashboard = () => {
         ))}
       </Grid>
       <Stack spacing={2} mt={3} >
-        <Pagination sx={{display:"flex", justifyContent:"center"}} count={10} variant="outlined" />
+        <Pagination 
+          sx={{display:"flex", justifyContent:"center"}} 
+          count={totalPages}
+          page={currentPage}
+          onChange={handlePageChange}
+          variant="outlined" />
       </Stack>
     </>
   )

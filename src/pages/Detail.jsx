@@ -17,13 +17,13 @@ import loadingGif from "../assets/loadingg.gif";
 
 const Detail = () => {
   const { id } = useParams();
-  const { getSingleBlog, postLikes, getUsers, getLikes } = useBlogCalls();
+  const { getSingleBlog, postLikes, getUsers } = useBlogCalls();
   const { singleBlog, loading, users } = useSelector((state) => state.getBlog);
-  const { user } = useSelector((state) => state.auth);
 
 
   useEffect(() => {
     getSingleBlog(id);
+    getUsers()
   }, []);
 
   return (

@@ -59,15 +59,6 @@ const useBlogCalls = () => {
     }
 }
 
-const getLikes = async (id)=> {
-  dispatch(fetchStart())
-  try {
-      await axiosToken(`/blogs/${id}/getLike`,)
-  } catch (error) {
-      console.log(error)
-  }
-}
-
   const delBlogs = async (endpoint, id) => {
     dispatch(fetchStart());
     try {
@@ -107,7 +98,7 @@ const getLikes = async (id)=> {
     }
   };
 
-  return { getBlogs, delBlogs, postBlogs, patchBlogs, getUsers, postLikes, getSingleBlog, getLikes };
+  return { getBlogs, delBlogs, postBlogs, patchBlogs, getUsers, postLikes, getSingleBlog };
 };
 
 export default useBlogCalls;

@@ -6,7 +6,8 @@ import {
   getBlogSuccess,
   getUserSuccess,
   getSingleBlogSuccess,
-  getLikeSuccess
+  getLikeSuccess,
+  getCategorySuccess
   
 } from "../features/blogSlice";
 import { toastErrorNotify, toastSuccessNotify } from "../helper/ToastNotify";
@@ -86,15 +87,26 @@ const getLikes = async (id) => {
     }
   };
 
-  const postBlogs = async (endpoint, datas) => {
+  const postBlogs = async ( datas) => {
     dispatch(fetchStart());
     try {
-      await axiosToken.post(`/${endpoint}`, datas);
+      await axiosToken.post(`/blogs/`, datas);
       toastSuccessNotify("Ekleme işlemi başarılı");
-      getBlogs(endpoint)
+      getBlogs()
     } catch (error) {
       dispatch(fetchFail());
       toastErrorNotify("Ekleme işlemi başarısız oldu");
+      console.log(error);
+    }
+  };
+
+  const getCategories = async () => {
+    dispatch(fetchStart());
+    try {
+      const { data } = await axiosToken(`/categories`);
+      dispatch(getCategorySuccess( data ));
+    } catch (error) {
+      dispatch(fetchFail());
       console.log(error);
     }
   };
@@ -112,7 +124,7 @@ const getLikes = async (id) => {
     }
   };
 
-  return { getBlogs, delBlogs, postBlogs, patchBlogs, getUsers, postLikes, getSingleBlog, getLikes };
+  return { getBlogs, delBlogs, postBlogs, patchBlogs, getUsers, postLikes, getSingleBlog, getLikes, getCategories };
 };
 
 export default useBlogCalls;

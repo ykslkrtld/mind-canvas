@@ -14,11 +14,13 @@ import CommentIcon from "@mui/icons-material/Comment";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import { Avatar, Button } from "@mui/material";
 import loadingGif from "../assets/loadingg.gif";
+import DeleteModal from "../components/blog/DeleteModal";
 
 const Detail = () => {
   const { id } = useParams();
   const { getSingleBlog, postLikes, getUsers, getLikes } = useBlogCalls();
   const { singleBlog, loading, users, likes } = useSelector((state) => state.getBlog);
+  const [open, setOpen] = React.useState(false);
 
 
   useEffect(() => {
@@ -100,8 +102,7 @@ const Detail = () => {
           {users[0]?._id === singleBlog?.userId?._id && (
             <CardActions sx={{justifyContent:"center", gap:3}}>
               <Button variant="contained" color="success">UPDATE BLOG</Button>
-              
-              <Button variant="contained" color="error">DELETE BLOG</Button>
+              <DeleteModal id={singleBlog?._id}/>
           </CardActions>
         ) }
         </Card>

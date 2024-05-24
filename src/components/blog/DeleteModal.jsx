@@ -3,6 +3,9 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
+import CardActions from "@mui/material/CardActions";
+import useBlogCalls from '../../services/useBlogCalls';
+
 
 const style = {
   position: 'absolute',
@@ -16,14 +19,16 @@ const style = {
   p: 4,
 };
 
-export default function DeleteModal() {
+export default function DeleteModal({id}) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const { delBlogs } = useBlogCalls();
+
 
   return (
     <div>
-      <Button onClick={handleOpen}>Open modal</Button>
+      <Button variant="contained" color="error" onClick={handleOpen}>DELETE BLOG</Button>
       <Modal
         open={open}
         onClose={handleClose}
@@ -31,12 +36,14 @@ export default function DeleteModal() {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-            Text in a modal
+          <Typography id="modal-modal-title" variant="h6" component="h2" textAlign={"center"}>
+            Do you really want to delete your blog? This process cannot be undone!
           </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-          </Typography>
+          <CardActions sx={{justifyContent:"center", gap:3}}>
+              <Button variant="contained" color="success" onClick={handleClose}>CANCEL</Button>
+              <Button variant="contained" color="error" onClick={() => delBlogs(id)}>DELETE</Button>
+          </CardActions>
+          
         </Box>
       </Modal>
     </div>

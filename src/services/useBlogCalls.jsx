@@ -11,10 +11,12 @@ import {
   
 } from "../features/blogSlice";
 import { toastErrorNotify, toastSuccessNotify } from "../helper/ToastNotify";
+import { useNavigate } from "react-router-dom";
 
 const useBlogCalls = () => {
   const { axiosToken } = useAxios();
   const dispatch = useDispatch();
+  const navigate = useNavigate()
 
   const getBlogs = async (page = 1) => {
     dispatch(fetchStart());
@@ -74,12 +76,14 @@ const getLikes = async (id) => {
   }
 };
 
-  const delBlogs = async (endpoint, id) => {
+  const delBlogs = async (id) => {
     dispatch(fetchStart());
     try {
-      await axiosToken.delete(`/${endpoint}/${id}`);
+      await axiosToken.delete(`/blogs/${id}`);
       toastSuccessNotify("Silme işlemi başarılı");
-      getBlogs(endpoint)
+      getBlogs()
+      navigate("/")
+      
     } catch (error) {
       dispatch(fetchFail());
       toastErrorNotify("Silme işlemi başarısız oldu");

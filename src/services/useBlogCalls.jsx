@@ -54,27 +54,15 @@ const useBlogCalls = () => {
   };
 
   const postLikes = async (id, currentPage)=> {
-    dispatch(fetchStart())
     try {
-        await axiosToken.post(`/blogs/${id}/postLike`, {})
+      const {data} = await axiosToken.post(`/blogs/${id}/postLike`, {})
         getBlogs(currentPage)
-        // getLikes(id)
-    } catch (error) {
+        dispatch(getLikeSuccess( data ));
+        console.log(data)
+      } catch (error) {
         console.log(error)
     }
 }
-
-const getLikes = async (id) => {
-  dispatch(fetchStart());
-  try {
-    const {data} = await axiosToken(`/blogs/${id}/getLike`);
-    console.log(data)
-    dispatch(getLikeSuccess( data ));
-  } catch (error) {
-    dispatch(fetchFail());
-    console.log(error);
-  }
-};
 
   const delBlogs = async (id) => {
     dispatch(fetchStart());
@@ -128,7 +116,7 @@ const getLikes = async (id) => {
     }
   };
 
-  return { getBlogs, delBlogs, postBlogs, patchBlogs, getUsers, postLikes, getSingleBlog, getLikes, getCategories };
+  return { getBlogs, delBlogs, postBlogs, patchBlogs, getUsers, postLikes, getSingleBlog, getCategories };
 };
 
 export default useBlogCalls;

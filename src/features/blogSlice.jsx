@@ -30,7 +30,7 @@ const blogSlice = createSlice({
     },
     getLikeSuccess: (state, { payload }) => {
       state.loading = false;
-      state.likes = payload.data;
+      state.likes = payload;
     },
     getSingleBlogSuccess: (state, { payload }) => {
       state.loading = false;

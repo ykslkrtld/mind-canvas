@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import useBlogCalls from "../services/useBlogCalls";
 import { useSelector } from "react-redux";
@@ -12,15 +12,18 @@ import Typography from "@mui/material/Typography";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import CommentIcon from "@mui/icons-material/Comment";
 import VisibilityIcon from "@mui/icons-material/Visibility";
-import { Avatar, Button } from "@mui/material";
+import { Avatar } from "@mui/material";
 import loadingGif from "../assets/loadingg.gif";
 import DeleteModal from "../components/blog/DeleteModal";
+import UpdateModal from "../components/blog/UpdateModal"
 
 const Detail = () => {
   const { id } = useParams();
   const { getSingleBlog, postLikes, getUsers, getLikes } = useBlogCalls();
   const { singleBlog, loading, users, likes } = useSelector((state) => state.getBlog);
-  const [open, setOpen] = React.useState(false);
+  console.log(likes)
+  const [userLike, setUserLike] = useState()
+  const [countOfLikes, setCountOfLikes] = useState()
 
 
   useEffect(() => {
@@ -28,6 +31,16 @@ const Detail = () => {
     getUsers()
   }, []);
 
+  useEffect(() => {
+    setUserLike(likes?.didUserLike)
+    setCountOfLikes(likes?.countOfLikes)
+  }, [likes])
+
+  useEffect(() => {
+    setUserLike(singleBlog?.likes?.includes(users[0]?._id))
+    setCountOfLikes(singleBlog?.likes?.length)
+  }, [singleBlog?.likes])
+  
   return (
     <>
       {loading ? (
@@ -86,8 +99,8 @@ const Detail = () => {
                 aria-label="add to favorites"
                 onClick={() => postLikes(singleBlog._id)}
               >
-                <FavoriteIcon sx={{ color: singleBlog?.likes?.includes(users[0]?._id) ? "red" : "inherit" }}/>
-                <Typography>{singleBlog?.likes?.length}</Typography>
+                <FavoriteIcon sx={{ color: userLike ? "red" : "inherit" }}/>
+                <Typography>{countOfLikes}</Typography>
               </IconButton>
               <IconButton aria-label="comment">
                 <CommentIcon />
@@ -101,7 +114,7 @@ const Detail = () => {
           </CardActions>
           {users[0]?._id === singleBlog?.userId?._id && (
             <CardActions sx={{justifyContent:"center", gap:3}}>
-              <Button variant="contained" color="success">UPDATE BLOG</Button>
+              <UpdateModal/>
               <DeleteModal id={singleBlog?._id}/>
           </CardActions>
         ) }

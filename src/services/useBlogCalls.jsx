@@ -18,7 +18,7 @@ const useBlogCalls = () => {
   const getBlogs = async (page = 1) => {
     dispatch(fetchStart());
     try {
-      const res = await axiosToken(`/blogs?limit=6&page=${page}`);
+      const res = await axiosToken(`/blogs?limit=3&page=${page}`);
       console.log(res)
       dispatch(getBlogSuccess(res.data));
     } catch (error) {
@@ -55,7 +55,7 @@ const useBlogCalls = () => {
     try {
         await axiosToken.post(`/blogs/${id}/postLike`, {})
         getBlogs(currentPage)
-        getLikes(id)
+        // getLikes(id)
     } catch (error) {
         console.log(error)
     }

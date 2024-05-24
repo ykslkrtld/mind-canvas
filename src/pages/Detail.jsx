@@ -12,7 +12,7 @@ import Typography from "@mui/material/Typography";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import CommentIcon from "@mui/icons-material/Comment";
 import VisibilityIcon from "@mui/icons-material/Visibility";
-import { Avatar } from "@mui/material";
+import { Avatar, Button } from "@mui/material";
 import loadingGif from "../assets/loadingg.gif";
 
 const Detail = () => {
@@ -97,6 +97,13 @@ const Detail = () => {
               </IconButton>
             </CardActions>
           </CardActions>
+          {users[0]?._id === singleBlog?.userId?._id && (
+            <CardActions sx={{justifyContent:"center", gap:3}}>
+              <Button variant="contained" color="success">UPDATE BLOG</Button>
+              
+              <Button variant="contained" color="error">DELETE BLOG</Button>
+          </CardActions>
+        ) }
         </Card>
       )}
     </>

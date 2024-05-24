@@ -17,8 +17,8 @@ import loadingGif from "../assets/loadingg.gif";
 
 const Detail = () => {
   const { id } = useParams();
-  const { getSingleBlog, postLikes, getUsers } = useBlogCalls();
-  const { singleBlog, loading, users } = useSelector((state) => state.getBlog);
+  const { getSingleBlog, postLikes, getUsers, getLikes } = useBlogCalls();
+  const { singleBlog, loading, users, likes } = useSelector((state) => state.getBlog);
 
 
   useEffect(() => {

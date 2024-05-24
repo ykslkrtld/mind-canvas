@@ -12,35 +12,36 @@ import Typography from "@mui/material/Typography";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import CommentIcon from "@mui/icons-material/Comment";
 import VisibilityIcon from "@mui/icons-material/Visibility";
-import { Avatar } from "@mui/material";
+import { Avatar, Button } from "@mui/material";
 import loadingGif from "../assets/loadingg.gif";
 import DeleteModal from "../components/blog/DeleteModal";
-import UpdateModal from "../components/blog/UpdateModal"
+import UpdateModal from "../components/blog/UpdateModal";
 
 const Detail = () => {
   const { id } = useParams();
-  const { getSingleBlog, postLikes, getUsers, getLikes } = useBlogCalls();
+  const { getSingleBlog, postLikes, getUsers, getCategories } = useBlogCalls();
   const { singleBlog, loading, users, likes } = useSelector((state) => state.getBlog);
-  console.log(likes)
-  const [userLike, setUserLike] = useState()
-  const [countOfLikes, setCountOfLikes] = useState()
-
+  const [userLike, setUserLike] = useState();
+  const [countOfLikes, setCountOfLikes] = useState();
+  const [open, setOpen] = useState(false);
+  const [selectedBlog, setSelectedBlog] = useState(null);
 
   useEffect(() => {
     getSingleBlog(id);
-    getUsers()
+    getUsers();
+    getCategories();
   }, []);
 
   useEffect(() => {
-    setUserLike(likes?.didUserLike)
-    setCountOfLikes(likes?.countOfLikes)
-  }, [likes])
+    setUserLike(likes?.didUserLike);
+    setCountOfLikes(likes?.countOfLikes);
+  }, [likes]);
 
   useEffect(() => {
-    setUserLike(singleBlog?.likes?.includes(users[0]?._id))
-    setCountOfLikes(singleBlog?.likes?.length)
-  }, [singleBlog?.likes])
-  
+    setUserLike(singleBlog?.likes?.includes(users[0]?._id));
+    setCountOfLikes(singleBlog?.likes?.length);
+  }, [singleBlog?.likes]);
+
   return (
     <>
       {loading ? (
@@ -99,7 +100,7 @@ const Detail = () => {
                 aria-label="add to favorites"
                 onClick={() => postLikes(singleBlog._id)}
               >
-                <FavoriteIcon sx={{ color: userLike ? "red" : "inherit" }}/>
+                <FavoriteIcon sx={{ color: userLike ? "red" : "inherit" }} />
                 <Typography>{countOfLikes}</Typography>
               </IconButton>
               <IconButton aria-label="comment">
@@ -113,11 +114,25 @@ const Detail = () => {
             </CardActions>
           </CardActions>
           {users[0]?._id === singleBlog?.userId?._id && (
-            <CardActions sx={{justifyContent:"center", gap:3}}>
-              <UpdateModal/>
-              <DeleteModal id={singleBlog?._id}/>
-          </CardActions>
-        ) }
+            <CardActions sx={{ justifyContent: "center", gap: 3 }}>
+              <Button
+              variant="contained" color="success"
+                onClick={() => {
+                  setOpen(true);
+                  setSelectedBlog(singleBlog?._id);
+                }}
+              >
+                update
+              </Button>
+              <UpdateModal
+                open={open && selectedBlog === singleBlog?._id}
+                setOpen={setOpen}
+                singleBlog={singleBlog}
+                categoryId={singleBlog?.categoryId?._id}
+              />
+              <DeleteModal id={singleBlog?._id} />
+            </CardActions>
+          )}
         </Card>
       )}
     </>

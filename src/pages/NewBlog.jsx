@@ -59,7 +59,17 @@ const NewBlog = () => {
 
   return (
     <Box
-      sx={{ width: "50%", margin: "auto", my: "5rem" }}
+    sx={
+      {position: "absolute",
+      top: "50%",
+      left: "50%",
+      transform: "translate(-50%, -50%)",
+      width: 400,
+      bgcolor: "background.paper",
+      borderRadius: "2rem",
+      boxShadow: 24,
+      p: 4,}
+    }
       component="form"
       onSubmit={handleSubmit}
       display="flex"
@@ -137,6 +147,8 @@ const NewBlog = () => {
         value={blogInfo.content}
         onChange={handleChange}
         required
+        multiline
+        rows={2}
       />
       <Button variant="contained" type="submit">
         NEW BLOG

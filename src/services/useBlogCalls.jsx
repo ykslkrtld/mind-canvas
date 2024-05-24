@@ -103,12 +103,12 @@ const useBlogCalls = () => {
     }
   };
 
-  const patchBlogs = async (endpoint, datas, id) => {
+  const patchBlogs = async (datas, id) => {
     dispatch(fetchStart());
     try {
-      await axiosToken.patch(`/${endpoint}/${id}`, datas);
+      await axiosToken.patch(`/blogs/${id}`, datas);
       toastSuccessNotify("Düzenleme işlemi başarılı");
-      getBlogs(endpoint)
+      getSingleBlog(id)
     } catch (error) {
       dispatch(fetchFail());
       toastErrorNotify("Düzenleme işlemi başarısız oldu");

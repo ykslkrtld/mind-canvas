@@ -39,7 +39,7 @@ export default function DeleteModal({id}) {
           <Typography id="modal-modal-title" variant="h6" component="h2" textAlign={"center"}>
             Do you really want to delete your blog? This process cannot be undone!
           </Typography>
-          <CardActions sx={{justifyContent:"center", gap:3}}>
+          <CardActions sx={{justifyContent:"center", gap:3, mt:3}}>
               <Button variant="contained" color="success" onClick={handleClose}>CANCEL</Button>
               <Button variant="contained" color="error" onClick={() => delBlogs(id)}>DELETE</Button>
           </CardActions>

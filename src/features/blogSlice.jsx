@@ -11,7 +11,6 @@ const initialState = {
   error: false,
   totalPages: 0,
   currentPage: 1,
-
 };
 
 const blogSlice = createSlice({
@@ -27,6 +26,10 @@ const blogSlice = createSlice({
       state.blogs = payload.data;
       state.totalPages = payload.details.pages.total;
       state.currentPage = payload.details.pages.current;
+    },
+    getMyBlogSuccess: (state, { payload }) => {
+      state.loading = false;
+      state.blogs = payload.data;
     },
     getLikeSuccess: (state, { payload }) => {
       state.loading = false;
@@ -51,11 +54,19 @@ const blogSlice = createSlice({
     setCurrentPage: (state, { payload }) => {
       state.currentPage = payload;
     },
-    },
   },
-);
+});
 
-export const { fetchStart, getBlogSuccess, getUserSuccess, fetchFail, getSingleBlogSuccess, getLikeSuccess, setCurrentPage, getCategorySuccess } =
-blogSlice.actions;
+export const {
+  fetchStart,
+  getBlogSuccess,
+  getUserSuccess,
+  fetchFail,
+  getSingleBlogSuccess,
+  getLikeSuccess,
+  setCurrentPage,
+  getCategorySuccess,
+  getMyBlogSuccess,
+} = blogSlice.actions;
 
 export default blogSlice.reducer;

@@ -7,7 +7,6 @@ import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 import { setCurrentPage } from '../features/blogSlice';
 
-
 const Dashboard = () => {
 
   const dispatch = useDispatch();

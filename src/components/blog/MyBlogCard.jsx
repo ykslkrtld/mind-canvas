@@ -15,16 +15,16 @@ import { useSelector } from "react-redux";
 import { Link, useNavigate } from 'react-router-dom';
 
 
-const BlogCard = ({blog, currentPage}) => {
+const BlogCard = ({blog}) => {
 
   const navigate = useNavigate()
-  const { postLikes, getBlogs } = useBlogCalls();
+  const { postLikes, getMyBlogs } = useBlogCalls();
   const { users } = useSelector((state) => state.getBlog);
   const { user } = useSelector((state) => state.auth);
   console.log(user)
 
   const handleLikes = () => {
-    user ? postLikes(blog._id, currentPage).then(() => getBlogs(currentPage)) : navigate("/login")
+    user ? postLikes(blog._id).then(() => getMyBlogs(users[0]._id)) : navigate("/login")
   }
 
   return (

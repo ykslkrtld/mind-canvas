@@ -7,7 +7,7 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <Box sx={{ backgroundColor: "warning.main", py: 1, position: "fixed", bottom: "0", width: "100%" }}>
+    <Box sx={{ backgroundColor: "black", py: 1, position: "fixed", bottom: "0", width: "100%" }}>
       <Container maxWidth="md">
         <Stack
           display="flex"

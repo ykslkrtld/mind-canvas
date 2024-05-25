@@ -16,7 +16,7 @@ import { Avatar, Button, Grid } from "@mui/material";
 import loadingGif from "../assets/loadingg.gif";
 import DeleteModal from "../components/blog/DeleteModal";
 import UpdateModal from "../components/blog/UpdateModal";
-import CommentCard from "../components/blog/CommentCard";
+import CommentForm from "../components/blog/CommentForm";
 
 const Detail = () => {
   const { id } = useParams();
@@ -145,7 +145,7 @@ const Detail = () => {
         .filter((comment) => comment?.blogId === singleBlog._id )
         .map((comment) => (
           <div key={comment._id}>
-            <CommentCard comment={comment} />
+            <CommentForm comment={comment} />
           </div>
         ))}
         </Card>

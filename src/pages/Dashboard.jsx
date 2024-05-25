@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import Card from '../components/blog/Card'
+import BlogCard from '../components/blog/BlogCard'
 import { useSelector, useDispatch } from 'react-redux';
 import useBlogCalls from '../services/useBlogCalls';
 import { Grid } from '@mui/material';
@@ -27,7 +27,7 @@ const Dashboard = () => {
       <Grid container gap={2} mt={3} justifyContent={"center"}>
         {blogs.map((blog) => (
           <Grid item key={blog._id}>
-            <Card blog={blog} currentPage={currentPage} />
+            <BlogCard blog={blog} currentPage={currentPage} />
           </Grid>
         ))}
       </Grid>

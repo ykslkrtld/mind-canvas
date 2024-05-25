@@ -12,24 +12,32 @@ import Typography from "@mui/material/Typography";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import CommentIcon from "@mui/icons-material/Comment";
 import VisibilityIcon from "@mui/icons-material/Visibility";
-import { Avatar, Button } from "@mui/material";
+import { Avatar, Button, Grid } from "@mui/material";
 import loadingGif from "../assets/loadingg.gif";
 import DeleteModal from "../components/blog/DeleteModal";
 import UpdateModal from "../components/blog/UpdateModal";
+import CommentCard from "../components/blog/CommentCard";
 
 const Detail = () => {
   const { id } = useParams();
-  const { getSingleBlog, postLikes, getUsers, getCategories } = useBlogCalls();
-  const { singleBlog, loading, users, likes } = useSelector((state) => state.getBlog);
+  const { getSingleBlog, postLikes, getUsers, getCategories, getComments } = useBlogCalls();
+  const { singleBlog, loading, users, likes, comments } = useSelector((state) => state.getBlog);
   const [userLike, setUserLike] = useState();
   const [countOfLikes, setCountOfLikes] = useState();
   const [open, setOpen] = useState(false);
   const [selectedBlog, setSelectedBlog] = useState(null);
+  const [showComments, setShowComments] = useState(false)
+  console.log(comments)
+
+  const handleCommentClick = () => {
+    setShowComments(!showComments);
+  };
 
   useEffect(() => {
     getSingleBlog(id);
     getUsers();
     getCategories();
+    getComments()
   }, []);
 
   useEffect(() => {
@@ -103,7 +111,7 @@ const Detail = () => {
                 <FavoriteIcon sx={{ color: userLike ? "red" : "inherit" }} />
                 <Typography>{countOfLikes}</Typography>
               </IconButton>
-              <IconButton aria-label="comment">
+              <IconButton aria-label="comment" onClick={handleCommentClick}>
                 <CommentIcon />
                 <Typography>{singleBlog?.comments?.length}</Typography>
               </IconButton>
@@ -133,6 +141,13 @@ const Detail = () => {
               <DeleteModal id={singleBlog?._id} />
             </CardActions>
           )}
+          {showComments && comments
+        .filter((comment) => comment?.blogId === singleBlog._id )
+        .map((comment) => (
+          <div key={comment._id}>
+            <CommentCard comment={comment} />
+          </div>
+        ))}
         </Card>
       )}
       <div style={{ paddingBottom: '100px' }}></div>

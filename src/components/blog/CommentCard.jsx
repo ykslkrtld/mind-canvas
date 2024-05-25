@@ -1,8 +1,13 @@
 import React from 'react'
 
-const CommentCard = () => {
+const CommentCard = ({comment}) => {
   return (
-    <div>CommentCard</div>
+    <div style={{marginTop:"2rem", paddingLeft:"1.5rem", width:"50%"}}>
+      <p>{comment?.userId?.username}</p>
+      <p>{new Date(comment?.createdAt).toLocaleDateString()}</p>
+      <p>{comment?.comment}</p>
+      <hr />
+    </div>
   )
 }
 

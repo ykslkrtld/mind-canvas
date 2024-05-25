@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import useBlogCalls from "../../services/useBlogCalls";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Backdrop,
   Box,
@@ -38,7 +38,7 @@ const UpdateModal = ({ open, setOpen, singleBlog, categoryId }) => {
     isPublish,
   });
 
-  const { patchBlogs, getCategories } = useBlogCalls();
+  const { patchBlogs } = useBlogCalls();
 
   const handleChange = (e) => {
     setBlogInfo({ ...blogInfo, [e.target.name]: e.target.value });
@@ -60,6 +60,18 @@ const UpdateModal = ({ open, setOpen, singleBlog, categoryId }) => {
     });
     setOpen(false);
   };
+
+  useEffect(() => {
+    if (singleBlog, categoryId) {
+      setBlogInfo({
+        categoryId,
+        title,
+        content,
+        image,
+       isPublish,
+      });
+    }
+    }, [singleBlog, categoryId]);
 
   return (
     <div>

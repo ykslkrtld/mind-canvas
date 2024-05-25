@@ -114,7 +114,7 @@ const Detail = () => {
             </CardActions>
           </CardActions>
           {users[0]?._id === singleBlog?.userId?._id && (
-            <CardActions sx={{ justifyContent: "center", gap: 3 }}>
+            <CardActions sx={{ justifyContent: "center" }}>
               <Button
               variant="contained" color="success"
                 onClick={() => {
@@ -122,7 +122,7 @@ const Detail = () => {
                   setSelectedBlog(singleBlog?._id);
                 }}
               >
-                update
+                UPDATE BLOG
               </Button>
               <UpdateModal
                 open={open && selectedBlog === singleBlog?._id}

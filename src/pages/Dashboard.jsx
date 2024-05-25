@@ -23,14 +23,14 @@ const Dashboard = () => {
 
   return (
     <>
-      <Grid container gap={2} my={3} justifyContent={"center"}>
+      <Grid container gap={2} mt={3} justifyContent={"center"}>
         {blogs.map((blog) => (
           <Grid item key={blog._id}>
             <BlogCard blog={blog} currentPage={currentPage} />
           </Grid>
         ))}
       </Grid>
-      <Stack spacing={2} mt={3} mb={12} >
+      <Stack spacing={2} mt={3} >
         <Pagination 
           sx={{display:"flex", justifyContent:"center"}} 
           count={totalPages}
@@ -38,6 +38,7 @@ const Dashboard = () => {
           onChange={handlePageChange}
           variant="outlined" />
       </Stack>
+      <div style={{ paddingBottom: '100px' }}></div>
     </>
   )
 }

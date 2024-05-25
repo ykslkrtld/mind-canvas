@@ -45,13 +45,14 @@ const Register = () => {
       .max(15, "Şifre en fazla 15 karakterli olmalıdır"),
     image: string().url("Geçerli bir url giriniz"),
     bio: string(),
+    city: string(),
   });
 
   const [showPassword, setShowPassword] = useState(false);
   const {user} = useSelector(state => state.auth)
 
   return user ? <Navigate to="/"/> : 
-  <Container maxWidth="lg" sx={{mb:8}}>
+  <Container maxWidth="lg" >
       <Grid
         container
         justifyContent="center"
@@ -90,6 +91,7 @@ const Register = () => {
               lastName: "",
               image: "",
               bio: "",
+              city: "",
             }}
             validationSchema={registerSchema}
             onSubmit={(values, actions) => {
@@ -181,6 +183,18 @@ const Register = () => {
                     error={touched.bio && Boolean(errors.bio)}
                     helperText={touched.bio && errors.bio}
                   />
+                   <TextField
+                    label="City"
+                    name="city"
+                    id="city"
+                    type="text"
+                    variant="outlined"
+                    value={values.city}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    error={touched.city && Boolean(errors.city)}
+                    helperText={touched.city && errors.city}
+                  />
                   <TextField
                     label="Password"
                     name="password"
@@ -237,13 +251,8 @@ const Register = () => {
             </p>
           </Box>
         </Grid>
-
-        {/* <Grid item xs={0} sm={7} md={6}>
-          <Container>
-            <img src={image} alt="" />
-          </Container>
-        </Grid> */}
       </Grid>
+      <div style={{ paddingBottom: '100px' }}></div>
     </Container>
     }
   

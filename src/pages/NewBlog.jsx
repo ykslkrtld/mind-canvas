@@ -68,7 +68,8 @@ const NewBlog = () => {
       bgcolor: "background.paper",
       borderRadius: "2rem",
       boxShadow: 24,
-      p: 4,}
+      px: 4,
+      py:2,}
     }
       component="form"
       onSubmit={handleSubmit}
@@ -153,6 +154,7 @@ const NewBlog = () => {
       <Button variant="contained" type="submit" color="secondary">
         NEW BLOG
       </Button>
+    <div style={{ paddingBottom: '30px' }}></div>
     </Box>
   );
 };

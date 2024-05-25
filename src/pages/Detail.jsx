@@ -68,7 +68,6 @@ const Detail = () => {
             height: "100%",
             margin: "auto",
             mt: "3rem",
-            mb: "6rem",
             padding: "3rem",
             display: "flex",
             flexDirection: "column",
@@ -136,6 +135,7 @@ const Detail = () => {
           )}
         </Card>
       )}
+      <div style={{ paddingBottom: '100px' }}></div>
     </>
   );
 };

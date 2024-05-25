@@ -20,7 +20,8 @@ const MyBlog = () => {
   }, [users]);
 
   return (
-    <Grid container gap={2} mt={3} mb={12} justifyContent={"center"}>
+    <>
+    <Grid container gap={2} mt={3} justifyContent={"center"}>
       {blogs
         .filter((blog) => blog?.userId === users[0]?._id )
         .map((blog) => (
@@ -29,6 +30,8 @@ const MyBlog = () => {
           </Grid>
         ))}
     </Grid>
+    <div style={{ paddingBottom: '100px' }}></div>
+    </>
   )
 }
 

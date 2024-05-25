@@ -21,7 +21,7 @@ const useBlogCalls = () => {
   const getBlogs = async (page = 1) => {
     dispatch(fetchStart());
     try {
-      const res = await axiosToken(`/blogs?limit=3&page=${page}`);
+      const res = await axiosToken(`/blogs?limit=4&page=${page}`);
       console.log(res);
       dispatch(getBlogSuccess(res.data));
     } catch (error) {
@@ -80,8 +80,7 @@ const useBlogCalls = () => {
     try {
       await axiosToken.delete(`/blogs/${id}`);
       toastSuccessNotify("Silme işlemi başarılı");
-      // getBlogs()
-      navigate("/");
+      navigate(-1);
     } catch (error) {
       dispatch(fetchFail());
       toastErrorNotify("Silme işlemi başarısız oldu");

@@ -24,7 +24,7 @@ const BlogCard = ({blog}) => {
   console.log(user)
 
   const handleLikes = () => {
-    user ? postLikes(blog._id).then(() => getMyBlogs(users[0]._id)) : navigate("/login")
+    user ? postLikes(blog._id).then(() => getMyBlogs(users[0]?._id)) : navigate("/login")
   }
 
   return (

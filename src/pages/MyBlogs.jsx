@@ -13,14 +13,16 @@ const MyBlog = () => {
   console.log(blogs)
 
   useEffect(() => {
-    getMyBlogs(users[0]._id);
+    if (users && users.length > 0) {
+      getMyBlogs(users[0]._id);
+    }
     getUsers();
-  }, [])
-  
+  }, [users]);
+
   return (
-    <Grid container gap={2} mt={3} justifyContent={"center"}>
+    <Grid container gap={2} mt={3} mb={12} justifyContent={"center"}>
       {blogs
-        .filter((blog) => blog?.userId === users[0]?._id)
+        .filter((blog) => blog?.userId === users[0]?._id )
         .map((blog) => (
           <Grid item key={blog._id}>
             <MyBlogCard blog={blog} />

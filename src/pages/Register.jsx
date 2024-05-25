@@ -51,7 +51,7 @@ const Register = () => {
   const {user} = useSelector(state => state.auth)
 
   return user ? <Navigate to="/"/> : 
-  <Container maxWidth="lg">
+  <Container maxWidth="lg" sx={{mb:8}}>
       <Grid
         container
         justifyContent="center"

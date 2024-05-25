@@ -27,26 +27,32 @@ const Profile = () => {
         component="img"
         image={users[0]?.image}
         alt="Paella dish"
-        sx={{ marginBottom: "1rem", width: "350px", height:"350px", borderRadius:"100%" }}
+        sx={{
+          marginBottom: "1rem",
+          width: "350px",
+          height: "350px",
+          borderRadius: "100%",
+        }}
       />
       <Typography
         display={"flex"}
         justifyContent={"center"}
         gap={1}
         fontSize={"1.3rem"}
-        fontWeight={"600"}
       >
-        First Name: <Typography fontSize={"1.3rem"}>{users[0]?.firstName}</Typography>{" "}
+        First Name:{" "}
+        <Typography fontSize={"1.3rem"} color={"secondary"} fontWeight={"600"}>
+          {users[0]?.firstName}
+        </Typography>{" "}
       </Typography>
       <Typography
         display={"flex"}
         justifyContent={"center"}
         gap={1}
         fontSize={"1.3rem"}
-        fontWeight={"600"}
       >
         Last Name:{" "}
-        <Typography fontSize={"1.3rem"}>{users[0]?.lastName}</Typography>{" "}
+        <Typography fontSize={"1.3rem"} color={"secondary"} fontWeight={"600"}>{users[0]?.lastName}</Typography>{" "}
       </Typography>
       {users[0]?.bio && (
         <Typography
@@ -54,9 +60,8 @@ const Profile = () => {
           justifyContent={"center"}
           gap={1}
           fontSize={"1.3rem"}
-          fontWeight={"600"}
         >
-          Bio: <Typography fontSize={"1.3rem"}>{users[0].bio}</Typography>{" "}
+          Bio: <Typography fontSize={"1.3rem"} color={"secondary"} fontWeight={"600"}>{users[0].bio}</Typography>{" "}
         </Typography>
       )}
       {users[0]?.city && (
@@ -65,9 +70,8 @@ const Profile = () => {
           justifyContent={"center"}
           gap={1}
           fontSize={"1.3rem"}
-          fontWeight={"600"}
         >
-          City: <Typography fontSize={"1.3rem"}>{users[0].city}</Typography>{" "}
+          City: <Typography fontSize={"1.3rem"} color={"secondary"} fontWeight={"600"}>{users[0].city}</Typography>{" "}
         </Typography>
       )}
       <Typography
@@ -75,9 +79,8 @@ const Profile = () => {
         justifyContent={"center"}
         gap={1}
         fontSize={"1.3rem"}
-        fontWeight={"600"}
       >
-        Email: <Typography fontSize={"1.3rem"}>{users[0]?.email}</Typography>{" "}
+        Email: <Typography fontSize={"1.3rem"} color={"secondary"} fontWeight={"600"}>{users[0]?.email}</Typography>{" "}
       </Typography>
     </Box>
   );

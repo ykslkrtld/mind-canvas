@@ -180,7 +180,7 @@ const UpdateModal = ({ open, setOpen, singleBlog, categoryId }) => {
             multiline
             rows={2}
           />
-          <Button variant="contained" type="submit">
+          <Button variant="contained" type="submit" color="secondary">
             UPDATE BLOG
           </Button>
         </Box>

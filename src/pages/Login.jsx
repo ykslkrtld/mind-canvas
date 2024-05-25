@@ -48,13 +48,13 @@ const Login = () => {
       >
         <Grid item xs={12} sm={10} md={6}>
           <Grid item xs={12}>
-            <Typography variant="h3" color="darkorange" align="center" my={5}>
+            <Typography variant="h3" color="secondary" align="center" my={5}>
               BLOG APP
             </Typography>
           </Grid>
           <Avatar
             sx={{
-              backgroundColor: "darkorange",
+              backgroundColor: "#9C27B0",
               m: "auto",
               width: 40,
               height: 40,
@@ -62,7 +62,7 @@ const Login = () => {
           >
             <LockIcon size="30" />
           </Avatar>
-          <Typography variant="h4" align="center" mb={4} color="darkorange">
+          <Typography variant="h4" align="center" mb={4} color="secondary">
             Login
           </Typography>
 
@@ -126,12 +126,7 @@ const Login = () => {
                     variant="contained"
                     type="submit"
                     disabled={isSubmitting}
-                    sx={{
-                      backgroundColor: "darkorange",
-                      "&:hover": {
-                        backgroundColor: "orange",
-                      },
-                    }}
+                    color="secondary"
                   >
                     Submit
                   </Button>
@@ -145,12 +140,11 @@ const Login = () => {
               Don't have an account?{" "}
               <NavLink
                 to="/register"
+                color="secondary"
                 style={{
                   textDecoration: "none",
-                  color: "darkorange",
-                  "&:hover": {
-                    cursor: "pointer",
-                  },
+                  fontWeight: "600"
+                  
                 }}
               >
                 Sign Up

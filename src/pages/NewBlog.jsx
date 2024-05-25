@@ -150,7 +150,7 @@ const NewBlog = () => {
         multiline
         rows={2}
       />
-      <Button variant="contained" type="submit">
+      <Button variant="contained" type="submit" color="secondary">
         NEW BLOG
       </Button>
     </Box>

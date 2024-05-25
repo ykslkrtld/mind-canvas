@@ -64,13 +64,13 @@ const Register = () => {
       >
         <Grid item xs={12} sm={10} md={6}>
           <Grid item xs={12}>
-            <Typography variant="h3" color="darkorange" align="center" my={5}>
+            <Typography variant="h3" color="secondary" align="center" my={5}>
               BLOG APP
             </Typography>
           </Grid>
           <Avatar
             sx={{
-              backgroundColor: "darkorange",
+              backgroundColor: "#9C27B0",
               m: "auto",
               width: 40,
               height: 40,
@@ -78,7 +78,7 @@ const Register = () => {
           >
             <LockIcon size="30" />
           </Avatar>
-          <Typography variant="h4" align="center" mb={4} color="darkorange">
+          <Typography variant="h4" align="center" mb={4} color="secondary">
             Register
           </Typography>
           <Formik
@@ -212,12 +212,7 @@ const Register = () => {
                     variant="contained"
                     disabled={isSubmitting}
                     size="large"
-                    sx={{
-                      backgroundColor: "darkorange",
-                      "&:hover": {
-                        backgroundColor: "orange",
-                      },
-                    }}
+                    color="secondary"
                   >
                     Submit
                   </Button>
@@ -231,12 +226,10 @@ const Register = () => {
               Already have an account?{" "}
               <NavLink
                 to="/login"
+                color="secondary"
                 style={{
                   textDecoration: "none",
-                  color: "darkorange",
-                  "&:hover": {
-                    cursor: "pointer",
-                  },
+                  fontWeight: "600"
                 }}
               >
                 Sign In

@@ -66,7 +66,7 @@ const BlogCard = ({blog}) => {
         </IconButton>
         </CardActions>
         <Link to={`/detail/${blog._id}`} style={{ textDecoration: 'none' }}>
-          <Button variant="contained">
+          <Button variant="contained" color='secondary'>
             READ MORE
           </Button>
         </Link>

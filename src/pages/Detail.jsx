@@ -17,6 +17,7 @@ import loadingGif from "../assets/loadingg.gif";
 import DeleteModal from "../components/blog/DeleteModal";
 import UpdateModal from "../components/blog/UpdateModal";
 import CommentForm from "../components/blog/CommentForm";
+import CommentCard from "../components/blog/CommentCard";
 
 const Detail = () => {
   const { id } = useParams();
@@ -141,13 +142,16 @@ const Detail = () => {
               <DeleteModal id={singleBlog?._id} />
             </CardActions>
           )}
-          {showComments && comments
-        .filter((comment) => comment?.blogId === singleBlog._id )
-        .map((comment) => (
-          <div key={comment._id}>
-            <CommentForm comment={comment} />
-          </div>
-        ))}
+          {showComments && (
+            <>
+              <CommentCard blogId={singleBlog._id} />
+              {comments
+                .filter((item) => item.blogId === singleBlog._id)
+                .map((item, index) => ( // index ekleyerek her yorum için benzersiz bir key sağlayın
+                  <CommentForm key={index} item={item} />
+                ))}
+            </>
+          )}
         </Card>
       )}
       <div style={{ paddingBottom: '100px' }}></div>

@@ -1,14 +1,49 @@
-import React from 'react'
+import { Box, Button, TextField } from "@mui/material";
+import React, { useState } from "react";
+import useBlogCalls from "../../services/useBlogCalls";
 
-const CommentCard = ({comment}) => {
+const CommentCard = ({blogId}) => {
+
+  const [commentInfo, setCommentInfo] = useState({
+    comment: "",
+    blogId,
+  });
+  console.log(blogId)
+
+  const { postComments } = useBlogCalls();
+
+  const handleChange = (e) => {
+    setCommentInfo({ ...commentInfo, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    postComments(commentInfo)
+  }
+
   return (
-    <div style={{marginTop:"2rem", paddingLeft:"1.5rem", width:"50%"}}>
-      <p>{comment?.userId?.username}</p>
-      <p>{new Date(comment?.createdAt).toLocaleDateString()}</p>
-      <p>{comment?.comment}</p>
-      <hr />
-    </div>
-  )
-}
+      <Box onSubmit={handleSubmit} width={"90%"} m={"auto"} component={"form"} >
+        <TextField
+          id="comment"
+          name="comment"
+          label="Add a comment"
+          variant="outlined"
+          value={commentInfo.comment}
+          onChange={handleChange}
+          multiline
+          rows={2}
+          sx={{width:"100%", my:3}}
+        />
+        <Button
+          variant="contained"
+          type="submit" 
+          color="secondary"
+          sx={{width:"100%"}}
+        >
+          ADD COMMENT
+        </Button>
+      </Box>
+  );
+};
 
-export default CommentCard
+export default CommentCard;

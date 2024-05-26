@@ -69,7 +69,7 @@ const useBlogCalls = () => {
   const getComments = async () => {
     dispatch(fetchStart());
     try {
-      const { data } = await axiosToken(`/comments`);
+      const { data } = await axiosToken(`/comments/?limit=100`);
       dispatch(getCommentSuccess(data));
     } catch (error) {
       dispatch(fetchFail());
@@ -113,6 +113,19 @@ const useBlogCalls = () => {
     }
   };
 
+  const postComments = async (datas) => {
+    dispatch(fetchStart());
+    try {
+      await axiosToken.post(`/comments/`, datas);
+      toastSuccessNotify("Ekleme işlemi başarılı");
+      getComments()
+    } catch (error) {
+      dispatch(fetchFail());
+      toastErrorNotify("Ekleme işlemi başarısız oldu");
+      console.log(error);
+    }
+  };
+
   const getCategories = async () => {
     dispatch(fetchStart());
     try {
@@ -148,6 +161,7 @@ const useBlogCalls = () => {
     getCategories,
     getMyBlogs,
     getComments,
+    postComments,
   };
 };
 

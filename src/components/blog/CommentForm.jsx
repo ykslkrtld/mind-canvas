@@ -1,7 +1,7 @@
-import { Button, Tooltip } from "@mui/material";
-import DeleteIcon from "@mui/icons-material/Delete";
+
 import useBlogCalls from "../../services/useBlogCalls";
 import { useSelector } from "react-redux";
+import DeleteModal from "./DeleteModal";
 
 const CommentForm = ({ comment }) => {
   const { delComments } = useBlogCalls();
@@ -15,16 +15,8 @@ const CommentForm = ({ comment }) => {
         <p>{comment?.comment}</p>
       </div>
         {users[0]?._id === comment?.userId?._id && 
-      <div>
-        <Tooltip title="Delete" arrow>
-          <Button
-            color="error"
-            onClick={() => delComments(comment._id)}
-            sx={{ "&:hover": { color: "#2E7D32", cursor: "pointer" }, marginRight:"4rem" }}
-          >
-            <DeleteIcon />
-          </Button>
-        </Tooltip>
+      <div style={{marginRight:"4rem"}}>
+        <DeleteModal endpoint={"comments"} id={comment._id} />
       </div>
     }
     </div>

@@ -87,25 +87,12 @@ const useBlogCalls = () => {
     }
   };
 
-  const delBlogs = async (id) => {
+  const delDatas = async (endpoint, id) => {
     dispatch(fetchStart());
     try {
-      await axiosToken.delete(`/blogs/${id}`);
+      await axiosToken.delete(`/${endpoint}/${id}`);
       toastSuccessNotify("Silme işlemi başarılı");
       navigate(-1);
-    } catch (error) {
-      dispatch(fetchFail());
-      toastErrorNotify("Silme işlemi başarısız oldu");
-      console.log(error);
-    }
-  };
-
-  const delComments = async (id) => {
-    dispatch(fetchStart());
-    try {
-      await axiosToken.delete(`/comments/${id}`);
-      toastSuccessNotify("Silme işlemi başarılı");
-      getComments();
     } catch (error) {
       dispatch(fetchFail());
       toastErrorNotify("Silme işlemi başarısız oldu");
@@ -165,7 +152,6 @@ const useBlogCalls = () => {
 
   return {
     getBlogs,
-    delBlogs,
     postBlogs,
     patchBlogs,
     getUsers,
@@ -175,7 +161,7 @@ const useBlogCalls = () => {
     getMyBlogs,
     getComments,
     postComments,
-    delComments,
+    delDatas,
   };
 };
 

@@ -19,16 +19,16 @@ const style = {
   p: 4,
 };
 
-export default function DeleteModal({id}) {
+export default function DeleteModal({endpoint, id}) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const { delBlogs } = useBlogCalls();
+  const { delDatas } = useBlogCalls();
 
 
   return (
     <div>
-      <Button variant="contained" color="error" onClick={handleOpen}>DELETE BLOG</Button>
+      <Button variant="contained" color="error" onClick={handleOpen}>DELETE</Button>
       <Modal
         open={open}
         onClose={handleClose}
@@ -37,11 +37,11 @@ export default function DeleteModal({id}) {
       >
         <Box sx={style}>
           <Typography id="modal-modal-title" variant="h6" component="h2" textAlign={"center"}>
-            Do you really want to delete your blog? This process cannot be undone!
+            Do you really want to delete? This process cannot be undone!
           </Typography>
           <CardActions sx={{justifyContent:"center", gap:3, mt:3}}>
               <Button variant="contained" color="success" onClick={handleClose}>CANCEL</Button>
-              <Button variant="contained" color="error" onClick={() => delBlogs(id)}>DELETE</Button>
+              <Button variant="contained" color="error" onClick={() => delDatas(endpoint, id)}>DELETE</Button>
           </CardActions>
           
         </Box>

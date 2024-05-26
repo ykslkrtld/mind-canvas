@@ -131,7 +131,7 @@ const Detail = () => {
                   setSelectedBlog(singleBlog?._id);
                 }}
               >
-                UPDATE BLOG
+                UPDATE
               </Button>
               <UpdateModal
                 open={open && selectedBlog === singleBlog?._id}
@@ -139,7 +139,7 @@ const Detail = () => {
                 singleBlog={singleBlog}
                 categoryId={singleBlog?.categoryId?._id}
               />
-              <DeleteModal id={singleBlog?._id} />
+              <DeleteModal endpoint={"blogs"} id={singleBlog?._id} />
             </CardActions>
           )}
           {showComments && (

@@ -146,9 +146,9 @@ const Detail = () => {
             <>
               <CommentCard blogId={singleBlog._id} />
               {comments
-                .filter((item) => item.blogId === singleBlog._id)
-                .map((item, index) => ( // index ekleyerek her yorum için benzersiz bir key sağlayın
-                  <CommentForm key={index} item={item} />
+                .filter((comment) => comment.blogId === singleBlog._id)
+                .map((comment) => (
+                  <CommentForm key={comment._id} comment={comment} />
                 ))}
             </>
           )}

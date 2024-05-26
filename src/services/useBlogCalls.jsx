@@ -100,6 +100,19 @@ const useBlogCalls = () => {
     }
   };
 
+  const delComments = async (id) => {
+    dispatch(fetchStart());
+    try {
+      await axiosToken.delete(`/comments/${id}`);
+      toastSuccessNotify("Silme işlemi başarılı");
+      getComments();
+    } catch (error) {
+      dispatch(fetchFail());
+      toastErrorNotify("Silme işlemi başarısız oldu");
+      console.log(error);
+    }
+  };
+
   const postBlogs = async (datas) => {
     dispatch(fetchStart());
     try {
@@ -162,6 +175,7 @@ const useBlogCalls = () => {
     getMyBlogs,
     getComments,
     postComments,
+    delComments,
   };
 };
 

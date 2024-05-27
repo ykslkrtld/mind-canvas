@@ -4,10 +4,7 @@ import Typography from "@mui/material/Typography";
 import Link from "@mui/material/Link";
 import CardMedia from "@mui/material/CardMedia";
 import GitHubIcon from "@mui/icons-material/GitHub";
-import FacebookIcon from "@mui/icons-material/Facebook";
-import InstagramIcon from "@mui/icons-material/Instagram";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
-import XIcon from "@mui/icons-material/X";
 
 const About = () => {
   return (

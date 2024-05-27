@@ -42,7 +42,7 @@ const Detail = () => {
     getUsers();
     // getCategories();
     // getComments()
-  }, []);
+  }, [id]);
 
   useEffect(() => {
     setUserLike(likes?.didUserLike);

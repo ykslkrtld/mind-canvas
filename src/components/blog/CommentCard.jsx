@@ -1,5 +1,5 @@
 import { Box, Button, TextField } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import useBlogCalls from "../../services/useBlogCalls";
 
 const CommentCard = ({blogId}) => {
@@ -11,6 +11,10 @@ const CommentCard = ({blogId}) => {
   console.log(blogId)
 
   const { postComments, getSingleBlog } = useBlogCalls();
+
+  useEffect(() => {
+    setCommentInfo({ ...commentInfo, blogId });
+  }, [blogId]);
 
   const handleChange = (e) => {
     setCommentInfo({ ...commentInfo, [e.target.name]: e.target.value });

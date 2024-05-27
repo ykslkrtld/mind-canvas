@@ -5,6 +5,7 @@ import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import CardActions from "@mui/material/CardActions";
 import useBlogCalls from '../../services/useBlogCalls';
+import { useNavigate } from 'react-router-dom';
 
 
 const style = {
@@ -19,11 +20,21 @@ const style = {
   p: 4,
 };
 
-export default function DeleteModal({endpoint, id}) {
+export default function DeleteModal({endpoint, id, blogId}) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const { delDatas } = useBlogCalls();
+  const navigate = useNavigate()
+  const { delDatas, getSingleBlog, getComments } = useBlogCalls();
+
+  const handleDelete = () => {
+    if(endpoint === "comments"){
+      delDatas(endpoint, id).then(() => getSingleBlog(blogId)).then(() => getComments());
+    } else {
+      delDatas(endpoint, id)
+      navigate(-1);
+    }
+  }
 
 
   return (
@@ -41,7 +52,7 @@ export default function DeleteModal({endpoint, id}) {
           </Typography>
           <CardActions sx={{justifyContent:"center", gap:3, mt:3}}>
               <Button variant="contained" color="success" onClick={handleClose}>CANCEL</Button>
-              <Button variant="contained" color="error" onClick={() => delDatas(endpoint, id)}>DELETE</Button>
+              <Button variant="contained" color="error" onClick={handleDelete}>DELETE</Button>
           </CardActions>
           
         </Box>

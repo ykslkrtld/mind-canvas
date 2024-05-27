@@ -103,7 +103,6 @@ const useBlogCalls = () => {
     try {
       await axiosToken.delete(`/${endpoint}/${id}`);
       toastSuccessNotify("Silme işlemi başarılı");
-      navigate(-1);
     } catch (error) {
       dispatch(fetchFail());
       toastErrorNotify("Silme işlemi başarısız oldu");

@@ -148,7 +148,7 @@ const Detail = () => {
               {comments
                 .filter((comment) => comment.blogId === singleBlog._id)
                 .map((comment) => (
-                  <CommentForm key={comment._id} comment={comment} />
+                  <CommentForm key={comment._id} comment={comment} blogId={singleBlog._id} />
                 ))}
             </>
           )}

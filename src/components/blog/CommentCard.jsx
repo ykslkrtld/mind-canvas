@@ -10,7 +10,7 @@ const CommentCard = ({blogId}) => {
   });
   console.log(blogId)
 
-  const { postComments } = useBlogCalls();
+  const { postComments, getSingleBlog } = useBlogCalls();
 
   const handleChange = (e) => {
     setCommentInfo({ ...commentInfo, [e.target.name]: e.target.value });
@@ -18,7 +18,7 @@ const CommentCard = ({blogId}) => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    postComments(commentInfo)
+    postComments(commentInfo).then(() => getSingleBlog(blogId))
   }
 
   return (

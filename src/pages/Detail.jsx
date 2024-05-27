@@ -89,7 +89,7 @@ const Detail = () => {
             height="300"
             image={singleBlog?.image}
             alt="Paella dish"
-            sx={{ marginBottom: "3rem" }}
+            sx={{ marginBottom: "3rem", objectFit: "contain",  }}
           />
           <CardHeader
             avatar={<Avatar aria-label="recipe"></Avatar>}

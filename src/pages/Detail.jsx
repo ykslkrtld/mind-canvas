@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import useBlogCalls from "../services/useBlogCalls";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
 import CardMedia from "@mui/material/CardMedia";
@@ -18,20 +18,21 @@ import DeleteModal from "../components/blog/DeleteModal";
 import UpdateModal from "../components/blog/UpdateModal";
 import CommentForm from "../components/blog/CommentForm";
 import CommentCard from "../components/blog/CommentCard";
+import { setShowComments } from "../features/blogSlice";
 
 const Detail = () => {
   const { id } = useParams();
   const { getSingleBlog, postLikes, getUsers, getCategories, getComments } = useBlogCalls();
-  const { singleBlog, loading, users, likes, comments } = useSelector((state) => state.getBlog);
+  const { singleBlog, loading, users, likes, comments, showComments } = useSelector((state) => state.getBlog);
   const [userLike, setUserLike] = useState();
   const [countOfLikes, setCountOfLikes] = useState();
   const [open, setOpen] = useState(false);
   const [selectedBlog, setSelectedBlog] = useState(null);
-  const [showComments, setShowComments] = useState(false)
+  const dispatch = useDispatch()
   console.log(comments)
 
   const handleCommentClick = () => {
-    setShowComments(!showComments);
+    dispatch(setShowComments(!showComments));
   };
 
   useEffect(() => {

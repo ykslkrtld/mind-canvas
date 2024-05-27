@@ -72,6 +72,13 @@ const Navbar = () => {
           disableGutters
           sx={{ display: "flex", justifyContent: "space-between" }}
         >
+          <Box sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }}>
+            <img
+              src="https://png.pngtree.com/png-vector/20231115/ourmid/pngtree-blog-icon-blog-png-image_10603652.png"
+              width={"60rem"}
+              alt=""
+            />
+          </Box>
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
               size="large"
@@ -115,6 +122,13 @@ const Navbar = () => {
               ))}
             </Menu>
           </Box>
+          <Box sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }}>
+            <img
+              src="https://png.pngtree.com/png-vector/20231115/ourmid/pngtree-blog-icon-blog-png-image_10603652.png"
+              width={"60rem"}
+              alt=""
+            />
+          </Box>      
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (
               <Button
@@ -131,14 +145,6 @@ const Navbar = () => {
               </Button>
             ))}
           </Box>
-          <Box sx={{ flexGrow: 1, display: "flex", justifyContent: "center" }}>
-            <img
-              src="https://png.pngtree.com/png-vector/20231115/ourmid/pngtree-blog-icon-blog-png-image_10603652.png"
-              width={"60rem"}
-              alt=""
-            />
-          </Box>
-
           <Box
             sx={{ flexGrow: 1, display: "flex", justifyContent: "flex-end" }}
           >

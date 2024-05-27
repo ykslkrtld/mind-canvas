@@ -19,7 +19,8 @@ const Dashboard = () => {
   }, [currentPage]);
 
   const handlePageChange = (event, value) => {
-    dispatch(setCurrentPage(value));  };
+    dispatch(setCurrentPage(value));  
+  };
 
   return (
     <>

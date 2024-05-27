@@ -11,25 +11,32 @@ import CommentIcon from '@mui/icons-material/Comment';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import { Button } from '@mui/material';
 import useBlogCalls from '../../services/useBlogCalls';
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Link, useNavigate } from 'react-router-dom';
+import { setShowComments } from "../../features/blogSlice";
+
 
 
 const BlogCard = ({blog}) => {
 
   const navigate = useNavigate()
   const { postLikes, getMyBlogs } = useBlogCalls();
-  const { users } = useSelector((state) => state.getBlog);
+  const { users, showComments } = useSelector((state) => state.getBlog);
   const { user } = useSelector((state) => state.auth);
-  console.log(user)
+  const dispatch = useDispatch()
 
   const handleLikes = () => {
     user ? postLikes(blog._id).then(() => getMyBlogs(users[0]?._id)) : navigate("/login")
   }
 
   const handleShowComments = () => {
-    user ? navigate(`/detail/${blog._id}`) : navigate("/login")
-  }
+    if (user) {
+      navigate(`/detail/${blog._id}`);
+      dispatch(setShowComments(true));
+    } else {
+      navigate("/login");
+    }
+  };
 
   return (
     <Card sx={{ width: 360, height: 450, display:"flex", flexDirection:"column", justifyContent:"space-between" }}>

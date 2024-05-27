@@ -11,6 +11,7 @@ const initialState = {
   error: false,
   totalPages: 0,
   currentPage: 1,
+  showComments: false
 };
 
 const blogSlice = createSlice({
@@ -58,6 +59,9 @@ const blogSlice = createSlice({
     setCurrentPage: (state, { payload }) => {
       state.currentPage = payload;
     },
+    setShowComments: (state, { payload }) => {
+      state.showComments = payload;
+    },
   },
 });
 
@@ -72,6 +76,7 @@ export const {
   getCategorySuccess,
   getMyBlogSuccess,
   getCommentSuccess,
+  setShowComments,
 } = blogSlice.actions;
 
 export default blogSlice.reducer;

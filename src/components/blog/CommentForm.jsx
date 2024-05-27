@@ -4,7 +4,6 @@ import { useSelector } from "react-redux";
 import DeleteModal from "./DeleteModal";
 
 const CommentForm = ({ comment }) => {
-  const { delComments } = useBlogCalls();
   const {users} = useSelector(state => state.getBlog)
   return (
     <>

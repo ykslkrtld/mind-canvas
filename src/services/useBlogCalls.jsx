@@ -77,6 +77,17 @@ const useBlogCalls = () => {
     }
   };
 
+  const getCategories = async () => {
+    dispatch(fetchStart());
+    try {
+      const { data } = await axiosToken(`/categories`);
+      dispatch(getCategorySuccess(data));
+    } catch (error) {
+      dispatch(fetchFail());
+      console.log(error);
+    }
+  };
+
   const postLikes = async (id) => {
     try {
       const { data } = await axiosToken.post(`/blogs/${id}/postLike`, {});
@@ -126,16 +137,7 @@ const useBlogCalls = () => {
     }
   };
 
-  const getCategories = async () => {
-    dispatch(fetchStart());
-    try {
-      const { data } = await axiosToken(`/categories`);
-      dispatch(getCategorySuccess(data));
-    } catch (error) {
-      dispatch(fetchFail());
-      console.log(error);
-    }
-  };
+  
 
   const patchBlogs = async (datas, id) => {
     dispatch(fetchStart());

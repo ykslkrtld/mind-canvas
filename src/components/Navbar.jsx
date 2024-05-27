@@ -13,8 +13,8 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import useAuthCalls from "../services/useAuthCalls";
 import useBlogCalls from "../services/useBlogCalls";
-import avatar from "../assets/avatar.png"
-import { useEffect } from 'react'
+import avatar from "../assets/avatar.png";
+import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 
@@ -35,9 +35,9 @@ const Navbar = () => {
   const { logout } = useAuthCalls();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-  const { getUsers } = useBlogCalls()
+  const { getUsers } = useBlogCalls();
   const { users } = useSelector((state) => state.getBlog);
-  console.log(users)
+  console.log(users);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -61,15 +61,17 @@ const Navbar = () => {
     handleCloseUserMenu();
   };
 
-    useEffect(() => {
-    getUsers()
-  }, [])
-  
+  useEffect(() => {
+    getUsers();
+  }, []);
 
   return (
-    <AppBar position="static" sx={{backgroundColor:"black"}}>
+    <AppBar position="static" sx={{ backgroundColor: "black" }}>
       <Container maxWidth="xl">
-        <Toolbar disableGutters>
+        <Toolbar
+          disableGutters
+          sx={{ display: "flex", justifyContent: "space-between" }}
+        >
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
               size="large"
@@ -129,20 +131,27 @@ const Navbar = () => {
               </Button>
             ))}
           </Box>
+          <Box sx={{ flexGrow: 1, display: "flex", justifyContent: "center" }}>
+            <img
+              src="https://png.pngtree.com/png-vector/20231115/ourmid/pngtree-blog-icon-blog-png-image_10603652.png"
+              width={"60rem"}
+              alt=""
+            />
+          </Box>
 
-          <Box sx={{ flexGrow: 0 }}>
-            <div style={{display:"flex", alignItems:"center", gap:10}}>
-            <Typography>
-              {user && users[0]?.firstName}
-            </Typography>
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar
-                  alt="Remy Sharp"
-                  src={user ? users[0]?.image : avatar }
-                />
-              </IconButton>
-            </Tooltip>
+          <Box
+            sx={{ flexGrow: 1, display: "flex", justifyContent: "flex-end" }}
+          >
+            <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+              <Typography>{user && users[0]?.firstName}</Typography>
+              <Tooltip title="Open settings">
+                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                  <Avatar
+                    alt="Remy Sharp"
+                    src={user ? users[0]?.image : avatar}
+                  />
+                </IconButton>
+              </Tooltip>
             </div>
             <Menu
               sx={{ mt: "45px" }}

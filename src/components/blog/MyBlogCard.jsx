@@ -16,12 +16,11 @@ import { Link, useNavigate } from 'react-router-dom';
 import { setShowComments } from "../../features/blogSlice";
 
 
-
 const BlogCard = ({blog}) => {
 
   const navigate = useNavigate()
   const { postLikes, getMyBlogs } = useBlogCalls();
-  const { users, showComments } = useSelector((state) => state.getBlog);
+  const { users } = useSelector((state) => state.getBlog);
   const { user } = useSelector((state) => state.auth);
   const dispatch = useDispatch()
 

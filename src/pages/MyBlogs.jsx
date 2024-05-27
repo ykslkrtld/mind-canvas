@@ -24,7 +24,7 @@ const MyBlog = () => {
     <>
     <Box display={"flex"} justifyContent={"center"} gap={3} my={"3rem"}>
       <Button onClick={() => setPublish(false)} variant='contained' color={publish ? 'inherit' : 'error'} >Draft</Button>
-      <Button onClick={() => setPublish(true)} variant='contained' color={publish ? 'success' : 'inherit'}>Publish</Button>
+      <Button onClick={() => setPublish(true)} variant='contained' color={publish ? 'success' : 'inherit'}>Published</Button>
     </Box>
 
     <Grid container gap={2} mt={3} justifyContent={"center"}>

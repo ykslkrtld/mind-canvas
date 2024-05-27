@@ -21,7 +21,7 @@ const BlogCard = ({blog, currentPage}) => {
 
   const navigate = useNavigate()
   const { postLikes, getBlogs } = useBlogCalls();
-  const { users, showComments } = useSelector((state) => state.getBlog);
+  const { users } = useSelector((state) => state.getBlog);
   const { user } = useSelector((state) => state.auth);
   const dispatch = useDispatch()
 

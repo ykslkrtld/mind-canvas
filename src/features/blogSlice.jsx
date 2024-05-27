@@ -44,10 +44,6 @@ const blogSlice = createSlice({
       state.loading = false;
       state.users = payload.data;
     },
-    getCommentSuccess: (state, { payload }) => {
-      state.loading = false;
-      state.comments = payload.data;
-    },
     getCategorySuccess: (state, { payload }) => {
       state.loading = false;
       state.categories = payload.data;
@@ -75,7 +71,6 @@ export const {
   setCurrentPage,
   getCategorySuccess,
   getMyBlogSuccess,
-  getCommentSuccess,
   setShowComments,
 } = blogSlice.actions;
 

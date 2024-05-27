@@ -9,7 +9,6 @@ import {
   getLikeSuccess,
   getCategorySuccess,
   getMyBlogSuccess,
-  getCommentSuccess
 } from "../features/blogSlice";
 import { toastErrorNotify, toastSuccessNotify } from "../helper/ToastNotify";
 import { useNavigate } from "react-router-dom";
@@ -60,17 +59,6 @@ const useBlogCalls = () => {
     try {
       const { data } = await axiosToken(`/users`);
       dispatch(getUserSuccess(data));
-    } catch (error) {
-      dispatch(fetchFail());
-      console.log(error);
-    }
-  };
-
-  const getComments = async () => {
-    dispatch(fetchStart());
-    try {
-      const { data } = await axiosToken(`/comments/?limit=100`);
-      dispatch(getCommentSuccess(data));
     } catch (error) {
       dispatch(fetchFail());
       console.log(error);
@@ -128,15 +116,12 @@ const useBlogCalls = () => {
     try {
       await axiosToken.post(`/comments/`, datas);
       toastSuccessNotify("Ekleme işlemi başarılı");
-      getComments()
     } catch (error) {
       dispatch(fetchFail());
       toastErrorNotify("Ekleme işlemi başarısız oldu");
       console.log(error);
     }
   };
-
-  
 
   const patchBlogs = async (datas, id) => {
     dispatch(fetchStart());
@@ -160,7 +145,6 @@ const useBlogCalls = () => {
     getSingleBlog,
     getCategories,
     getMyBlogs,
-    getComments,
     postComments,
     delDatas,
   };

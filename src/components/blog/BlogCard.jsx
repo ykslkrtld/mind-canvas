@@ -15,8 +15,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { Link, useNavigate } from 'react-router-dom';
 import { setShowComments } from "../../features/blogSlice";
 
-
-
 const BlogCard = ({blog, currentPage}) => {
 
   const navigate = useNavigate()

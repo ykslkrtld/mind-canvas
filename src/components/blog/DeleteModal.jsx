@@ -25,11 +25,11 @@ export default function DeleteModal({endpoint, id, blogId}) {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const navigate = useNavigate()
-  const { delDatas, getSingleBlog, getComments } = useBlogCalls();
+  const { delDatas, getSingleBlog } = useBlogCalls();
 
   const handleDelete = () => {
     if(endpoint === "comments"){
-      delDatas(endpoint, id).then(() => getSingleBlog(blogId)).then(() => getComments());
+      delDatas(endpoint, id).then(() => getSingleBlog(blogId))
     } else {
       delDatas(endpoint, id)
       navigate(-1);

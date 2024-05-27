@@ -22,14 +22,16 @@ import { setShowComments } from "../features/blogSlice";
 
 const Detail = () => {
   const { id } = useParams();
-  const { getSingleBlog, postLikes, getUsers, getCategories, getComments } = useBlogCalls();
-  const { singleBlog, loading, users, likes, comments, showComments } = useSelector((state) => state.getBlog);
+  const { getSingleBlog, postLikes, getUsers } = useBlogCalls();
+  const { singleBlog, loading, users, likes, showComments } = useSelector((state) => state.getBlog);
   const [userLike, setUserLike] = useState();
   const [countOfLikes, setCountOfLikes] = useState();
   const [open, setOpen] = useState(false);
   const [selectedBlog, setSelectedBlog] = useState(null);
   const dispatch = useDispatch()
-  console.log(comments)
+  console.log(singleBlog)
+  console.log(singleBlog.comments)
+
 
   const handleCommentClick = () => {
     dispatch(setShowComments(!showComments));
@@ -38,8 +40,8 @@ const Detail = () => {
   useEffect(() => {
     getSingleBlog(id);
     getUsers();
-    getCategories();
-    getComments()
+    // getCategories();
+    // getComments()
   }, []);
 
   useEffect(() => {
@@ -146,10 +148,8 @@ const Detail = () => {
           {showComments && (
             <>
               <CommentCard blogId={singleBlog._id} />
-              {comments
-                .filter((comment) => comment.blogId === singleBlog._id)
-                .map((comment) => (
-                  <CommentForm key={comment._id} comment={comment} blogId={singleBlog._id} />
+              {singleBlog?.comments.map((comment) => (
+                  <CommentForm key={comment._id} comment={comment} />
                 ))}
             </>
           )}

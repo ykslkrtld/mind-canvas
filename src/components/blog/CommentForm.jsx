@@ -1,10 +1,10 @@
 
-import useBlogCalls from "../../services/useBlogCalls";
 import { useSelector } from "react-redux";
 import DeleteModal from "./DeleteModal";
 
-const CommentForm = ({ comment, blogId }) => {
+const CommentForm = ({ comment }) => {
   const {users} = useSelector(state => state.getBlog)
+
   return (
     <>
     <div style={{display:"flex", justifyContent:"space-between", alignItems:"center"}}>
@@ -15,7 +15,7 @@ const CommentForm = ({ comment, blogId }) => {
       </div>
         {users[0]?._id === comment?.userId?._id && 
       <div style={{marginRight:"4rem"}}>
-        <DeleteModal endpoint={"comments"} id={comment._id} blogId={blogId} />
+        <DeleteModal endpoint={"comments"} id={comment._id} blogId={comment?.blogId} />
       </div>
     }
     </div>

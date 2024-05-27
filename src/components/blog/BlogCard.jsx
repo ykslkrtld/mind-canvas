@@ -27,6 +27,10 @@ const BlogCard = ({blog, currentPage}) => {
     user ? postLikes(blog._id, currentPage).then(() => getBlogs(currentPage)) : navigate("/login")
   }
 
+  const handleShowComments = () => {
+    user ? navigate(`/detail/${blog._id}`) : navigate("/login")
+  }
+
   return (
     <Card sx={{ width: 360, height: 450, display:"flex", flexDirection:"column", justifyContent:"space-between" }}>
       <CardHeader
@@ -52,7 +56,7 @@ const BlogCard = ({blog, currentPage}) => {
           {blog?.likes.length}
         </Typography>
         </IconButton>
-        <IconButton aria-label="comment">
+        <IconButton aria-label="comment" onClick={handleShowComments}>
           <CommentIcon />
           <Typography>
           {blog?.comments.length}

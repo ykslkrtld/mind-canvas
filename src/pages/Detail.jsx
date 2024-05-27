@@ -12,7 +12,7 @@ import Typography from "@mui/material/Typography";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import CommentIcon from "@mui/icons-material/Comment";
 import VisibilityIcon from "@mui/icons-material/Visibility";
-import { Avatar, Button, Grid } from "@mui/material";
+import { Avatar, Button } from "@mui/material";
 import loadingGif from "../assets/loadingg.gif";
 import DeleteModal from "../components/blog/DeleteModal";
 import UpdateModal from "../components/blog/UpdateModal";

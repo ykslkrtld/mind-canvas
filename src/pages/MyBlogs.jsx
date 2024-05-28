@@ -18,7 +18,7 @@ const MyBlog = () => {
       getMyBlogs(users[0]._id);
     }
     getUsers();
-  }, [users]);
+  }, []);
 
   return (
     <>

@@ -15,7 +15,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { Link, useNavigate } from 'react-router-dom';
 import { setShowComments } from "../../features/blogSlice";
 
-
 const BlogCard = ({blog}) => {
 
   const navigate = useNavigate()
@@ -76,7 +75,7 @@ const BlogCard = ({blog}) => {
         </IconButton>
         </CardActions>
         <Link to={`/detail/${blog._id}`} style={{ textDecoration: 'none' }}>
-          <Button variant="contained" color='secondary'>
+          <Button variant="contained" color='secondary' onClick={() => dispatch(setShowComments(false))}>
             READ MORE
           </Button>
         </Link>

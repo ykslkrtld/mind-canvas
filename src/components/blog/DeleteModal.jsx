@@ -36,7 +36,6 @@ export default function DeleteModal({endpoint, id, blogId}) {
     }
   }
 
-
   return (
     <div>
       <Button variant="contained" color="error" onClick={handleOpen}>DELETE</Button>

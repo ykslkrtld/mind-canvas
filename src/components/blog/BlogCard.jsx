@@ -17,15 +17,15 @@ import { setShowComments } from "../../features/blogSlice";
 
 const BlogCard = ({blog, currentPage}) => {
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const { postLikes, getBlogs } = useBlogCalls();
   const { users } = useSelector((state) => state.getBlog);
   const { user } = useSelector((state) => state.auth);
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const handleLikes = () => {
-    user ? postLikes(blog._id, currentPage).then(() => getBlogs(currentPage)) : navigate("/login")
-  }
+    user ? postLikes(blog._id, currentPage).then(() => getBlogs(currentPage)) : navigate("/login");
+  };
 
   const handleShowComments = () => {
     if (user) {
@@ -75,7 +75,7 @@ const BlogCard = ({blog, currentPage}) => {
         </IconButton>
         </CardActions>
         <Link to={`/detail/${blog._id}`} style={{ textDecoration: 'none' }}>
-          <Button variant="contained" color='secondary'>
+          <Button variant="contained" color='secondary' onClick={() => dispatch(setShowComments(false))}>
             READ MORE
           </Button>
         </Link>
@@ -83,4 +83,4 @@ const BlogCard = ({blog, currentPage}) => {
     </Card>
   );
 }
-export default BlogCard
+export default BlogCard;

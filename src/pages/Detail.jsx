@@ -32,7 +32,6 @@ const Detail = () => {
   console.log(singleBlog)
   console.log(singleBlog.comments)
 
-
   const handleCommentClick = () => {
     dispatch(setShowComments(!showComments));
   };
@@ -40,8 +39,6 @@ const Detail = () => {
   useEffect(() => {
     getSingleBlog(id);
     getUsers();
-    // getCategories();
-    // getComments()
   }, [id]);
 
   useEffect(() => {

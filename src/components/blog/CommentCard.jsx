@@ -4,7 +4,7 @@ import useBlogCalls from "../../services/useBlogCalls";
 
 const CommentCard = ({blogId}) => {
 
-  const { postComments, getSingleBlog } = useBlogCalls();
+  const { postDatas, getSingleBlog } = useBlogCalls();
 
   const [commentInfo, setCommentInfo] = useState({
     comment: "",
@@ -17,7 +17,7 @@ const CommentCard = ({blogId}) => {
   
   const handleSubmit = (e) => {
     e.preventDefault()
-    postComments(commentInfo).then(() => getSingleBlog(blogId))
+    postDatas("comments", commentInfo).then(() => getSingleBlog(blogId))
  
   }
   useEffect(() => {

@@ -14,7 +14,7 @@ import {
 } from "@mui/material";
 
 const NewBlog = () => {
-  const { getUseCat, postBlogs } = useBlogCalls();
+  const { getUseCat, postDatas } = useBlogCalls();
 
   const status = [
     {
@@ -42,7 +42,7 @@ const NewBlog = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    postBlogs(blogInfo);
+    postDatas("blogs", blogInfo);
     setBlogInfo({
       categoryId: "",
       title: "",

@@ -22,7 +22,7 @@ import { setShowComments } from "../features/blogSlice";
 
 const Detail = () => {
   const { id } = useParams();
-  const { getSingleBlog, postLikes, getUseCat } = useBlogCalls();
+  const { getSingleBlog, postLikes, getCategories } = useBlogCalls();
   const { singleBlog, loading, likes, showComments } = useSelector((state) => state.getBlog);
   const {user} = useSelector(state => state.auth)
   const [userLike, setUserLike] = useState();
@@ -33,7 +33,7 @@ const Detail = () => {
 
   useEffect(() => {
     getSingleBlog(id);
-    getUseCat("categories");
+    getCategories();
   }, [id]);
 
   useEffect(() => {

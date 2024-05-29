@@ -6,7 +6,7 @@ import {
   getBlogSuccess,
   getMyBlogSuccess,
   getSingleBlogSuccess,
-  getUseCatSuccess,
+  getCategoriesSuccess,
   getLikeSuccess,
 } from "../features/blogSlice";
 import { toastErrorNotify, toastSuccessNotify } from "../helper/ToastNotify";
@@ -21,7 +21,6 @@ const useBlogCalls = () => {
     dispatch(fetchStart());
     try {
       const res = await axiosToken(`/blogs?limit=6&page=${page}`);
-      console.log(res);
       dispatch(getBlogSuccess(res.data));
     } catch (error) {
       dispatch(fetchFail());
@@ -33,7 +32,6 @@ const useBlogCalls = () => {
     dispatch(fetchStart());
     try {
       const res = await axiosToken(`/blogs?author=${id}`);
-      console.log(res);
       dispatch(getMyBlogSuccess(res.data));
     } catch (error) {
       dispatch(fetchFail());
@@ -45,7 +43,6 @@ const useBlogCalls = () => {
     dispatch(fetchStart());
     try {
       const { data } = await axiosToken(`/blogs/${id}`);
-      console.log(data);
       dispatch(getSingleBlogSuccess(data));
     } catch (error) {
       dispatch(fetchFail());
@@ -53,11 +50,11 @@ const useBlogCalls = () => {
     }
   };
 
-  const getUseCat = async (endpoint) => {
+  const getCategories = async () => {
     dispatch(fetchStart());
     try {
-      const {data: { data }} = await axiosToken(`/${endpoint}`);
-      dispatch(getUseCatSuccess({data, endpoint}));
+      const {data: { data }} = await axiosToken(`/categories`);
+      dispatch(getCategoriesSuccess({data}));
     } catch (error) {
       dispatch(fetchFail());
       console.log(error);
@@ -68,7 +65,6 @@ const useBlogCalls = () => {
     try {
       const { data } = await axiosToken.post(`/blogs/${id}/postLike`, {});
       dispatch(getLikeSuccess(data));
-      console.log(data);
     } catch (error) {
       console.log(error);
     }
@@ -120,7 +116,7 @@ const useBlogCalls = () => {
     getBlogs,
     getMyBlogs,
     getSingleBlog,
-    getUseCat,
+    getCategories,
     postLikes,
     postDatas,
     patchBlogs,

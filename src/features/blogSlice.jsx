@@ -36,9 +36,9 @@ const blogSlice = createSlice({
       state.loading = false;
       state.singleBlog = payload.data;
     },
-    getUseCatSuccess: (state, { payload }) => {
+    getCategoriesSuccess: (state, { payload }) => {
       state.loading = false;
-      state[payload.endpoint] = payload.data;
+      state.categories = payload.data;
     },
     getLikeSuccess: (state, { payload }) => {
       state.loading = false;
@@ -63,7 +63,7 @@ export const {
   getBlogSuccess,
   getMyBlogSuccess,
   getSingleBlogSuccess,
-  getUseCatSuccess,
+  getCategoriesSuccess,
   getLikeSuccess,
   setCurrentPage,
   setShowComments,

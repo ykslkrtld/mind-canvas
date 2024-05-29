@@ -14,7 +14,7 @@ import {
 } from "@mui/material";
 
 const NewBlog = () => {
-  const { getUseCat, postDatas } = useBlogCalls();
+  const { getCategories, postDatas } = useBlogCalls();
 
   const status = [
     {
@@ -53,7 +53,7 @@ const NewBlog = () => {
   };
 
   useEffect(() => {
-    getUseCat("categories");
+    getCategories();
   }, []);
 
   return (

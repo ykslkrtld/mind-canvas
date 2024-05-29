@@ -14,11 +14,11 @@ const useAuthCalls = () => {
     try {
       const { data } = await axiosPublic.post("/auth/login/", userData)
       dispatch(loginSuccess(data));
-      toastSuccessNotify("Giriş başarılı");
+      toastSuccessNotify("You have successfully logged in.");
       navigate(-1)
     } catch (error) {
       dispatch(fetchFail());
-      toastErrorNotify("Giriş işlemi başarısız");
+      toastErrorNotify("Failed to log in.");
       console.log(error);
     }
   }
@@ -28,11 +28,11 @@ const useAuthCalls = () => {
     try {
       const { data } = await axiosPublic.post("/users/", userInfo)
       dispatch(registerSuccess(data));
-      toastSuccessNotify("Kayıt başarılı");
+      toastSuccessNotify("You have successfully registered.");
       navigate("/")
     } catch (error) {
       dispatch(fetchFail());
-      toastErrorNotify("Kayıt işlemi başarısız");
+      toastErrorNotify("Failed to register.");
       console.log(error);
     }
   }
@@ -43,11 +43,11 @@ const useAuthCalls = () => {
     try {
       await axiosToken("/auth/logout")
       dispatch(logoutSuccess());
-      toastSuccessNotify("Çıkış başarılı"); 
+      toastSuccessNotify("You have successfully logged out."); 
       navigate("/")
     } catch (error) {
       dispatch(fetchFail());
-      toastErrorNotify("Giriş başarısız oldu");
+      toastErrorNotify("Failed to log out.");
       console.log(error);
     }
   }

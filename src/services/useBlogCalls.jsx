@@ -76,10 +76,10 @@ const useBlogCalls = () => {
     dispatch(fetchStart());
     try {
       await axiosToken.post(`/${endpoint}/`, datas);
-      toastSuccessNotify("Ekleme işlemi başarılı");
+      toastSuccessNotify("Addition was successful.");
     } catch (error) {
       dispatch(fetchFail());
-      toastErrorNotify("Ekleme işlemi başarısız oldu");
+      toastErrorNotify("Addition failed.");
       console.log(error);
     }
   };
@@ -88,11 +88,11 @@ const useBlogCalls = () => {
     dispatch(fetchStart());
     try {
       await axiosToken.patch(`/blogs/${id}`, datas);
-      toastSuccessNotify("Düzenleme işlemi başarılı");
+      toastSuccessNotify("Editing was successful.");
       getSingleBlog(id);
     } catch (error) {
       dispatch(fetchFail());
-      toastErrorNotify("Düzenleme işlemi başarısız oldu");
+      toastErrorNotify("Editing failed.");
       console.log(error);
     }
   };
@@ -101,10 +101,10 @@ const useBlogCalls = () => {
     dispatch(fetchStart());
     try {
       await axiosToken.delete(`/${endpoint}/${id}`);
-      toastSuccessNotify("Silme işlemi başarılı");
+      toastSuccessNotify("Deletion was successful.");
     } catch (error) {
       dispatch(fetchFail());
-      toastErrorNotify("Silme işlemi başarısız oldu");
+      toastErrorNotify("Deletion failed.");
       console.log(error);
     }
   };

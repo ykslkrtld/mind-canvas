@@ -19,17 +19,17 @@ const Login = () => {
   const { login } = useAuthCalls();
   let loginSchema = object({
     email: string()
-      .email("Geçerli bir mail giriniz")
-      .required("Email zorunludur"), // required veya email içi doldurularak hata mesajı değiştirilebilir
+      .email("Please enter a valid email")
+      .required("Email is required"), // required veya email içi doldurularak hata mesajı değiştirilebilir
     password: string()
-      .required("Şifre zorunludur")
-      .matches(/[a-z]/, "Şifre en az 1 küçük harf içermelidir")
-      .matches(/[A-Z]/, "Şifre en az 1 büyük harf içermelidir")
-      .matches(/\d+/, "Şifre en az 1 rakam içermelidir")
-      // .matches(/[0-9]/, "Şifre en az 1 rakam içermelidir")
-      .matches(/[@$!%*?&]/, "Şifre @$!%*?& birini içermelidir")
-      .min(8, "Şifre en az 8 karakterli olmalıdır")
-      .max(15, "Şifre en fazla 15 karakterli olmalıdır"),
+      .required("Password is required")
+      .matches(/[a-z]/, "Password must contain at least one lowercase letter")
+      .matches(/[A-Z]/, "Password must contain at least one uppercase letter")
+      .matches(/\d+/, "Password must contain at least one number")
+      // .matches(/[0-9]/, "Password must contain at least one number")
+      .matches(/[@$!%*?&]/, "Password must contain one of @$!%*?&")
+      .min(8, "Password must be at least 8 characters")
+      .max(15, "Password must be at most 15 characters"),
   });
 
   const [showPassword, setShowPassword] = useState(false);
@@ -86,7 +86,7 @@ const Login = () => {
               <Form>
                 <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
                   <TextField
-                    label="Email"
+                    label="test@test.com"
                     name="email"
                     id="email"
                     type="email"
@@ -98,7 +98,7 @@ const Login = () => {
                     helperText={touched.email && errors.email}
                   />
                   <TextField
-                    label="Password"
+                    label="Test123?"
                     name="password"
                     id="password"
                     type={showPassword ? "text" : "password"}
@@ -152,12 +152,6 @@ const Login = () => {
             </p>
           </Box>
         </Grid>
-
-        {/* <Grid item xs={10} sm={7} md={6}>
-          <Container>
-            <img src={image} alt="img" />
-          </Container>
-        </Grid> */}
       </Grid>
     </Container>
   

@@ -15,7 +15,7 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
 import { Avatar, Button } from "@mui/material";
 import loadingGif from "../assets/loadingg.gif";
 import DeleteModal from "../components/blog/DeleteModal";
-import UpdateModal from "../components/blog/UpdateModal";
+import UpdateBlogModal from "../components/blog/UpdateBlogModal";
 import CommentForm from "../components/blog/CommentForm";
 import CommentCard from "../components/blog/CommentCard";
 import { setShowComments } from "../features/blogSlice";
@@ -33,6 +33,7 @@ const Detail = () => {
   useEffect(() => {
     getSingleBlog(id);
     getUseCat("users");
+    getUseCat("categories");
   }, [id]);
 
   useEffect(() => {
@@ -119,7 +120,7 @@ const Detail = () => {
           {users[0]?._id === singleBlog?.userId?._id && (
             <CardActions sx={{ justifyContent: "center" }}>
               <Button
-              variant="contained" color="success"
+                variant="contained" color="success"
                 onClick={() => {
                   setOpen(true);
                   setSelectedBlog(singleBlog?._id);
@@ -127,7 +128,7 @@ const Detail = () => {
               >
                 UPDATE
               </Button>
-              <UpdateModal
+              <UpdateBlogModal
                 open={open && selectedBlog === singleBlog?._id}
                 setOpen={setOpen}
                 singleBlog={singleBlog}

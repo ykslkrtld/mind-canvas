@@ -15,7 +15,7 @@ import {
   Typography,
 } from "@mui/material";
 
-const UpdateModal = ({ open, setOpen, singleBlog, categoryId }) => {
+const UpdateBlogModal = ({ open, setOpen, singleBlog, categoryId }) => {
   const { title, content, image, isPublish, _id } = singleBlog;
   const { categories } = useSelector((state) => state.getBlog);
   const { patchBlogs } = useBlogCalls();
@@ -190,4 +190,4 @@ const UpdateModal = ({ open, setOpen, singleBlog, categoryId }) => {
   );
 };
 
-export default UpdateModal;
+export default UpdateBlogModal;

@@ -79,7 +79,7 @@ const useBlogCalls = () => {
     try {
       if(endpoint === "blogs") {
         const {data} = await axiosToken.post(`/${endpoint}/`, datas);
-        navigate(`/detail/:${data.data._id}`)
+        navigate(`/detail/${data.data._id}`)
       } else{
         await axiosToken.post(`/${endpoint}/`, datas);
       }

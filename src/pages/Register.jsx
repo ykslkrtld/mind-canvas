@@ -51,7 +51,7 @@ const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
   const {user} = useSelector(state => state.auth)
 
-  return user ? <Navigate to="/"/> : 
+  return user.username ? <Navigate to="/"/> : 
   <Container maxWidth="lg" >
       <Grid
         container

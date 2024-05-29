@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import BlogCard from '../components/blog/BlogCard'
 import { useSelector, useDispatch } from 'react-redux';
 import useBlogCalls from '../services/useBlogCalls';
@@ -10,12 +10,11 @@ import { setCurrentPage } from '../features/blogSlice';
 const Dashboard = () => {
 
   const { blogs, totalPages, currentPage } = useSelector((state) => state.getBlog);
-  const { getBlogs, getUseCat } = useBlogCalls();
+  const { getBlogs } = useBlogCalls();
   const dispatch = useDispatch();
 
   useEffect(() => {
     getBlogs(currentPage);
-    getUseCat("users");
   }, [currentPage]);
 
   const handlePageChange = (event, value) => {

@@ -12,9 +12,6 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import useAuthCalls from "../services/useAuthCalls";
-import useBlogCalls from "../services/useBlogCalls";
-import avatar from "../assets/avatar.png";
-import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 
@@ -32,12 +29,10 @@ const settings = [
 
 const Navbar = () => {
   const { user } = useSelector((state) => state.auth);
-  const { users } = useSelector((state) => state.getBlog);
   const { logout } = useAuthCalls();
-  const { getUseCat } = useBlogCalls();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-  console.log(users);
+  console.log(user);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -60,10 +55,6 @@ const Navbar = () => {
     }
     handleCloseUserMenu();
   };
-
-  useEffect(() => {
-    getUseCat("users");
-  }, []);
 
   return (
     <AppBar position="static" sx={{ backgroundColor: "black" }}>
@@ -149,12 +140,12 @@ const Navbar = () => {
             sx={{ flexGrow: 1, display: "flex", justifyContent: "flex-end" }}
           >
             <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-              <Typography>{user && users[0]?.firstName}</Typography>
+              <Typography>{ user?.firstName}</Typography>
               <Tooltip title="Open settings">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                   <Avatar
                     alt="Remy Sharp"
-                    src={user ? users[0]?.image : avatar}
+                    src={user?.image}
                   />
                 </IconButton>
               </Tooltip>
@@ -175,7 +166,7 @@ const Navbar = () => {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {user ? (
+              {user.username ? (
                 settings.map((setting) => (
                   <MenuItem
                     key={setting.name}

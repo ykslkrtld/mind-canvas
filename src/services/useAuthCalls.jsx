@@ -14,6 +14,7 @@ const useAuthCalls = () => {
     try {
       const { data } = await axiosPublic.post("/auth/login/", userData)
       dispatch(loginSuccess(data));
+      console.log(data)
       toastSuccessNotify("You have successfully logged in.");
       navigate(-1)
     } catch (error) {

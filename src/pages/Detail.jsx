@@ -23,7 +23,8 @@ import { setShowComments } from "../features/blogSlice";
 const Detail = () => {
   const { id } = useParams();
   const { getSingleBlog, postLikes, getUseCat } = useBlogCalls();
-  const { singleBlog, loading, users, likes, showComments } = useSelector((state) => state.getBlog);
+  const { singleBlog, loading, likes, showComments } = useSelector((state) => state.getBlog);
+  const {user} = useSelector(state => state.auth)
   const [userLike, setUserLike] = useState();
   const [countOfLikes, setCountOfLikes] = useState();
   const [open, setOpen] = useState(false);
@@ -32,7 +33,6 @@ const Detail = () => {
 
   useEffect(() => {
     getSingleBlog(id);
-    getUseCat("users");
     getUseCat("categories");
   }, [id]);
 
@@ -42,7 +42,7 @@ const Detail = () => {
   }, [likes]);
 
   useEffect(() => {
-    setUserLike(singleBlog?.likes?.includes(users[0]?._id));
+    setUserLike(singleBlog?.likes?.includes(user?.userId));
     setCountOfLikes(singleBlog?.likes?.length);
   }, [singleBlog?.likes]);
 
@@ -117,7 +117,7 @@ const Detail = () => {
               </IconButton>
             </CardActions>
           </CardActions>
-          {users[0]?._id === singleBlog?.userId?._id && (
+          {user?.userId === singleBlog?.userId?._id && (
             <CardActions sx={{ justifyContent: "center" }}>
               <Button
                 variant="contained" color="success"

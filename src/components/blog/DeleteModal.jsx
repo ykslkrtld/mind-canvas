@@ -29,7 +29,7 @@ export default function DeleteModal({endpoint, id, blogId}) {
       delDatas(endpoint, id).then(() => getSingleBlog(blogId))
     } else {
       delDatas(endpoint, id)
-      navigate(-1);
+      navigate("/");
     }
   }
 

@@ -6,15 +6,15 @@ import useBlogCalls from '../services/useBlogCalls';
 
 const MyBlog = () => {
 
-  const { blogs, users  } = useSelector((state) => state.getBlog);
-  const { getUseCat, getMyBlogs } = useBlogCalls();
+  const { blogs  } = useSelector((state) => state.getBlog);
+  const { user  } = useSelector((state) => state.auth);
+  const { getMyBlogs } = useBlogCalls();
   const [ publish, setPublish ] = useState(true)
 
   useEffect(() => {
-    if (users && users.length > 0) {
-      getMyBlogs(users[0]._id);
+    if (user.username) {
+      getMyBlogs(user?.userId);
     }
-    getUseCat("users");
   }, []);
 
   return (
@@ -26,7 +26,7 @@ const MyBlog = () => {
 
     <Grid container gap={2} mt={3} justifyContent={"center"}>
       {blogs
-        .filter((blog) => blog?.userId === users[0]?._id && blog?.isPublish === false )
+        .filter((blog) => blog?.userId === user?.userId && blog?.isPublish === false )
         .map((blog) => (
           !publish &&
           <Grid item key={blog._id}>
@@ -36,7 +36,7 @@ const MyBlog = () => {
     </Grid>
     <Grid container gap={2} mt={3} justifyContent={"center"}>
       {blogs
-        .filter((blog) => blog?.userId === users[0]?._id && blog?.isPublish )
+        .filter((blog) => blog?.userId === user?.userId && blog?.isPublish )
         .map((blog) => (
           publish && 
           <Grid item key={blog._id}>

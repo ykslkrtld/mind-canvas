@@ -18,7 +18,6 @@ import { setShowComments } from "../../features/blogSlice";
 const BlogCard = ({blog, currentPage}) => {
 
   const navigate = useNavigate();
-  const { users } = useSelector((state) => state.getBlog);
   const { user } = useSelector((state) => state.auth);
   const { postLikes, getBlogs } = useBlogCalls();
   const dispatch = useDispatch();
@@ -50,13 +49,13 @@ const BlogCard = ({blog, currentPage}) => {
       />
       <CardContent>
         <Typography variant="body2" color="text.secondary" >
-          {(blog.content).slice(0, 100) + "..."}
+          {(blog?.content).slice(0, 100) + "..."}
         </Typography>
       </CardContent>
       <CardActions disableSpacing sx={{justifyContent:"space-between"}}>
         <CardActions>
         <IconButton aria-label="add to favorites" onClick={handleLikes}>
-        <FavoriteIcon sx={{ color: user && blog.likes.includes(users[0]?._id) ? "red" : "inherit" }} />
+        <FavoriteIcon sx={{ color: blog.likes.includes(user?.userId) ? "red" : "inherit" }} />
         <Typography>
           {blog?.likes.length}
         </Typography>

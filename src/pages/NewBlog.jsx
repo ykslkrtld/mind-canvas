@@ -53,7 +53,6 @@ const NewBlog = () => {
   };
 
   useEffect(() => {
-    getUseCat("users");
     getUseCat("categories");
   }, []);
 

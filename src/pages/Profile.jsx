@@ -20,7 +20,6 @@ const Profile = () => {
         flexDirection:"column",
         justifyContent:"center",
         alignItems:"center",
-        border:"2px solid red",
         margin:"auto",
         marginTop:"3rem",
         textAlign: "center",

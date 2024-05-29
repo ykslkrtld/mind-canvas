@@ -10,10 +10,12 @@ import {
   getLikeSuccess,
 } from "../features/blogSlice";
 import { toastErrorNotify, toastSuccessNotify } from "../helper/ToastNotify";
+import { useNavigate } from "react-router-dom";
 
 const useBlogCalls = () => {
   const { axiosToken } = useAxios();
   const dispatch = useDispatch();
+  const navigate = useNavigate()
 
   const getBlogs = async (page = 1) => {
     dispatch(fetchStart());
@@ -75,7 +77,12 @@ const useBlogCalls = () => {
   const postDatas = async (endpoint, datas) => {
     dispatch(fetchStart());
     try {
-      await axiosToken.post(`/${endpoint}/`, datas);
+      if(endpoint === "blogs") {
+        const {data} = await axiosToken.post(`/${endpoint}/`, datas);
+        navigate(`/detail/:${data.data._id}`)
+      } else{
+        await axiosToken.post(`/${endpoint}/`, datas);
+      }
       toastSuccessNotify("Addition was successful.");
     } catch (error) {
       dispatch(fetchFail());
@@ -84,10 +91,10 @@ const useBlogCalls = () => {
     }
   };
 
-  const patchBlogs = async (datas, id) => {
+  const patchBlogs = async (data, id) => {
     dispatch(fetchStart());
     try {
-      await axiosToken.patch(`/blogs/${id}`, datas);
+      await axiosToken.patch(`/blogs/${id}`, data);
       toastSuccessNotify("Editing was successful.");
       getSingleBlog(id);
     } catch (error) {

@@ -22,23 +22,17 @@ import { setShowComments } from "../features/blogSlice";
 
 const Detail = () => {
   const { id } = useParams();
-  const { getSingleBlog, postLikes, getUsers } = useBlogCalls();
+  const { getSingleBlog, postLikes, getUseCat } = useBlogCalls();
   const { singleBlog, loading, users, likes, showComments } = useSelector((state) => state.getBlog);
   const [userLike, setUserLike] = useState();
   const [countOfLikes, setCountOfLikes] = useState();
   const [open, setOpen] = useState(false);
   const [selectedBlog, setSelectedBlog] = useState(null);
   const dispatch = useDispatch()
-  console.log(singleBlog)
-  console.log(singleBlog.comments)
-
-  const handleCommentClick = () => {
-    dispatch(setShowComments(!showComments));
-  };
 
   useEffect(() => {
     getSingleBlog(id);
-    getUsers();
+    getUseCat("users");
   }, [id]);
 
   useEffect(() => {
@@ -112,7 +106,7 @@ const Detail = () => {
                 <FavoriteIcon sx={{ color: userLike ? "red" : "inherit" }} />
                 <Typography>{countOfLikes}</Typography>
               </IconButton>
-              <IconButton aria-label="comment" onClick={handleCommentClick}>
+              <IconButton aria-label="comment" onClick={() => dispatch(setShowComments(!showComments))}>
                 <CommentIcon />
                 <Typography>{singleBlog?.comments?.length}</Typography>
               </IconButton>
@@ -142,9 +136,9 @@ const Detail = () => {
               <DeleteModal endpoint={"blogs"} id={singleBlog?._id} />
             </CardActions>
           )}
-          {showComments && (
+          {showComments && singleBlog?.comments && (
             <>
-              <CommentCard blogId={singleBlog._id} />
+              <CommentCard blogId={singleBlog?._id} />
               {singleBlog?.comments.map((comment) => (
                   <CommentForm key={comment._id} comment={comment} />
                 ))}

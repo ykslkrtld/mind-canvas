@@ -4,26 +4,25 @@ import useBlogCalls from "../../services/useBlogCalls";
 
 const CommentCard = ({blogId}) => {
 
+  const { postComments, getSingleBlog } = useBlogCalls();
+
   const [commentInfo, setCommentInfo] = useState({
     comment: "",
     blogId,
   });
-  console.log(blogId)
-
-  const { postComments, getSingleBlog } = useBlogCalls();
-
-  useEffect(() => {
-    setCommentInfo({ ...commentInfo, blogId });
-  }, [blogId]);
 
   const handleChange = (e) => {
     setCommentInfo({ ...commentInfo, [e.target.name]: e.target.value });
   };
-
+  
   const handleSubmit = (e) => {
     e.preventDefault()
     postComments(commentInfo).then(() => getSingleBlog(blogId))
+ 
   }
+  useEffect(() => {
+    setCommentInfo({ ...commentInfo, blogId });
+  }, [blogId]);
 
   return (
       <Box onSubmit={handleSubmit} width={"90%"} m={"auto"} component={"form"} >

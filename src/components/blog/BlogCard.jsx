@@ -18,9 +18,9 @@ import { setShowComments } from "../../features/blogSlice";
 const BlogCard = ({blog, currentPage}) => {
 
   const navigate = useNavigate();
-  const { postLikes, getBlogs } = useBlogCalls();
   const { users } = useSelector((state) => state.getBlog);
   const { user } = useSelector((state) => state.auth);
+  const { postLikes, getBlogs } = useBlogCalls();
   const dispatch = useDispatch();
 
   const handleLikes = () => {

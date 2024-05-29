@@ -9,13 +9,13 @@ import { setCurrentPage } from '../features/blogSlice';
 
 const Dashboard = () => {
 
-  const dispatch = useDispatch();
   const { blogs, totalPages, currentPage } = useSelector((state) => state.getBlog);
-  const { getBlogs, getUsers } = useBlogCalls();
+  const { getBlogs, getUseCat } = useBlogCalls();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     getBlogs(currentPage);
-    getUsers();
+    getUseCat("users");
   }, [currentPage]);
 
   const handlePageChange = (event, value) => {

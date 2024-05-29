@@ -4,19 +4,16 @@ import {
   fetchFail,
   fetchStart,
   getBlogSuccess,
-  getUserSuccess,
-  getSingleBlogSuccess,
-  getLikeSuccess,
-  getCategorySuccess,
   getMyBlogSuccess,
+  getSingleBlogSuccess,
+  getUseCatSuccess,
+  getLikeSuccess,
 } from "../features/blogSlice";
 import { toastErrorNotify, toastSuccessNotify } from "../helper/ToastNotify";
-import { useNavigate } from "react-router-dom";
 
 const useBlogCalls = () => {
   const { axiosToken } = useAxios();
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   const getBlogs = async (page = 1) => {
     dispatch(fetchStart());
@@ -54,22 +51,11 @@ const useBlogCalls = () => {
     }
   };
 
-  const getUsers = async () => {
+  const getUseCat = async (endpoint) => {
     dispatch(fetchStart());
     try {
-      const { data } = await axiosToken(`/users`);
-      dispatch(getUserSuccess(data));
-    } catch (error) {
-      dispatch(fetchFail());
-      console.log(error);
-    }
-  };
-
-  const getCategories = async () => {
-    dispatch(fetchStart());
-    try {
-      const { data } = await axiosToken(`/categories`);
-      dispatch(getCategorySuccess(data));
+      const {data: { data }} = await axiosToken(`/${endpoint}`);
+      dispatch(getUseCatSuccess({data, endpoint}));
     } catch (error) {
       dispatch(fetchFail());
       console.log(error);
@@ -86,24 +72,11 @@ const useBlogCalls = () => {
     }
   };
 
-  const delDatas = async (endpoint, id) => {
-    dispatch(fetchStart());
-    try {
-      await axiosToken.delete(`/${endpoint}/${id}`);
-      toastSuccessNotify("Silme işlemi başarılı");
-    } catch (error) {
-      dispatch(fetchFail());
-      toastErrorNotify("Silme işlemi başarısız oldu");
-      console.log(error);
-    }
-  };
-
   const postBlogs = async (datas) => {
     dispatch(fetchStart());
     try {
       await axiosToken.post(`/blogs/`, datas);
       toastSuccessNotify("Ekleme işlemi başarılı");
-      // getBlogs()
     } catch (error) {
       dispatch(fetchFail());
       toastErrorNotify("Ekleme işlemi başarısız oldu");
@@ -136,16 +109,27 @@ const useBlogCalls = () => {
     }
   };
 
+  const delDatas = async (endpoint, id) => {
+    dispatch(fetchStart());
+    try {
+      await axiosToken.delete(`/${endpoint}/${id}`);
+      toastSuccessNotify("Silme işlemi başarılı");
+    } catch (error) {
+      dispatch(fetchFail());
+      toastErrorNotify("Silme işlemi başarısız oldu");
+      console.log(error);
+    }
+  };
+
   return {
     getBlogs,
-    postBlogs,
-    patchBlogs,
-    getUsers,
-    postLikes,
-    getSingleBlog,
-    getCategories,
     getMyBlogs,
+    getSingleBlog,
+    getUseCat,
+    postLikes,
+    postBlogs,
     postComments,
+    patchBlogs,
     delDatas,
   };
 };

@@ -32,11 +32,11 @@ const settings = [
 
 const Navbar = () => {
   const { user } = useSelector((state) => state.auth);
+  const { users } = useSelector((state) => state.getBlog);
   const { logout } = useAuthCalls();
+  const { getUseCat } = useBlogCalls();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-  const { getUsers } = useBlogCalls();
-  const { users } = useSelector((state) => state.getBlog);
   console.log(users);
 
   const handleOpenNavMenu = (event) => {
@@ -62,7 +62,7 @@ const Navbar = () => {
   };
 
   useEffect(() => {
-    getUsers();
+    getUseCat("users");
   }, []);
 
   return (

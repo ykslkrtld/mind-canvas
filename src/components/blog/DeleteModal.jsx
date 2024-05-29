@@ -7,7 +7,6 @@ import CardActions from "@mui/material/CardActions";
 import useBlogCalls from '../../services/useBlogCalls';
 import { useNavigate } from 'react-router-dom';
 
-
 const style = {
   position: 'absolute',
   top: '50%',
@@ -22,10 +21,8 @@ const style = {
 
 export default function DeleteModal({endpoint, id, blogId}) {
   const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
-  const navigate = useNavigate()
   const { delDatas, getSingleBlog } = useBlogCalls();
+  const navigate = useNavigate()
 
   const handleDelete = () => {
     if(endpoint === "comments"){
@@ -38,10 +35,10 @@ export default function DeleteModal({endpoint, id, blogId}) {
 
   return (
     <div>
-      <Button variant="contained" color="error" onClick={handleOpen}>DELETE</Button>
+      <Button variant="contained" color="error" onClick={() => setOpen(true)}>DELETE</Button>
       <Modal
         open={open}
-        onClose={handleClose}
+        onClose={() => setOpen(false)}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
@@ -50,7 +47,7 @@ export default function DeleteModal({endpoint, id, blogId}) {
             Do you really want to delete? This process cannot be undone!
           </Typography>
           <CardActions sx={{justifyContent:"center", gap:3, mt:3}}>
-              <Button variant="contained" color="success" onClick={handleClose}>CANCEL</Button>
+              <Button variant="contained" color="success" onClick={() => setOpen(false)}>CANCEL</Button>
               <Button variant="contained" color="error" onClick={handleDelete}>DELETE</Button>
           </CardActions>
           

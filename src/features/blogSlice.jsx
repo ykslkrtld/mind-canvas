@@ -32,21 +32,17 @@ const blogSlice = createSlice({
       state.loading = false;
       state.blogs = payload.data;
     },
-    getLikeSuccess: (state, { payload }) => {
-      state.loading = false;
-      state.likes = payload;
-    },
     getSingleBlogSuccess: (state, { payload }) => {
       state.loading = false;
       state.singleBlog = payload.data;
     },
-    getUserSuccess: (state, { payload }) => {
+    getUseCatSuccess: (state, { payload }) => {
       state.loading = false;
-      state.users = payload.data;
+      state[payload.endpoint] = payload.data;
     },
-    getCategorySuccess: (state, { payload }) => {
+    getLikeSuccess: (state, { payload }) => {
       state.loading = false;
-      state.categories = payload.data;
+      state.likes = payload;
     },
     fetchFail: (state) => {
       state.loading = false;
@@ -63,14 +59,13 @@ const blogSlice = createSlice({
 
 export const {
   fetchStart,
-  getBlogSuccess,
-  getUserSuccess,
   fetchFail,
+  getBlogSuccess,
+  getMyBlogSuccess,
   getSingleBlogSuccess,
+  getUseCatSuccess,
   getLikeSuccess,
   setCurrentPage,
-  getCategorySuccess,
-  getMyBlogSuccess,
   setShowComments,
 } = blogSlice.actions;
 

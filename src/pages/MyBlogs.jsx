@@ -6,18 +6,15 @@ import useBlogCalls from '../services/useBlogCalls';
 
 const MyBlog = () => {
 
-  const { blogs, users,  } = useSelector((state) => state.getBlog);
-  const { getUsers, getMyBlogs } = useBlogCalls();
+  const { blogs, users  } = useSelector((state) => state.getBlog);
+  const { getUseCat, getMyBlogs } = useBlogCalls();
   const [ publish, setPublish ] = useState(true)
-
-  console.log(users)
-  console.log(blogs)
 
   useEffect(() => {
     if (users && users.length > 0) {
       getMyBlogs(users[0]._id);
     }
-    getUsers();
+    getUseCat("users");
   }, []);
 
   return (

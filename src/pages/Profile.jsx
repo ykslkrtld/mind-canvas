@@ -4,12 +4,12 @@ import { useSelector } from "react-redux";
 import { Box, CardMedia, Typography } from "@mui/material";
 
 const Profile = () => {
-  const { getUsers } = useBlogCalls();
+  const { getUseCat } = useBlogCalls();
   const { users } = useSelector((state) => state.getBlog);
   console.log(users);
 
   useEffect(() => {
-    getUsers();
+    getUseCat("users");
   }, []);
 
   return (

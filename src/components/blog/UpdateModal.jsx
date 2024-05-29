@@ -18,6 +18,7 @@ import {
 const UpdateModal = ({ open, setOpen, singleBlog, categoryId }) => {
   const { title, content, image, isPublish, _id } = singleBlog;
   const { categories } = useSelector((state) => state.getBlog);
+  const { patchBlogs } = useBlogCalls();
 
   const status = [
     {
@@ -38,7 +39,6 @@ const UpdateModal = ({ open, setOpen, singleBlog, categoryId }) => {
     isPublish,
   });
 
-  const { patchBlogs } = useBlogCalls();
 
   const handleChange = (e) => {
     setBlogInfo({ ...blogInfo, [e.target.name]: e.target.value });

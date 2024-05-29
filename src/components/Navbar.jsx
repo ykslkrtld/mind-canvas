@@ -19,9 +19,9 @@ import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 
 const pages = [
-  { name: "Dashboard", path: "/" },
-  { name: "New Blog", path: "/new-blog" },
+  { name: "Home", path: "/" },
   { name: "About", path: "/about" },
+  { name: "New Blog", path: "/new-blog" },
 ];
 
 const settings = [

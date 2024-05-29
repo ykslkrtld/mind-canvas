@@ -13,12 +13,16 @@ const Profile = () => {
   }, []);
 
   return (
+    <>
     <Box
       sx={{
-        position: "absolute",
-        top: "50%",
-        left: "50%",
-        transform: "translate(-50%, -50%)",
+        display:"flex",
+        flexDirection:"column",
+        justifyContent:"center",
+        alignItems:"center",
+        border:"2px solid red",
+        margin:"auto",
+        marginTop:"3rem",
         textAlign: "center",
         width: 350,
       }}
@@ -83,6 +87,8 @@ const Profile = () => {
         Email: <Typography fontSize={"1.3rem"} color={"secondary"} fontWeight={"600"}>{users[0]?.email}</Typography>{" "}
       </Typography>
     </Box>
+    <div style={{ paddingBottom: '100px' }}></div>
+    </>
   );
 };
 

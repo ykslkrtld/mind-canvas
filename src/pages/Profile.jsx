@@ -77,7 +77,7 @@ const Profile = () => {
       >
         Email: <Typography component="span" fontSize={"1.3rem"} color={"secondary"} fontWeight={"600"}>{user?.email}</Typography>{" "}
       </Typography>
-      <UpdateProfileModal/>
+      {/* <UpdateProfileModal/> */}
     </Box>
     <div style={{ paddingBottom: '100px' }}></div>
     </>

@@ -100,6 +100,20 @@ const useBlogCalls = () => {
     }
   };
 
+  const patchProfile = async (data, id) => {
+    dispatch(fetchStart());
+    try {
+      await axiosToken.patch(`/users/${id}`, data);
+      toastSuccessNotify("Editing was successful.");
+
+      navigate("/profile")
+    } catch (error) {
+      dispatch(fetchFail());
+      toastErrorNotify("Editing failed.");
+      console.log(error);
+    }
+  };
+
   const delDatas = async (endpoint, id) => {
     dispatch(fetchStart());
     try {
@@ -120,6 +134,7 @@ const useBlogCalls = () => {
     postLikes,
     postDatas,
     patchBlogs,
+    patchProfile,
     delDatas,
   };
 };

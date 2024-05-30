@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux";
 import { Box, CardMedia, Typography } from "@mui/material";
+import UpdateProfileModal from "../components/blog/UpdateProfileModal";
 
 const Profile = () => {
   const { user } = useSelector((state) => state.auth);
@@ -76,6 +77,7 @@ const Profile = () => {
       >
         Email: <Typography component="span" fontSize={"1.3rem"} color={"secondary"} fontWeight={"600"}>{user?.email}</Typography>{" "}
       </Typography>
+      <UpdateProfileModal/>
     </Box>
     <div style={{ paddingBottom: '100px' }}></div>
     </>

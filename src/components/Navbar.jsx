@@ -108,7 +108,9 @@ const Navbar = () => {
                   <Typography textAlign="center">
                     <NavLink
                       to={page.path}
-                      style={{ textDecoration: "none", color: "inherit" }}
+                      style={({ isActive }) =>
+                        isActive ? { textDecoration: "none", color: "darkorange" } : { textDecoration: "none", color: "inherit" }
+                      }
                     >
                       {page.name}
                     </NavLink>
@@ -133,7 +135,9 @@ const Navbar = () => {
               >
                 <NavLink
                   to={page.path}
-                  style={{ textDecoration: "none", color: "inherit" }}
+                  style={({ isActive }) =>
+                    isActive ? { textDecoration: "none", color: "darkorange" } : { textDecoration: "none", color: "inherit" }
+                  }
                 >
                   {page.name}
                 </NavLink>
@@ -178,7 +182,9 @@ const Navbar = () => {
                   >
                     <NavLink
                       to={setting.path}
-                      style={{ textDecoration: "none", color: "inherit" }}
+                      style={({ isActive }) =>
+                        isActive ? { textDecoration: "none", color: "darkorange" } : { textDecoration: "none", color: "inherit" }
+                      }
                     >
                       <Typography textAlign="center">{setting.name}</Typography>
                     </NavLink>
@@ -189,7 +195,9 @@ const Navbar = () => {
                 <MenuItem key={item.name} onClick={handleCloseUserMenu}>
                   <NavLink
                     to={item.path}
-                    style={{ textDecoration: "none", color: "inherit" }}
+                    style={({ isActive }) =>
+                      isActive ? { textDecoration: "none", color: "darkorange" } : { textDecoration: "none", color: "inherit" }
+                    }
                   >
                     <Typography textAlign="center">{item.name}</Typography>
                   </NavLink>

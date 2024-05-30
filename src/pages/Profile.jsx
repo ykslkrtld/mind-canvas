@@ -22,7 +22,7 @@ const Profile = () => {
       <CardMedia
         component="img"
         image={user?.image}
-        alt="Paella dish"
+        alt="image"
         sx={{
           marginBottom: "1rem",
           width: "350px",

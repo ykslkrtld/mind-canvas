@@ -185,7 +185,7 @@ const Navbar = () => {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {user.username ? (
+              {user.username ? 
                 settings.map((setting) => (
                   <MenuItem
                     key={setting.name}
@@ -200,7 +200,7 @@ const Navbar = () => {
                     </NavLink>
                   </MenuItem>
                 ))
-              ) : getLogRegLinks().map((item) => (
+               : getLogRegLinks().map((item) => (
                 <MenuItem key={item.name} onClick={handleCloseUserMenu}>
                   <NavLink
                     to={item.path}

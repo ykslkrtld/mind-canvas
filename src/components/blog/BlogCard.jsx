@@ -36,23 +36,24 @@ const BlogCard = ({blog, currentPage}) => {
   };
 
   return (
-    <Card sx={{ width: 360, height: 450, display:"flex", flexDirection:"column", justifyContent:"space-between" }}>
+    <Card sx={{ width: 360, height: 500, display:"flex", flexDirection:"column", justifyContent:"space-between" }}>
       <CardHeader
         title={blog.title}
         subheader= {`Published Date: ${new Date(blog.createdAt).toLocaleString()}`}
+        sx={{height:"75px", alignItems:"center"}}
       />
       <CardMedia
         component="img"
-        height="194"
+        height="200"
         image={blog?.image}
         alt="Paella dish"
       />
       <CardContent>
-        <Typography variant="body2" color="text.secondary" >
+        <Typography variant="body2" color="text.secondary" sx={{height:"60px"}} >
           {(blog?.content).slice(0, 100) + "..."}
         </Typography>
       </CardContent>
-      <CardActions disableSpacing sx={{justifyContent:"space-between"}}>
+      <CardActions disableSpacing sx={{justifyContent:"space-between", height:"50px"}}>
         <CardActions>
         <IconButton aria-label="add to favorites" onClick={handleLikes}>
         <FavoriteIcon sx={{ color: blog.likes.includes(user?.userId) ? "red" : "inherit" }} />

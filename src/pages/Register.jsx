@@ -252,7 +252,7 @@ const Register = () => {
           </Box>
         </Grid>
       </Grid>
-      <div style={{ paddingBottom: '100px' }}></div>
+      <div style={{ paddingBottom: '150px' }}></div>
     </Container>
     }
   

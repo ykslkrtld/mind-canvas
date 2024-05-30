@@ -27,6 +27,11 @@ const settings = [
   { name: "Logout", path: "/" },
 ];
 
+const logReg = [
+  { name: "Login", path:"/login" },
+  { name: "Register", path:"/register" },
+]
+
 const Navbar = () => {
   const { user } = useSelector((state) => state.auth);
   const { logout } = useAuthCalls();
@@ -180,14 +185,16 @@ const Navbar = () => {
                   </MenuItem>
                 ))
               ) : (
-                <MenuItem onClick={handleCloseUserMenu}>
+                logReg.map((item) => (
+                <MenuItem key={item.name} onClick={handleCloseUserMenu}>
                   <NavLink
-                    to="/login"
+                    to={item.path}
                     style={{ textDecoration: "none", color: "inherit" }}
                   >
-                    <Typography textAlign="center">Login</Typography>
+                    <Typography textAlign="center">{item.name}</Typography>
                   </NavLink>
                 </MenuItem>
+                ))
               )}
             </Menu>
           </Box>

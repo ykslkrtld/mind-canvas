@@ -13,7 +13,7 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import useAuthCalls from "../services/useAuthCalls";
 import { useSelector } from "react-redux";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 
 const pages = [
   { name: "Home", path: "/" },
@@ -37,7 +37,8 @@ const Navbar = () => {
   const { logout } = useAuthCalls();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-
+  const location = useLocation();
+  
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -58,6 +59,16 @@ const Navbar = () => {
       logout();
     }
     handleCloseUserMenu();
+  };
+
+  const getLogRegLinks = () => {
+    if (location.pathname === "/login") {
+      return logReg.filter((item) => item.name === "Register");
+    } else if (location.pathname === "/register") {
+      return logReg.filter((item) => item.name === "Login");
+    } else {
+      return logReg;
+    }
   };
 
   return (
@@ -182,28 +193,27 @@ const Navbar = () => {
                   >
                     <NavLink
                       to={setting.path}
-                      style={({ isActive }) =>
-                        isActive ? { textDecoration: "none", color: "darkorange" } : { textDecoration: "none", color: "inherit" }
+                      style={{ textDecoration: "none", color: "inherit" }
                       }
                     >
                       <Typography textAlign="center">{setting.name}</Typography>
                     </NavLink>
                   </MenuItem>
                 ))
-              ) : (
-                logReg.map((item) => (
+              ) : getLogRegLinks().map((item) => (
                 <MenuItem key={item.name} onClick={handleCloseUserMenu}>
                   <NavLink
                     to={item.path}
                     style={({ isActive }) =>
-                      isActive ? { textDecoration: "none", color: "darkorange" } : { textDecoration: "none", color: "inherit" }
+                      isActive
+                        ? { textDecoration: "none", color: "darkorange" }
+                        : { textDecoration: "none", color: "inherit" }
                     }
                   >
                     <Typography textAlign="center">{item.name}</Typography>
                   </NavLink>
                 </MenuItem>
-                ))
-              )}
+              ))}
             </Menu>
           </Box>
         </Toolbar>

@@ -21,16 +21,11 @@ const Register = () => {
   const { register } = useAuthCalls();
   let registerSchema = object({
     username: string()
-      .required("Username is required")
-      .matches(/^[a-zA-ZçğıöşüÇĞİÖŞÜ]+$/, "Username must contain only letters")
-      .min(4, "Password must be at least 4 characters")
-      .max(12, "Password must be at most 12 characters"),
+      .required("Username is required"),
     firstName: string()
-      .required("FirstName is required")
-      .matches(/^[a-zA-ZçğıöşüÇĞİÖŞÜ]+$/, "FirstName must contain only letters"),
+      .required("FirstName is required"),
     lastName: string()
-      .required("LastName is required")
-      .matches(/^[a-zA-ZçğıöşüÇĞİÖŞÜ]+$/, "LastName must contain only letters"),
+      .required("LastName is required"),
     email: string()
       .email("Please enter a valid email")
       .required("Email is required"),

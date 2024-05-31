@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import BlogCard from '../components/blog/BlogCard'
 import { useSelector, useDispatch } from 'react-redux';
 import useBlogCalls from '../services/useBlogCalls';
-import { Grid } from '@mui/material';
+import { Box, Grid } from '@mui/material';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 import { setCurrentPage } from '../features/blogSlice';
@@ -23,7 +23,8 @@ const Dashboard = () => {
 
   return (
     <>
-      <Grid container gap={2} mt={3} justifyContent={"center"}>
+    <Box mt={3}></Box>
+      <Grid container gap={2} justifyContent={"center"} maxWidth={"1500px"} margin={"auto"}>
         {blogs.map((blog) => (
           <Grid item key={blog._id}>
             <BlogCard blog={blog} currentPage={currentPage} />

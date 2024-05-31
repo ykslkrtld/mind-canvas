@@ -16,6 +16,8 @@ const UpdateProfileModal = () => {
   
   const { username, email, firstName, lastName, image, city, bio } = singleUser;
 
+  const [passwordAgain, setPasswordAgain] = useState("")
+
   const [profileInfo, setProfileInfo] = useState({
     username,
     email,
@@ -33,8 +35,12 @@ const UpdateProfileModal = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if(passwordAgain === profileInfo.password) {
     patchProfile(profileInfo, singleUser?._id);
-    setOpen(false);
+    handleClose();
+  } else {
+    alert("Passwords do not match.")
+  }
   };
 
   const handleOpen = () => {
@@ -53,6 +59,7 @@ const UpdateProfileModal = () => {
       bio,
       password: "",
     });
+    setPasswordAgain("")
     setOpen(false);
   };
 
@@ -66,7 +73,7 @@ const UpdateProfileModal = () => {
         image: singleUser.image,
         city: singleUser.city,
         bio: singleUser.bio,
-        password: "", // Şifre güvenlik nedeniyle boş bırakılmalıdır.
+        password: "",
       });
     }
   }, [singleUser]);
@@ -138,7 +145,30 @@ const UpdateProfileModal = () => {
                 </InputAdornment>
               ),
             }}
-          />
+          /><TextField
+          id="passwordAgain"
+          name="passwordAgain"
+          label="PasswordAgain"
+          variant="outlined"
+          value={passwordAgain}
+          type={showPassword ? "text" : "password"}
+          onChange={(e) => setPasswordAgain(e.target.value)}
+          required
+          fullWidth
+          InputProps={{
+            endAdornment: (
+              <InputAdornment position="end">
+                <IconButton
+                  aria-label="toggle password visibility"
+                  onClick={() => setShowPassword((show) => !show)}
+                  edge="end"
+                >
+                  {showPassword ? <Visibility /> : <VisibilityOff /> }
+                </IconButton>
+              </InputAdornment>
+            ),
+          }}
+        />
           <TextField
             id="email"
             name="email"

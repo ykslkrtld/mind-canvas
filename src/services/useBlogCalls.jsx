@@ -21,7 +21,7 @@ const useBlogCalls = () => {
   const getBlogs = async (page = 1) => {
     dispatch(fetchStart());
     try {
-      const res = await axiosToken(`/blogs?limit=6&page=${page}`);
+      const res = await axiosToken(`/blogs?limit=6&sort[createdAt]=desc&page=${page}`);
       dispatch(getBlogSuccess(res.data));
     } catch (error) {
       dispatch(fetchFail());

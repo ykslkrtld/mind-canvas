@@ -13,10 +13,11 @@ const UpdateProfileModal = () => {
   const { patchProfile, getSingleUser } = useBlogCalls();
   const [showPassword, setShowPassword] = useState(false);
   const { singleUser } = useSelector((state) => state.getBlog);
-  
+
   const { username, email, firstName, lastName, image, city, bio } = singleUser;
 
-  const [passwordAgain, setPasswordAgain] = useState("")
+  const [passwordAgain, setPasswordAgain] = useState("");
+  const [passwordError, setPasswordError] = useState("");
 
   const [profileInfo, setProfileInfo] = useState({
     username,
@@ -33,14 +34,37 @@ const UpdateProfileModal = () => {
     setProfileInfo({ ...profileInfo, [e.target.name]: e.target.value });
   };
 
+  const validatePassword = (password) => {
+    const passwordRules = [
+      { regex: /[a-z]/, message: "Password must contain at least one lowercase letter" },
+      { regex: /[A-Z]/, message: "Password must contain at least one uppercase letter" },
+      { regex: /\d+/, message: "Password must contain at least one number" },
+      { regex: /[@$!%*?&]/, message: "Password must contain one of @$!%*?&" },
+      { regex: /.{8,}/, message: "Password must be at least 8 characters" },
+      { regex: /^.{0,15}$/, message: "Password must be at most 15 characters" },
+    ];
+
+    for (const rule of passwordRules) {
+      if (!rule.regex.test(password)) {
+        return rule.message;
+      }
+    }
+    return "";
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    if(passwordAgain === profileInfo.password) {
+    const validationError = validatePassword(profileInfo.password);
+    if (validationError) {
+      setPasswordError(validationError);
+      return;
+    }
+    if (passwordAgain !== profileInfo.password) {
+      alert("Passwords do not match.");
+      return;
+    }
     patchProfile(profileInfo, singleUser?._id);
     handleClose();
-  } else {
-    alert("Passwords do not match.")
-  }
   };
 
   const handleOpen = () => {
@@ -59,7 +83,8 @@ const UpdateProfileModal = () => {
       bio,
       password: "",
     });
-    setPasswordAgain("")
+    setPasswordAgain("");
+    setPasswordError("");
     setOpen(false);
   };
 
@@ -132,6 +157,8 @@ const UpdateProfileModal = () => {
             onChange={handleChange}
             required
             fullWidth
+            error={Boolean(passwordError)}
+            helperText={passwordError}
             InputProps={{
               endAdornment: (
                 <InputAdornment position="end">
@@ -140,35 +167,36 @@ const UpdateProfileModal = () => {
                     onClick={() => setShowPassword((show) => !show)}
                     edge="end"
                   >
-                    {showPassword ? <Visibility /> : <VisibilityOff /> }
+                    {showPassword ? <Visibility /> : <VisibilityOff />}
                   </IconButton>
                 </InputAdornment>
               ),
             }}
-          /><TextField
-          id="passwordAgain"
-          name="passwordAgain"
-          label="PasswordAgain"
-          variant="outlined"
-          value={passwordAgain}
-          type={showPassword ? "text" : "password"}
-          onChange={(e) => setPasswordAgain(e.target.value)}
-          required
-          fullWidth
-          InputProps={{
-            endAdornment: (
-              <InputAdornment position="end">
-                <IconButton
-                  aria-label="toggle password visibility"
-                  onClick={() => setShowPassword((show) => !show)}
-                  edge="end"
-                >
-                  {showPassword ? <Visibility /> : <VisibilityOff /> }
-                </IconButton>
-              </InputAdornment>
-            ),
-          }}
-        />
+          />
+          <TextField
+            id="passwordAgain"
+            name="passwordAgain"
+            label="Confirm Password"
+            variant="outlined"
+            value={passwordAgain}
+            type={showPassword ? "text" : "password"}
+            onChange={(e) => setPasswordAgain(e.target.value)}
+            required
+            fullWidth
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="end">
+                  <IconButton
+                    aria-label="toggle password visibility"
+                    onClick={() => setShowPassword((show) => !show)}
+                    edge="end"
+                  >
+                    {showPassword ? <Visibility /> : <VisibilityOff />}
+                  </IconButton>
+                </InputAdornment>
+              ),
+            }}
+          />
           <TextField
             id="email"
             name="email"

@@ -1,9 +1,20 @@
 import { useSelector } from "react-redux";
 import { Box, CardMedia, Typography } from "@mui/material";
 import UpdateProfileModal from "../components/blog/UpdateProfileModal";
+import useBlogCalls from "../services/useBlogCalls";
+import { useEffect } from "react";
 
 const Profile = () => {
-  const { user } = useSelector((state) => state.auth);
+  const { singleUser } = useSelector((state) => state.getBlog);
+  const {user} = useSelector(state => state.auth)
+  const { getSingleUser } = useBlogCalls();
+
+
+  useEffect(() => {
+    if (user?.userId) {
+      getSingleUser(user?.userId);
+    }
+  }, [user?.userId]);
 
   return (
     <>
@@ -21,7 +32,7 @@ const Profile = () => {
     >
       <CardMedia
         component="img"
-        image={user?.image}
+        image={singleUser?.image}
         alt="image"
         sx={{
           marginBottom: "1rem",
@@ -38,7 +49,7 @@ const Profile = () => {
       >
         First Name:
         <Typography component="span" fontSize={"1.3rem"} color={"secondary"} fontWeight={"600"}>
-          {user?.firstName}
+          {singleUser?.firstName}
         </Typography>
       </Typography>
       <Typography
@@ -47,26 +58,26 @@ const Profile = () => {
         gap={1}
         fontSize={"1.3rem"}
       >
-        Last Name: <Typography component="span" fontSize={"1.3rem"} color={"secondary"} fontWeight={"600"}>{user?.lastName}</Typography>{" "}
+        Last Name: <Typography component="span" fontSize={"1.3rem"} color={"secondary"} fontWeight={"600"}>{singleUser?.lastName}</Typography>{" "}
       </Typography>
-      {user?.bio && (
+      {singleUser?.bio && (
         <Typography
           display={"flex"}
           justifyContent={"center"}
           gap={1}
           fontSize={"1.3rem"}
         >
-          Bio: <Typography component="span" fontSize={"1.3rem"} color={"secondary"} fontWeight={"600"}>{user.bio}</Typography>{" "}
+          Bio: <Typography component="span" fontSize={"1.3rem"} color={"secondary"} fontWeight={"600"}>{singleUser.bio}</Typography>{" "}
         </Typography>
       )}
-      {user?.city && (
+      {singleUser?.city && (
         <Typography
           display={"flex"}
           justifyContent={"center"}
           gap={1}
           fontSize={"1.3rem"}
         >
-          City: <Typography component="span" fontSize={"1.3rem"} color={"secondary"} fontWeight={"600"}>{user.city}</Typography>{" "}
+          City: <Typography component="span" fontSize={"1.3rem"} color={"secondary"} fontWeight={"600"}>{singleUser.city}</Typography>{" "}
         </Typography>
       )}
       <Typography
@@ -75,9 +86,9 @@ const Profile = () => {
         gap={1}
         fontSize={"1.3rem"}
       >
-        Email: <Typography component="span" fontSize={"1.3rem"} color={"secondary"} fontWeight={"600"}>{user?.email}</Typography>{" "}
+        Email: <Typography component="span" fontSize={"1.3rem"} color={"secondary"} fontWeight={"600"}>{singleUser?.email}</Typography>{" "}
       </Typography>
-      {/* <UpdateProfileModal/> */}
+      <UpdateProfileModal/>
     </Box>
     <div style={{ paddingBottom: '100px' }}></div>
     </>

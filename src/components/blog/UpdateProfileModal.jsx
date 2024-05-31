@@ -7,17 +7,14 @@ import { useState, useEffect } from "react";
 import { IconButton, InputAdornment, TextField } from "@mui/material";
 import useBlogCalls from "../../services/useBlogCalls";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
-import useAuthCalls from "../../services/useAuthCalls";
 
 const UpdateProfileModal = () => {
   const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
-  const { user } = useSelector((state) => state.auth);
-  const { patchProfile } = useBlogCalls();
-  const { login } = useAuthCalls();
+  const { patchProfile, getSingleUser } = useBlogCalls();
   const [showPassword, setShowPassword] = useState(false);
+  const { singleUser } = useSelector((state) => state.getBlog);
   
-  const { username, email, firstName, lastName, image, city, bio } = user;
+  const { username, email, firstName, lastName, image, city, bio } = singleUser;
 
   const [profileInfo, setProfileInfo] = useState({
     username,
@@ -36,8 +33,13 @@ const UpdateProfileModal = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    patchProfile(profileInfo, user?.userId);
+    patchProfile(profileInfo, singleUser?._id);
     setOpen(false);
+  };
+
+  const handleOpen = () => {
+    getSingleUser(singleUser?._id);
+    setOpen(true);
   };
 
   const handleClose = () => {
@@ -53,6 +55,21 @@ const UpdateProfileModal = () => {
     });
     setOpen(false);
   };
+
+  useEffect(() => {
+    if (singleUser) {
+      setProfileInfo({
+        username: singleUser.username,
+        email: singleUser.email,
+        firstName: singleUser.firstName,
+        lastName: singleUser.lastName,
+        image: singleUser.image,
+        city: singleUser.city,
+        bio: singleUser.bio,
+        password: "", // Şifre güvenlik nedeniyle boş bırakılmalıdır.
+      });
+    }
+  }, [singleUser]);
 
   return (
     <div>
@@ -116,7 +133,7 @@ const UpdateProfileModal = () => {
                     onClick={() => setShowPassword((show) => !show)}
                     edge="end"
                   >
-                    {showPassword ? <VisibilityOff /> : <Visibility />}
+                    {showPassword ? <Visibility /> : <VisibilityOff /> }
                   </IconButton>
                 </InputAdornment>
               ),

@@ -6,6 +6,7 @@ import {
   getBlogSuccess,
   getMyBlogSuccess,
   getSingleBlogSuccess,
+  getSingleUserSuccess,
   getCategoriesSuccess,
   getLikeSuccess,
 } from "../features/blogSlice";
@@ -44,6 +45,17 @@ const useBlogCalls = () => {
     try {
       const { data } = await axiosToken(`/blogs/${id}`);
       dispatch(getSingleBlogSuccess(data));
+    } catch (error) {
+      dispatch(fetchFail());
+      console.log(error);
+    }
+  };
+
+  const getSingleUser = async (id) => {
+    dispatch(fetchStart());
+    try {
+      const { data } = await axiosToken(`/users/${id}`);
+      dispatch(getSingleUserSuccess(data));
     } catch (error) {
       dispatch(fetchFail());
       console.log(error);
@@ -105,7 +117,7 @@ const useBlogCalls = () => {
     try {
       await axiosToken.patch(`/users/${id}`, data);
       toastSuccessNotify("Editing was successful.");
-
+      getSingleUser(id)
       navigate("/profile")
     } catch (error) {
       dispatch(fetchFail());
@@ -130,6 +142,7 @@ const useBlogCalls = () => {
     getBlogs,
     getMyBlogs,
     getSingleBlog,
+    getSingleUser,
     getCategories,
     postLikes,
     postDatas,

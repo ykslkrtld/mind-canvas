@@ -4,7 +4,7 @@ const initialState = {
   blogs: [],
   comments: [],
   categories: [],
-  users: [],
+  singleUser: [],
   singleBlog: [],
   likes: [],
   loading: false,
@@ -36,6 +36,10 @@ const blogSlice = createSlice({
       state.loading = false;
       state.singleBlog = payload.data;
     },
+    getSingleUserSuccess: (state, { payload }) => {
+      state.loading = false;
+      state.singleUser = payload.data;
+    },
     getCategoriesSuccess: (state, { payload }) => {
       state.loading = false;
       state.categories = payload.data;
@@ -63,6 +67,7 @@ export const {
   getBlogSuccess,
   getMyBlogSuccess,
   getSingleBlogSuccess,
+  getSingleUserSuccess,
   getCategoriesSuccess,
   getLikeSuccess,
   setCurrentPage,

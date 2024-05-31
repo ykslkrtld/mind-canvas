@@ -24,12 +24,12 @@ const Detail = () => {
   const { id } = useParams();
   const { getSingleBlog, postLikes, getCategories } = useBlogCalls();
   const { singleBlog, loading, likes, showComments } = useSelector((state) => state.getBlog);
-  const {user} = useSelector(state => state.auth)
+  const { user } = useSelector((state) => state.auth);
   const [userLike, setUserLike] = useState();
   const [countOfLikes, setCountOfLikes] = useState();
   const [open, setOpen] = useState(false);
   const [selectedBlog, setSelectedBlog] = useState(null);
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   useEffect(() => {
     getSingleBlog(id);
@@ -83,7 +83,7 @@ const Detail = () => {
             height="300"
             image={singleBlog?.image}
             alt="Paella dish"
-            sx={{ marginBottom: "3rem", objectFit: "contain",  }}
+            sx={{ marginBottom: "3rem", objectFit: "contain" }}
           />
           <CardHeader
             avatar={<Avatar aria-label="recipe"></Avatar>}
@@ -107,7 +107,10 @@ const Detail = () => {
                 <FavoriteIcon sx={{ color: userLike ? "red" : "inherit" }} />
                 <Typography>{countOfLikes}</Typography>
               </IconButton>
-              <IconButton aria-label="comment" onClick={() => dispatch(setShowComments(!showComments))}>
+              <IconButton
+                aria-label="comment"
+                onClick={() => dispatch(setShowComments(!showComments))}
+              >
                 <CommentIcon />
                 <Typography>{singleBlog?.comments?.length}</Typography>
               </IconButton>
@@ -120,7 +123,8 @@ const Detail = () => {
           {user?.userId === singleBlog?.userId?._id && (
             <CardActions sx={{ justifyContent: "center" }}>
               <Button
-                variant="contained" color="success"
+                variant="contained"
+                color="success"
                 onClick={() => {
                   setOpen(true);
                   setSelectedBlog(singleBlog?._id);
@@ -140,14 +144,18 @@ const Detail = () => {
           {showComments && singleBlog?.comments && (
             <>
               <CommentCard blogId={singleBlog?._id} />
-              {singleBlog?.comments.map((comment) => (
-                  <CommentForm key={comment._id} comment={comment} />
-                ))}
+              {
+                [...singleBlog.comments]
+                  .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+                  .map((comment) => (
+                    <CommentForm key={comment._id} comment={comment} />
+                  ))
+              }
             </>
           )}
         </Card>
       )}
-      <div style={{ paddingBottom: '100px' }}></div>
+      <div style={{ paddingBottom: "100px" }}></div>
     </>
   );
 };

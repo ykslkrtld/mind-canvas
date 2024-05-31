@@ -14,6 +14,7 @@ import MenuItem from "@mui/material/MenuItem";
 import useAuthCalls from "../services/useAuthCalls";
 import { useSelector } from "react-redux";
 import { NavLink, useLocation } from "react-router-dom";
+import { useState } from "react";
 
 const pages = [
   { name: "Home", path: "/" },
@@ -35,8 +36,8 @@ const logReg = [
 const Navbar = () => {
   const { user } = useSelector((state) => state.auth);
   const { logout } = useAuthCalls();
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
-  const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const [anchorElNav, setAnchorElNav] = useState(null);
+  const [anchorElUser, setAnchorElUser] = useState(null);
   const location = useLocation();
   
   const handleOpenNavMenu = (event) => {

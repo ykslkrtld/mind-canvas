@@ -14,7 +14,8 @@ import MenuItem from "@mui/material/MenuItem";
 import useAuthCalls from "../services/useAuthCalls";
 import { useSelector } from "react-redux";
 import { NavLink, useLocation } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import useBlogCalls from "../services/useBlogCalls";
 
 const pages = [
   { name: "Home", path: "/" },
@@ -38,6 +39,8 @@ const Navbar = () => {
   const { logout } = useAuthCalls();
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
+  const { singleUser } = useSelector((state) => state.getBlog);
+  const { getSingleUser } = useBlogCalls();
   const location = useLocation();
   
   const handleOpenNavMenu = (event) => {
@@ -71,6 +74,12 @@ const Navbar = () => {
       return logReg;
     }
   };
+
+  useEffect(() => {
+    if (user?.userId) {
+      getSingleUser(user?.userId);
+    }
+  }, [user?.userId]);
 
   return (
     <AppBar position="static" sx={{ backgroundColor: "black" }}>
@@ -160,12 +169,12 @@ const Navbar = () => {
             sx={{ flexGrow: 1, display: "flex", justifyContent: "flex-end" }}
           >
             <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-              <Typography>{ user?.firstName + " " + user?.lastName}</Typography>
+              <Typography>{ user.username && singleUser?.firstName + " " + singleUser?.lastName}</Typography>
               <Tooltip title="Open settings">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                   <Avatar
                     alt="Remy Sharp"
-                    src={user?.image}
+                    src={user.username && singleUser?.image}
                   />
                 </IconButton>
               </Tooltip>

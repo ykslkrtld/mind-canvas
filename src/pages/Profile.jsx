@@ -5,8 +5,8 @@ import useBlogCalls from "../services/useBlogCalls";
 import { useEffect } from "react";
 
 const Profile = () => {
-  const { singleUser } = useSelector((state) => state.getBlog);
   const {user} = useSelector(state => state.auth)
+  const { singleUser } = useSelector((state) => state.getBlog);
   const { getSingleUser } = useBlogCalls();
 
 

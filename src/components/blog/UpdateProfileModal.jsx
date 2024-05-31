@@ -32,6 +32,10 @@ const UpdateProfileModal = () => {
 
   const handleChange = (e) => {
     setProfileInfo({ ...profileInfo, [e.target.name]: e.target.value });
+    if (e.target.name === "password") {
+      const validationError = validatePassword(e.target.value);
+      setPasswordError(validationError);
+    }
   };
 
   const validatePassword = (password) => {
@@ -54,9 +58,7 @@ const UpdateProfileModal = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const validationError = validatePassword(profileInfo.password);
-    if (validationError) {
-      setPasswordError(validationError);
+    if (passwordError) {
       return;
     }
     if (passwordAgain !== profileInfo.password) {

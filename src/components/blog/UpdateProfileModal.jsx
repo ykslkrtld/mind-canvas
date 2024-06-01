@@ -13,11 +13,10 @@ const UpdateProfileModal = () => {
   const { patchProfile, getSingleUser } = useBlogCalls();
   const [showPassword, setShowPassword] = useState(false);
   const { singleUser } = useSelector((state) => state.getBlog);
-
-  const { username, email, firstName, lastName, image, city, bio } = singleUser;
-
   const [passwordAgain, setPasswordAgain] = useState("");
   const [passwordError, setPasswordError] = useState("");
+
+  const { username, email, firstName, lastName, image, city, bio } = singleUser;
 
   const [profileInfo, setProfileInfo] = useState({
     username,

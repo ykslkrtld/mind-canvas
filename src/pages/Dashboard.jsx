@@ -5,7 +5,7 @@ import useBlogCalls from '../services/useBlogCalls';
 import { Box, Grid } from '@mui/material';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
-import { setCurrentPage } from '../features/blogSlice';
+import { setCurrentPage, setDelNav } from '../features/blogSlice';
 
 const Dashboard = () => {
 
@@ -16,6 +16,11 @@ const Dashboard = () => {
   useEffect(() => {
     getBlogs(currentPage);
   }, [currentPage]);
+
+  useEffect(() => {
+    dispatch(setDelNav(true))
+  }, [])
+  
 
   const handlePageChange = (event, value) => {
     dispatch(setCurrentPage(value));  

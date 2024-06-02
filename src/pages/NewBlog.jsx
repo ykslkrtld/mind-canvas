@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import useBlogCalls from "../services/useBlogCalls";
 import { useEffect } from "react";
 import {
@@ -12,9 +12,13 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
+import { setDelNav } from '../features/blogSlice';
+
 
 const NewBlog = () => {
   const { getCategories, postDatas } = useBlogCalls();
+  const dispatch = useDispatch();
+
 
   const status = [
     {
@@ -54,6 +58,7 @@ const NewBlog = () => {
 
   useEffect(() => {
     getCategories();
+    dispatch(setDelNav(false))
   }, []);
 
   return (

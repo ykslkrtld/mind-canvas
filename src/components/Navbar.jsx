@@ -141,11 +141,11 @@ const Navbar = () => {
             </Menu>
           </Box>
           <Box sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }}>
-            <img
+          <a href="/"><img
               src="https://png.pngtree.com/png-vector/20231115/ourmid/pngtree-blog-icon-blog-png-image_10603652.png"
               width={"60rem"}
               alt=""
-            />
+            /></a>
           </Box>      
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (

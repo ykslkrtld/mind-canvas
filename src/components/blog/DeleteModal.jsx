@@ -6,6 +6,7 @@ import Modal from '@mui/material/Modal';
 import CardActions from "@mui/material/CardActions";
 import useBlogCalls from '../../services/useBlogCalls';
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 const style = {
   position: 'absolute',
@@ -22,14 +23,17 @@ const style = {
 export default function DeleteModal({endpoint, id, blogId}) {
   const [open, setOpen] = React.useState(false);
   const { delDatas, getSingleBlog } = useBlogCalls();
+  const {delNav} = useSelector((state) => state.getBlog)
   const navigate = useNavigate()
 
   const handleDelete = () => {
+    delDatas(endpoint, id)
     if(endpoint === "comments"){
-      delDatas(endpoint, id).then(() => getSingleBlog(blogId))
-    } else {
-      delDatas(endpoint, id)
+      getSingleBlog(blogId)
+    } else if(endpoint === "blogs" && delNav) {
       navigate(-1);
+    } else if(endpoint === "blogs" && !delNav){
+      navigate("/");
     }
   }
 

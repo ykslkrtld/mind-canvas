@@ -1,8 +1,9 @@
 import { Box, Button, Grid } from '@mui/material'
 import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import MyBlogCard from '../components/blog/MyBlogCard';
 import useBlogCalls from '../services/useBlogCalls';
+import { setDelNav } from '../features/blogSlice';
 
 const MyBlog = () => {
 
@@ -10,11 +11,14 @@ const MyBlog = () => {
   const { user  } = useSelector((state) => state.auth);
   const { getMyBlogs } = useBlogCalls();
   const [ publish, setPublish ] = useState(true)
+  const dispatch = useDispatch();
+
 
   useEffect(() => {
     if (user.username) {
       getMyBlogs(user?.userId);
     }
+    dispatch(setDelNav(true))
   }, []);
 
   return (

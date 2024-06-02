@@ -48,11 +48,13 @@ const BlogCard = ({blog}) => {
         image={blog?.image}
         alt="Paella dish"
       />
-      <CardContent>
-        <Typography variant="body2" color="text.secondary" sx={{height:"60px"}} >
-          {(blog.content).slice(0, 100) + "..."}
-        </Typography>
-      </CardContent>
+      <Link to={`/detail/${blog._id}`} style={{ textDecoration: 'none' }}>
+        <CardContent>
+          <Typography variant="body2" color="text.secondary" sx={{height:"60px"}} >
+            {(blog?.content).slice(0, 100) + "..."}
+          </Typography>
+        </CardContent>
+      </Link>
       <CardActions disableSpacing sx={{justifyContent:"space-between", height:"50px"}}>
         <CardActions>
         <IconButton aria-label="add to favorites" onClick={handleLikes}>

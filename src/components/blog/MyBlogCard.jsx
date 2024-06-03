@@ -23,16 +23,12 @@ const BlogCard = ({blog}) => {
   const dispatch = useDispatch()
 
   const handleLikes = () => {
-    user ? postLikes(blog._id).then(() => getMyBlogs(user?.userId)) : navigate("/login")
+    postLikes(blog._id).then(() => getMyBlogs(user?.userId))
   }
 
   const handleShowComments = () => {
-    if (user) {
       navigate(`/detail/${blog._id}`);
       dispatch(setShowComments(true));
-    } else {
-      navigate("/login");
-    }
   };
 
   return (

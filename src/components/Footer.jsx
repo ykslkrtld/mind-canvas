@@ -16,11 +16,8 @@ const Footer = () => {
           justifyContent={"center"}
           spacing={1}
         >
-          <Typography color={"white"} >
-            Developed by ykslkrtld
-          </Typography>
-          <Typography color={"white"} >
-            Copyright © 2024{" "}
+          <Typography color={"white"} padding={1.5} >
+            Developed by ykslkrtld - Copyright © 2024
           </Typography>
         </Stack>
       </Container>

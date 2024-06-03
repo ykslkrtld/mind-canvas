@@ -14,6 +14,7 @@ import useBlogCalls from '../../services/useBlogCalls';
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useNavigate } from 'react-router-dom';
 import { setShowComments } from "../../features/blogSlice";
+import { toastErrorNotify } from '../../helper/ToastNotify';
 
 const BlogCard = ({blog, currentPage}) => {
 
@@ -23,15 +24,15 @@ const BlogCard = ({blog, currentPage}) => {
   const dispatch = useDispatch();
 
   const handleLikes = () => {
-    user ? postLikes(blog._id, currentPage).then(() => getBlogs(currentPage)) : navigate("/login");
+    user.username ? postLikes(blog._id, currentPage).then(() => getBlogs(currentPage)) : toastErrorNotify("You should log in to like");;
   };
 
   const handleShowComments = () => {
-    if (user) {
+    if (user.username) {
       navigate(`/detail/${blog._id}`);
       dispatch(setShowComments(true));
     } else {
-      navigate("/login");
+      toastErrorNotify("You should log in to comment");
     }
   };
 

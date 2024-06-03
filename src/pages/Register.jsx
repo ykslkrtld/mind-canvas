@@ -191,7 +191,7 @@ const Register = () => {
                     helperText={touched.city && errors.city}
                   />
                   <TextField
-                    label="Password"
+                    label="Password *"
                     name="password"
                     id="password"
                     type={showPassword ? "text" : "password"}

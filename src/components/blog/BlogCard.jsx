@@ -46,7 +46,7 @@ const BlogCard = ({blog, currentPage}) => {
         component="img"
         height="200"
         image={blog?.image}
-        alt="Paella dish"
+        alt="Image"
       />
       <Link to={`/detail/${blog._id}`} style={{ textDecoration: 'none' }}>
         <CardContent>

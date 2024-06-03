@@ -82,7 +82,7 @@ const Detail = () => {
             component="img"
             height="300"
             image={singleBlog?.image}
-            alt="Paella dish"
+            alt="Image"
             sx={{ marginBottom: "3rem", objectFit: "contain" }}
           />
           <CardHeader

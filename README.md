@@ -4,7 +4,7 @@ Mind Canvas is an engaging platform that empowers users to craft, publish, and m
 
 ## 🌐 Live Demo
 
-Check out the live demo of the application [here](https://movie-app-yksl.vercel.app/).
+Check out the live demo of the application [here](https://mind-canvas-ykslkrtld.vercel.app/).
 
 ## ✨ Features
 

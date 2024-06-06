@@ -13,7 +13,7 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import CommentIcon from "@mui/icons-material/Comment";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import { Avatar, Button } from "@mui/material";
-import loadingGif from "../assets/loadingg.gif";
+import loadingGif from "../assets/loading.gif";
 import DeleteModal from "../components/blog/DeleteModal";
 import UpdateBlogModal from "../components/blog/UpdateBlogModal";
 import CommentForm from "../components/blog/CommentForm";

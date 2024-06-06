@@ -61,7 +61,7 @@ const Register = () => {
         <Grid item xs={12} sm={10} md={6}>
           <Grid item xs={12}>
             <Typography variant="h3" color="secondary" align="center" my={5}>
-              BLOG APP
+              MindCanvas
             </Typography>
           </Grid>
           <Avatar

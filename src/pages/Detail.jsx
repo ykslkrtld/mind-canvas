@@ -149,8 +149,8 @@ const Detail = () => {
                   .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
                   .map((comment) => (
                     <CommentForm key={comment._id} comment={comment} />
-                  ))
-              }
+                    ))
+              }           
             </>
           )}
         </Card>

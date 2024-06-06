@@ -22,10 +22,10 @@ const About = () => {
             image="https://pbs.twimg.com/media/GOhgMAVW0AAPfQM?format=jpg&name=4096x4096"
             sx={{ objectFit: "contain", width: "100%", height: "40vh" }}
           />
-          <Typography variant={"p"} fontWeight={"400"} fontSize={40}>
-            Blog APP
+          <Typography variant={"p"} fontWeight={"600"} fontSize={40}>
+            MindCanvas
           </Typography>
-          <Typography variant="h4" fontWeight="600">
+          <Typography variant="h4">
             ykslkrtld
           </Typography>
           <Box

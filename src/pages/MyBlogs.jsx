@@ -1,4 +1,4 @@
-import { Box, Button, Grid } from '@mui/material'
+import { Box, Button, Grid, Typography } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import MyBlogCard from '../components/blog/MyBlogCard';
@@ -28,6 +28,7 @@ const MyBlog = () => {
       <Button onClick={() => setPublish(true)} variant='contained' color={publish ? 'success' : 'inherit'}>Published</Button>
     </Box>
 
+    {blogs.length === 0 && <Typography variant='h5' textAlign={"center"} color={"red"}>Sorry, You do not have a blog</Typography>}
     <Grid container gap={2} mt={3} justifyContent={"center"}>
       {blogs
         .filter((blog) => blog?.userId === user?.userId && blog?.isPublish === false )

@@ -33,16 +33,16 @@ const BlogCard = ({blog}) => {
 
   return (
     <Card sx={{ width: 360, height: 500, display:"flex", flexDirection:"column", justifyContent:"space-between" }}>
-      <CardHeader
-        title={blog.title}
-        subheader= {`Published Date: ${new Date(blog.createdAt).toLocaleString()}`}
-        sx={{height:"75px", alignItems:"center"}}
-      />
       <CardMedia
         component="img"
         height="200"
         image={blog?.image}
         alt="Image"
+      />
+      <CardHeader
+        title={blog.title}
+        subheader= {`Published Date: ${new Date(blog.createdAt).toLocaleString()}`}
+        sx={{height:"75px", alignItems:"center"}}
       />
       <Link to={`/detail/${blog._id}`} style={{ textDecoration: 'none' }}>
         <CardContent>

@@ -130,7 +130,7 @@ const Navbar = () => {
                     <NavLink
                       to={page.path}
                       style={({ isActive }) =>
-                        isActive ? { textDecoration: "none", color: "darkorange" } : { textDecoration: "none", color: "inherit" }
+                        isActive ? { textDecoration: "none", color: "purple" } : { textDecoration: "none", color: "inherit" }
                       }
                     >
                       {page.name}
@@ -157,7 +157,7 @@ const Navbar = () => {
                 <NavLink
                   to={page.path}
                   style={({ isActive }) =>
-                    isActive ? { textDecoration: "none", color: "darkorange" } : { textDecoration: "none", color: "inherit" }
+                    isActive ? { textDecoration: "none", color: "purple", backgroundColor:"white", padding:"0.5rem 1rem", borderRadius:"0.8rem" } : { textDecoration: "none", color: "inherit" }
                   }
                 >
                   {page.name}
@@ -214,11 +214,7 @@ const Navbar = () => {
                 <MenuItem key={item.name} onClick={handleCloseUserMenu}>
                   <NavLink
                     to={item.path}
-                    style={({ isActive }) =>
-                      isActive
-                        ? { textDecoration: "none", color: "darkorange" }
-                        : { textDecoration: "none", color: "inherit" }
-                    }
+                    style={{ textDecoration: "none", color: "inherit" }}
                   >
                     <Typography textAlign="center">{item.name}</Typography>
                   </NavLink>

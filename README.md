@@ -1,10 +1,10 @@
-# Mind Canvas 🎨
+# Mind Canvas
 
 Mind Canvas is an engaging platform that empowers users to craft, publish, and manage their personal blogs. It offers a space for creativity and community interaction, where users can share their thoughts and engage with a wide range of content.
 
 ## 🌐 Live Demo
 
-Check out the live demo of the application [here](https://mind-canvas-ykslkrtld.vercel.app/).
+Check out the live demo of the application [here](https://movie-app-yksl.vercel.app/).
 
 ## ✨ Features
 

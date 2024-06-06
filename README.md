@@ -1,70 +1,131 @@
-# Getting Started with Create React App
+## Mind Canvas
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This application allows users to create, publish, and manage their personal blogs. Users can easily create blog posts to share their original content and have the option to publish them or save them as drafts whenever they wish. Additionally, users can discover, read, comment on, and like blogs shared by other users. This enables users to find content on various topics and interact with other users. In this way, blog authors can share their own content while engaging within the community.
 
-## Available Scripts
 
-In the project directory, you can run:
+## Features
 
-### `yarn start`
+- **User Blog Creation and Management**: Users can easily create their own personal blogs, publish their content, edit, and manage them. They also have the option to save their posts as drafts.
+- **Blog Discovery and Reading**: Users can discover and read blogs shared by other users. This allows them to find content on different topics.
+- **Commenting and Liking**: Users can comment on and like blogs they read, allowing them to interact with content creators.
+- **Profile Management**: Users can edit their information from their personal profiles.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Installation
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+To get started with the Mind Canvas, follow these steps:
 
-### `yarn test`
+1. Clone the repository to your computer:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```
+git clone https://github.com/ykslkrtld/mind-canvas.git
 
-### `yarn build`
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+2. Navigate to the project directory
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```
+cd mind-canvas
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+3. Install the required packages
 
-### `yarn eject`
+```
+yarn install
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+4. Start the application
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```
+yarn start
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+5. Open the browser and navigate to http://localhost:3000
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Usage
 
-## Learn More
+1. **Home Page**: Access the home page to view the latest blogs and explore content.
+2. **User Authentication**: Register or log in to read and interact with blogs.
+3. **Reading Blogs**: Once logged in, users can read blogs shared by other users.
+4. **Interacting with Blogs**: Users can comment on blogs, like them, and share their thoughts.
+5. **Profile Management**: Update personal information and settings from the profile page.
+6. **Creating Blogs**: Authenticated users can create new blogs, either publishing them immediately or saving them as drafts.
+7. **Managing Own Blogs**: Users can view and manage their own blogs, editing or deleting them as necessary.
+8. **Responsive Design**: The application is designed to work seamlessly across various devices and screen sizes.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Project Skeleton
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```
+Mind Canvas
 
-### Code Splitting
+|----readme.md
+SOLUTION
+├── public
+|    ├── index.html
+|    ├── favicon.ico
+|    ├── manifest.json
+|    └── robots.txt
+├── src
+|    ├── index.css
+|    ├── index.js
+|    ├── App.js
+     ├── App.css
+|    ├── app
+|    │   ├── store.jsx
+|    ├── assets
+|    │   ├── loading.gif
+|    ├── components
+|    │   ├── blog
+|    │   │   ├── BlogCard.jsx
+|    │   │   ├── CommentCard.jsx
+|    │   │   ├── CommentForm.jsx
+|    │   │   ├── DeleteModal.jsx
+|    │   │   ├── MyBlogCard.jsx
+|    │   │   ├── UpdateBlogModal.jsx
+|    │   │   ├── UpdateProfileModal.jsx
+|    │   ├── Footer.jsx
+|    │   ├── Navbar.jsx
+|    ├── features
+|    │   ├── authSlice.jsx
+|    │   └── blogSlice.jsx
+|    ├── helper
+|    │   └── ToastNotify.jsx
+|    ├── pages
+|    │   ├── About.jsx
+|    │   ├── Dashboard.jsx
+|    │   ├── Detail.jsx
+|    │   ├── Login.jsx
+|    │   ├── MyBlogs.jsx
+|    │   ├── NewBlog.jsx
+|    │   ├── Profile.jsx
+|    │   └── Register.jsx
+|    ├── router
+|    |    ├── AppRouter.jsx
+|    |    └── PrivateRouter.jsx
+|    ├── services
+|    │   ├── useAuthCalls.jsx
+|    │   ├── useAxios.jsx
+|    │   └── useBlogCalls.jsx
+└── package.json
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Technologies I used
 
-### Analyzing the Bundle Size
+- **React**: A JavaScript library for building user interfaces.
+- **Material UI**: A popular React UI framework with pre-styled components.
+- **Redux** Toolkit: Provides a standardized way to write Redux logic, including store configuration and slice management.
+- **Redux Toolkit**: A Redux library used for application state management.
+- **Redux Persist**: Persist and rehydrate a Redux store.
+- **React Redux**: Official React bindings for Redux.
+- **Axios**: Promise-based HTTP client for making API requests.
+- **React Router DOM**: Declarative routing for React applications.
+- **Formik**: Form management library for React.
+- **Yup**: JavaScript schema builder for value parsing and validation.
+- **React Toastify**: Library for creating beautiful toast notifications.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Dev Tools
 
-### Making a Progressive Web App
+- Redux DevTools: A browser extension that allows developers to inspect every action and state change in their Redux application.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## Contributions
 
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+I welcome contributions! If you find any bugs, have suggestions, or want to contribute, please open an issue or send a pull request. Your feedback and contributions are greatly appreciated.

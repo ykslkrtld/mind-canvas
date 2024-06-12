@@ -14,6 +14,7 @@ import { useState } from "react";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { useSelector } from "react-redux";
 import { Navigate } from "react-router-dom"
+import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 
 const Login = () => {
   const { login } = useAuthCalls();
@@ -85,8 +86,17 @@ const Login = () => {
             }) => (
               <Form>
                 <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
+                <Typography variant="body2">
+                    <ContentCopyIcon
+                      onClick={() => {
+                        navigator.clipboard.writeText("test@test.com");
+                      }}
+                      style={{ cursor: "pointer" }}
+                    />
+                    test@test.com
+                  </Typography>
                   <TextField
-                    label="test@test.com"
+                    label="Email"
                     name="email"
                     id="email"
                     type="email"
@@ -97,8 +107,18 @@ const Login = () => {
                     error={touched.email && Boolean(errors.email)}
                     helperText={touched.email && errors.email}
                   />
+                  <Typography
+                      
+                      variant="body2"
+                    >
+                      <ContentCopyIcon onClick={() => {
+                        navigator.clipboard.writeText("Test123?");
+                      }}
+                      style={{ cursor: "pointer" }}/>
+                      Test123?
+                    </Typography>
                   <TextField
-                    label="Test123?"
+                    label="Password"
                     name="password"
                     id="password"
                     type={showPassword ? "text" : "password"}

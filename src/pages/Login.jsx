@@ -6,7 +6,7 @@ import LockIcon from "@mui/icons-material/Lock";
 import { NavLink } from "react-router-dom";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
-import { Button, IconButton, InputAdornment, Snackbar, Alert } from "@mui/material";
+import { Button, IconButton, InputAdornment } from "@mui/material";
 import { Formik, Form } from "formik";
 import { object, string } from "yup";
 import useAuthCalls from "../services/useAuthCalls";
@@ -15,6 +15,8 @@ import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { useSelector } from "react-redux";
 import { Navigate } from "react-router-dom"
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
+import { toastSuccessNotify } from "../helper/ToastNotify";
+
 
 const Login = () => {
   const { login } = useAuthCalls();
@@ -36,18 +38,15 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const {user} = useSelector(state => state.auth)
 
-  const [snackbarOpen, setSnackbarOpen] = useState(false);
-  const [snackbarMessage, setSnackbarMessage] = useState("");
+  const copyEmail = () => {
+    navigator.clipboard.writeText("test@test.com")
+    toastSuccessNotify("Email copied!");
+  }
 
-  const handleCopy = (text, message) => {
-    navigator.clipboard.writeText(text);
-    setSnackbarMessage(message);
-    setSnackbarOpen(true);
-  };
-
-  const handleCloseSnackbar = () => {
-    setSnackbarOpen(false);
-  };
+  const copyPassword = () => {
+    navigator.clipboard.writeText("Test123?")
+    toastSuccessNotify("Password copied!");
+  }
 
   return user.username ? <Navigate to="/"/> : 
     <Container maxWidth="lg">
@@ -101,7 +100,7 @@ const Login = () => {
                 <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
                 <Typography variant="body2">
                     <ContentCopyIcon
-                      onClick={() => handleCopy("test@test.com", "Email copied!")}
+                      onClick={copyEmail}
                       style={{ cursor: "pointer" }}
                     />
                     test@test.com
@@ -122,7 +121,7 @@ const Login = () => {
                       
                       variant="body2"
                     >
-                      <ContentCopyIcon onClick={() => handleCopy("Test123?", "Password copied!")}
+                      <ContentCopyIcon onClick={copyPassword}
                       style={{ cursor: "pointer" }}/>
                       Test123?
                     </Typography>
@@ -180,16 +179,6 @@ const Login = () => {
           </Box>
         </Grid>
       </Grid>
-      <Snackbar
-        open={snackbarOpen}
-        autoHideDuration={3000}
-        onClose={handleCloseSnackbar}
-        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
-      >
-        <Alert onClose={handleCloseSnackbar} severity="success" sx={{ width: '100%' }}>
-          {snackbarMessage}
-        </Alert>
-      </Snackbar>
     </Container>
   
 };

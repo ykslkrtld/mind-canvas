@@ -10,6 +10,7 @@ const initialState = {
     city: "",
     bio: "",
     userId:"",
+    isAdmin:"",
   },
   token: "",
   loading: false,
@@ -33,6 +34,7 @@ const authSlice = createSlice({
       state.user.image = payload.user.image;
       state.user.city = payload.user.city;
       state.user.bio = payload.user.bio;
+      state.user.isAdmin = payload.user.isAdmin;
       state.token = payload.token;
       state.error = false;
     },

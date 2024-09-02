@@ -120,7 +120,7 @@ const Detail = () => {
               </IconButton>
             </CardActions>
           </CardActions>
-          {user?.userId === singleBlog?.userId?._id && (
+          {(user?.userId === singleBlog?.userId?._id || user?.isAdmin) && (
             <CardActions sx={{ justifyContent: "center" }}>
               <Button
                 variant="contained"

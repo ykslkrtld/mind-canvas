@@ -98,9 +98,9 @@ const Detail = () => {
             action={
               singleBlog?.categoryId && (
                 <Typography
-                  variant="body2"
-                  color="text.secondary"
-                  sx={{ ml: 2 }}
+                  variant="h6"
+                  color="black"
+                  sx={{ ml: 2, textTransform: "uppercase" }}
                 >
                   {singleBlog?.categoryId?.name}
                 </Typography>

@@ -43,6 +43,7 @@ const BlogCard = ({blog, currentPage}) => {
           height="200"
           image={blog?.image}
           alt="Image"
+          sx={{objectFit: "contain"}}
         />
       <CardHeader
         title={blog.title}

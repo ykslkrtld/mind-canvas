@@ -19,6 +19,7 @@ import UpdateBlogModal from "../components/blog/UpdateBlogModal";
 import CommentForm from "../components/blog/CommentForm";
 import CommentCard from "../components/blog/CommentCard";
 import { setShowComments } from "../features/blogSlice";
+import AvatarPng from "../assets/avatar.png"
 
 const Detail = () => {
   const { id } = useParams();
@@ -86,9 +87,25 @@ const Detail = () => {
             sx={{ marginBottom: "3rem", objectFit: "contain" }}
           />
           <CardHeader
-            avatar={<Avatar aria-label="recipe"></Avatar>}
+            avatar={
+              <Avatar
+                aria-label="recipe"
+                src={singleBlog?.userId?.image || AvatarPng}
+              />
+            }
             title={singleBlog?.userId?.username}
             subheader={`${new Date(singleBlog.createdAt).toLocaleString()}`}
+            action={
+              singleBlog?.categoryId && (
+                <Typography
+                  variant="body2"
+                  color="text.secondary"
+                  sx={{ ml: 2 }}
+                >
+                  {singleBlog?.categoryId?.name}
+                </Typography>
+              )
+            }
           />
           <CardContent>
             <Typography variant="h5" color="text.black">

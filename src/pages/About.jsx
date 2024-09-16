@@ -18,8 +18,8 @@ const About = () => {
         >
           <CardMedia
             component="img"
-            alt="cimbom"
-            image="https://pbs.twimg.com/media/GOhgMAVW0AAPfQM?format=jpg&name=4096x4096"
+            alt="blog"
+            image="https://www.moradam.com/wp-content/uploads/2019/10/Blog.jpg"
             sx={{ objectFit: "contain", width: "100%", height: "40vh" }}
           />
           <Typography variant={"p"} fontWeight={"600"} fontSize={40}>

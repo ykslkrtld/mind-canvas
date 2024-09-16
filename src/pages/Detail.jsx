@@ -100,7 +100,7 @@ const Detail = () => {
                 <Typography
                   variant="h6"
                   color="black"
-                  sx={{ ml: 2, textTransform: "uppercase" }}
+                  sx={{ ml: 6, textTransform: "uppercase" }}
                 >
                   {singleBlog?.categoryId?.name}
                 </Typography>

@@ -116,3 +116,12 @@ Mind Canvas
 ## 🤝 How to Contribute
 
 Join the Mind Canvas community! Report bugs, suggest enhancements, or submit pull requests. Your insights help us grow.
+
+## Ekran Görüntüleri
+![Ekran Görüntüsü 1](https://ibb.co/PMdHDNK)
+![Ekran Görüntüsü 2](https://ibb.co/bW0H6hT)
+![Ekran Görüntüsü 3](https://ibb.co/K5Dg7BR)
+![Ekran Görüntüsü 4](https://ibb.co/qkm7vM4)
+![Ekran Görüntüsü 5](https://ibb.co/vcKDtvP)
+![Ekran Görüntüsü 6](https://ibb.co/Z210DVP)
+![Ekran Görüntüsü 7](https://ibb.co/Ykwybcq)

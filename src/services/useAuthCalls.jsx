@@ -12,9 +12,7 @@ const useAuthCalls = () => {
    const login = async (userData) => {
     dispatch(fetchStart());
     try {
-      const { data } = await axiosPublic.post("/auth/login/", userData, {
-        withCredentials: true
-    })
+      const { data } = await axiosPublic.post("/auth/login/", userData)
       dispatch(loginSuccess(data));
       console.log(data)
       toastSuccessNotify("You have successfully logged in.");
@@ -29,9 +27,7 @@ const useAuthCalls = () => {
   const register = async (userInfo) => {
     dispatch(fetchStart());
     try {
-      const { data } = await axiosPublic.post("/users/", userInfo, {
-        withCredentials: true
-    })
+      const { data } = await axiosPublic.post("/users/", userInfo)
       dispatch(registerSuccess(data));
       toastSuccessNotify("You have successfully registered.");
       navigate("/")
